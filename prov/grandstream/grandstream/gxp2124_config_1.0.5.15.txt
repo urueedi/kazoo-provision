@@ -1,0 +1,4167 @@
+﻿################################################################################################
+## Configuration Template For GXP2124 Firmware Version 1.0.5.15                               ##
+################################################################################################
+
+####################################################################
+## Change Log                                                     ##
+####################################################################
+#-----------------------------------------
+# P values added since 1.0.4.23           
+#-----------------------------------------
+# Music On Hold URI
+# P2350 =
+
+# Authenticate Incoming INVITE
+# P2346 = 0
+
+# Music On Hold URI
+# P2450 =
+
+# Authenticate Incoming INVITE
+# P2446 = 0
+
+# Music On Hold URI
+# P2550 =
+
+# Authenticate Incoming INVITE
+# P2546 = 0
+
+# Music On Hold URI
+# P2650 =
+
+# Authenticate Incoming INVITE.
+# P2646 = 0
+
+# HTTP Proxy
+# String
+# P1552 =
+
+# HTTPS Proxy
+# String
+# P1553 =
+
+# Click-To-Dial Feature. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+# P1561 = 0
+
+# Call-Waiting Tone Gain. 0 - Low, 1 - Medium, 2 - High. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+# P1555 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2347 = 0
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+# P2324 = 0
+
+# Broadsoft Call Center. 0 - No, 1 - Yes. Default is 0.
+# Number: 0, 1
+# Mandatory
+# P2341 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes. Default is 0.
+# Number: 0, 1
+# Mandatory
+# P2342 = 0
+
+# Call Center Status. 0 - No, 1 - Yes. Default is 0.
+# Number: 0, 1
+# Mandatory
+# P2343 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes. Default is 0.
+# Number: 0, 1
+# Mandatory
+# P2340 = 0
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2348 = 0
+
+# DND Call Feature On
+# String
+# P2344 =
+
+# DND Call Feature Off
+# String
+# P2345 =
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header
+# Default is 0
+# Number: 0, 1, 2
+# Mandatory
+# P2424 = 0
+
+# Broadsoft Call Center. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2441 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2442 = 0
+
+# Call Center Status. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2443 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2440 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2447 = 0
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2448 = 0
+
+# DND Call Feature On
+# String
+# P2444 =
+
+# DND Call Feature Off
+# String
+# P2445 =
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header
+# Number: 0, 1, 2
+# Mandatory
+# P2524 = 0
+
+# Broadsoft Call Center. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2541 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2542 = 0
+
+# Call Center Status. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2543 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2540 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2547 = 0
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2548 = 0
+
+# DND Call Feature On
+# String
+# P2544 =
+
+# DND Call Feature Off
+# String
+# P2545 =
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header
+# Number: 0, 1, 2
+# Mandatory
+# P2624 = 0
+
+# Broadsoft Call Center. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2641 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2642 = 0
+
+# Call Center Status. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2643 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes
+# Default is 0
+# Number: 0, 1
+# Mandatory
+# P2640 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2647 = 0
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+# P2648 = 0
+
+# DND Call Feature On
+# String
+# P2644 =
+
+# DND Call Feature Off
+# String
+# P2645 =
+
+#-----------------------------------------
+# P values deleted from 1.0.4.23          
+#-----------------------------------------
+# China Telecom Mode. 0 - No. 1 - Yes. Default is 0.
+# Number: 0, 1
+# Mandatory
+# P1386 =0
+
+#-----------------------------------------
+# P value options change from 1.0.4.23          
+#-----------------------------------------
+# P64 options added:
+# EST5 - GMT-05:00 (Eastern Time without daylight saving) 
+# P64 options updated:
+# CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00 - GMT+01:00 (Paris, Vienna, Warsaw, Roma, Madrid, Prague, Berlin, Budapest, Amsterdam, Belgium)
+
+####################################################################
+## Change Log End                                                 ##
+####################################################################
+
+
+####################################################################
+# Account Settings                                                ##
+####################################################################
+####################################################################
+# Account 1                                                       ##
+####################################################################
+#-----------------------------------------
+# Account 1/General Settings
+#-----------------------------------------
+# Account Active. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P271 = 1
+
+# Account Name
+# String
+# P270 =
+
+# SIP Server
+# String
+P47 =
+
+# Secondary SIP Server
+# String
+P2312 =
+
+# Outbound Proxy
+# String
+P48 =
+
+# SIP User ID
+# String
+P35 =
+
+# Authenticate ID
+# String
+P36 =
+
+# Authenticate Password
+# String
+P34 =
+
+# Display Name
+# String
+P3 =
+
+# Voice Mail UserID
+# String
+P33 =
+
+#-----------------------------------------
+# Account 1/Network Settings
+#-----------------------------------------
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV, 3 - Use Configured IP. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P103 = 0
+
+# Primary IP. Maximum 15 characters
+# String
+P2308 =
+
+# Backup IP 1
+# String
+P2309 =
+
+# Backup IP 2
+# String
+P2310 =
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default is 0.
+# Number: 0, 1, 2, 3, 4, 5
+# Mandatory
+P52 = 0
+
+# Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
+# String
+P197 =
+
+#-----------------------------------------
+# Account 1/SIP Settings/Basic Settings
+#-----------------------------------------
+# TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P63 = 0
+
+# SIP Registration. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P31 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P81 = 0
+
+# Register Expiration (in minutes). Default is 60. Max about 45 days
+# Number: 1 - 64800
+# Mandatory
+P32 = 60
+
+# Reregister Before Expiration (in seconds). Default is 0 second
+# Number: 0 - 64800
+# Mandatory
+P2330 = 0
+
+# Local SIP Port. Default is 5060
+# Number
+# Mandatory
+P40 = 5060
+
+# SIP Registration Failure Retry Wait Time (in seconds). Default is 20
+# Number: 1 - 3600
+# Mandatory
+P138 = 20
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default is 50
+# Number: 50, 100, 200
+# Mandatory
+P209 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value. The maximum retransmit interval for non-INVITE requests and INVITE responses
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default is 400
+# Number: 200, 400, 800
+# Mandatory
+P250 = 400
+
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS/TCP. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P130 = 0
+
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+# Number: 0, 1
+# Mandatory
+P2329 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2331 = 0
+
+# Remove OBP from Route. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2305 = 0
+
+# Support SIP Instace ID. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P288 = 1
+
+# SUBSCRIBE for MWI. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P99 = 0
+
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2319 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P272 = 0
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2324 = 0
+
+# Use Privacy Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2338 = 0
+
+# Use P-Preferred-Identity Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2339 = 0
+
+#-----------------------------------------
+# Account 1/SIP Settings/Advanced Features
+#-----------------------------------------
+# Broadsoft Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2341 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2342 = 0
+
+# Call Center Status. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2343 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2340 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0
+# Number: 0, 1
+# Mandatory
+P2325 = 0
+
+# Line-Seize Timeout (in seconds). Default is 15
+# Number: 15 - 60
+# Mandatory
+P2313 = 15
+
+# Eventlist BLF URI
+# String
+P134 =
+
+# Conference URI
+# String
+P2318 =
+
+# Music On Hold URI
+# String
+P2350 =
+
+# BLF Call-pickup Prefix. Default is **
+# String
+# Mandatory
+P1347 = **
+
+# PUBLISH for Presence. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P188 = 0
+
+# Special Feature. 100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK, 110 - Sylantro, 117 - Huawei IMS
+# Default is 100
+# Number: 100, 101, 102, 108, 109, 110, 117
+# Mandatory
+P198 = 100
+
+#-----------------------------------------
+# Account 1/SIP Settings/Session Timer
+#-----------------------------------------
+# Session Expiration (in seconds). Default is 180
+# Number: 90 - 64800
+# Mandatory
+P260 = 180
+
+# Minimum SE (in seconds). Default is 90. This value must be lower than or equal to P260
+# Number: 90 - 64800
+# Mandatory
+P261 = 90
+
+# Caller Request Timer (Request for timer when calling). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P262 = 0
+
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one)
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P263 = 0
+
+# Force Timer (Still use timer when remote party does not support timer). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P264 = 0
+
+# UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P266 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default is 1
+# Number: 1, 2
+# Mandatory
+P267 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE).
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P265 = 0
+
+#-----------------------------------------
+# Account 1/SIP Settings/Security Settings
+#-----------------------------------------
+# Check Domain Certificates. When set to Yes/Enabled, domain certificate will be checked as defined in RFC5922
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2311 = 0
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2306 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P258 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2347 = 0
+
+# Authenticate Incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2346 = 0
+
+#-----------------------------------------
+# Account 1/Audio Settings
+#-----------------------------------------
+# Send DTMF: In-audio. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2301 = 0
+
+# Send DTMF: Via RTP (RFC2833). 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P2302 = 1
+
+# Send DTMF: Via SIP INFO. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2303 = 0
+
+# DTMF Payload Type. Default is 101
+# Number: 96 - 127
+# Mandatory
+P79 = 101
+
+# Preferred Vocoder
+# 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 9 - G.722, 18 - G.729A/B, 98 - iLBC
+# choice 1. Default is 0
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P57 = 0
+
+# choice 2. Default is 8
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P58 = 8
+
+# choice 3. Default is 4
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P59 = 4
+
+# choice 4. Default is 18
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P60 = 18
+
+# choice 5. Default is 9
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P61 = 9
+
+# choice 6. Default is 98
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P62 = 98
+
+# choice 7. Default is 2
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P46 = 2
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2348 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced, 3 - Optional. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P183 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P291 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P50 = 0
+
+# Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively). Default is 2
+# Number: 1 - 64
+# Mandatory
+P37 = 2
+
+# G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate. Default is 1
+# Number: 0, 1
+# Mandatory
+P49 = 1
+
+# G.726-32 Packing Mode. 0 - ITU, 1 - IETF. Default is 0
+# Number: 0, 1
+# Mandatory
+P2323 = 0
+
+# iLBC Frame Size. 0 - 20ms, 1 - 30ms. Default is 1
+# Number: 0, 1
+# Mandatory
+P97 = 1
+
+# iLBC Payload Type. Default is 97
+# Number: 96 - 127
+# Mandatory
+P96 = 97
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is 1
+# Number: 0, 1
+# Mandatory
+P133 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms, 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms
+# Default is 2
+# Number: 0, 1, 2, 3, 4, 5, 6, 7
+# Mandatory
+P132 = 2
+
+#-----------------------------------------
+# Account 1/Call Settings
+#-----------------------------------------
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P29 = 0
+
+# Dial Plan Prefix
+# String 
+P66 =
+
+# Dial Plan. Default value is { x+ | *x+ | *xx*x+ }
+# String
+# Mandatory
+P290 = { x+ | *x+ | *xx*x+ }
+
+# Delayed Call Forward Wait Time (in seconds). Default is 20
+# Number: 1 - 120
+# Mandatory
+P139 = 20
+
+# Enable Call Features.  0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P191 = 1
+
+# Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P182 = 0
+
+# Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P104 = 0
+
+# Matching Incoming Caller ID. Matching Rule 1
+# String
+P1488 = 
+
+# Matching Rule 1 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0.
+# Number: 0, 1, 2, 3
+# Mandatory
+P1489 = 0
+
+# Matching Incoming Caller ID. Matching Rule 2
+# String
+P1490 = 
+
+# Matching Rule 2 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1491 = 0
+
+# Matching Incoming Caller ID. Matching Rule 3
+# String
+P1492 =
+
+# Matching Rule 3 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1493 = 0
+
+# Ring Timeout (in seconds). Default is 60
+# Number: 30 - 3600
+# Mandatory
+P1328 = 60
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P65 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P129 = 0
+
+# Auto Answer. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P90 = 0
+
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P298 = 0
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P135 = 0
+
+# Transfer on Conference Hang-Up. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2304 = 0
+
+# No Key Entry Timeout (in seconds). Default is 4
+# Number: 1 - 15
+# Mandatory
+P85 = 4
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P72 = 1
+
+# DND Call Feature ON
+# String
+P2344 =
+
+# DND Call Feature OFF
+# String
+P2345 =
+
+
+####################################################################
+# Account 2
+####################################################################
+#--------------------------------------
+# Account 2/General Settings
+#--------------------------------------
+# Account Active. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P401 = 1
+
+# Account Name
+# String
+# P417 = 
+
+# SIP Server
+# String
+P402 = 
+
+# Secondary SIP Server
+# String
+P2412 =
+
+# Outbound Proxy
+# String
+P403 = 
+
+# SIP User ID
+# String
+P404 = 
+
+# Authenticate ID
+# String
+P405 = 
+
+# Authenticate password
+# String
+P406 = 
+
+# Display Name
+# String
+P407 =
+
+# Voice Mail UserID
+# String
+P426 =
+
+#--------------------------------------
+# Account 2/Network Settings
+#--------------------------------------
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV, 3 - Use Configured IP. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P408 = 0
+
+# Primary IP. Maximum 15 characters
+# String
+P2408 = 
+
+# Backup IP 1
+# String
+P2409 = 
+
+# Backup IP 2
+# String
+P2410 =
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default is 0
+# Number: 0, 1, 2, 3, 4, 5
+# Mandatory
+P414 = 0
+
+# Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
+# String
+P418 =
+
+#-----------------------------------------
+# Account 2/SIP Settings/Basic Settings
+#-----------------------------------------
+# TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P409 = 0
+
+# SIP Registration. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P410 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P411 = 0
+
+# Register Expiration (in minutes). Default is 60. Max is 45 days
+# Number: 1 - 64800
+# Mandatory
+P412 = 60
+
+# Reregister before Expiration (in seconds). Default is 0
+# Number: 0 - 64800
+# Mandatory
+P2430 = 0
+
+# Local SIP port. Default is 5062
+# Number
+# Mandatory
+P413 = 5062
+
+# SIP Registration Failure Retry Wait Time (in seconds). Default is 20
+# Number: 1 - 3600
+# Mandatory
+P471 = 20
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default is 100
+# Number: 50, 100, 200
+# Mandatory
+P440 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value. The maximum retransmit interval for non-INVITE requests and INVITE responses
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default is 400
+# Number: 200, 400, 800
+# Mandatory
+P441 = 400
+
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TCP/TLS. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P448 = 0
+
+# SIP URI Scheme when using TLS. 0 - sip, 1 - sips. Default is 1
+# Number: 0, 1
+# Mandatory
+P2429 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2431 = 0
+
+# Remove OBP from Route. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2405 = 0
+
+# Support SIP Instace ID. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P489 = 1
+
+# SUBSCRIBE for MWI (Whether or not send SUBSCRIBE for Message Waiting Indication). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P415 = 0
+
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2419 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P435 = 0
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2424 = 0
+
+# Use Privacy Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2438 = 0
+
+# Use P-Preferred-Identity Header. 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2439 = 0
+
+#-----------------------------------------
+# Account 2/SIP Settings/Advanced Features
+#-----------------------------------------
+# Broadsoft Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2441 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2442 = 0
+
+# Call Center Status. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2443 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2440 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0.
+# Number: 0, 1
+# Mandatory
+P2425 = 0
+
+# Line-Seize Timeout (in seconds). Default is 15
+# Number: 15 - 60
+# Mandatory
+P2413 = 15
+
+# Eventlist BLF URI
+# String
+P444 = 
+
+# Conference URI
+# String
+P2418 =
+
+# Music On Hold URI
+# String
+P2450 =
+
+# BLF Call-pickup Prefix. Default is **
+# String
+# Mandatory
+P481 = **
+
+# PUBLISH for Presence. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P488 = 0
+
+# Special Feature. 100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK, 110 - Sylantro, 117 - Huawei IMS
+# Number: 100, 101, 102, 108, 109, 110, 117. Default is 100
+# Mandatory
+P424 = 100
+
+#-----------------------------------------
+# Account 2/SIP Settings/Session Timer
+#-----------------------------------------
+# Session Expiration (in seconds). Default is 180
+# Number: 90 - 64800
+# Mandatory
+P434 = 180
+
+# Minimum SE (in seconds). Default is 90. This value must be lower than or equal to P434
+# Number: 90 - 64800
+# Mandatory
+P427 = 90
+
+# Caller Request Timer (Request for timer when calling). 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+P428 = 0
+
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one)
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory 
+P429 = 0
+
+# Force Timer (Still use timer when remote party does not support timer). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P430 = 0	
+
+# UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P432 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default is 1
+# Number: 1, 2
+# Mandatory
+P433 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE)
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P431 = 0
+
+#-----------------------------------------
+# Account 2/SIP Settings/Security Settings
+#-----------------------------------------
+# Check Domain Certificates. 0 - No, 1 - Yes. When set to Yes/Enabled, the domain certificate will be checked as defined in RFC5922
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2411 = 0
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2406 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P449 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2447 = 0
+
+# Authenticate Incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2446 = 0
+
+#-----------------------------------------
+# Account 2/Audio Settings
+#-----------------------------------------
+# Send DTMF: In-audio. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2401 = 0
+
+# Send DTMF: Via RTP (RFC2833). 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P2402 = 1
+
+# Send DTMF: Via SIP INFO. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2403 = 0
+
+# DTMF Payload Type. Default is 101
+# Number: 96 - 127
+# Mandatory
+P496 = 101
+
+# Preferred Vocoder
+# 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 9 - G.722, 18 - G.729A/B, 98 - iLBC
+# choice 1. Default is 0
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P451 = 0
+
+# choice 2. Default is 8
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P452 = 8
+
+# choice 3. Default is 4
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P453 = 4
+
+# choice 4. Default is 18
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P454 = 18
+
+# choice 5. Default is 9
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P455 = 9
+
+# choice 6. Default is 98
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P456 = 98
+
+# choice 7. Default is 2
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P457 = 2
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2448 = 0
+
+# SRTP Mode
+# 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced, 3 - Optional. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P443 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P460 = 0
+
+# Silence Suppression 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P485 = 0
+
+# Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively). Default is 2
+# Number: 1 - 64
+# Mandatory
+P486 = 2
+
+# G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate. Default is 1
+# Number: 0, 1
+# Mandatory
+P493 = 1
+
+# G.726-32 Packing Mode. 0 - ITU, 1 - IETF. default is 0
+# Number: 0, 1
+# Mandatory
+P2423 = 0
+
+# iLBC Frame Size. 0 - 20ms, 1 - 30ms. Default is 1
+# Number: 0, 1
+# Mandatory
+P495 = 1
+
+# iLBC payload type. Default is 97.
+# Number: 96 - 127
+# Mandatory
+P494 = 97
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is 1
+# Number: 0, 1
+# Mandatory
+P498 = 1
+
+# Jitter Buffer Length. 
+# 0 - 100ms, 1 - 200ms, 2 - 300ms, 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms. Default is 2
+# Number: 0, 1, 2, 3, 4, 5, 6, 7
+# Mandatory
+P497 = 2
+
+#-----------------------------------------
+# Account 2/Call Settings
+#-----------------------------------------
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P422 = 0
+
+# Dial Plan Prefix
+# String
+P419 = 
+
+# Dial Plan. Default is { x+ | *x+ | *xx*x+ }
+# String
+# Mandatory
+P459= { x+ | *x+ | *xx*x+ }
+
+# Delayed Call Forward Wait Time (in seconds). Default 20
+# Number: 1 - 120
+# Mandatory
+P470 = 20
+
+# Enable Call Features. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P420 = 1
+
+# Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P442 = 0
+
+# Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory 
+P423 = 0
+
+# Matching Incoming Caller ID. Matching Rule 1
+# String
+P1494 = 
+
+# Matching Rule 1 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1495 = 0
+
+# Matching Incoming Caller ID. Matching Rule 2.
+# String
+P1496 = 
+
+# Matching Rule 2 Distinctive Ringtone.
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1497 = 0
+
+# Matching Incoming Caller ID. Matching Rule 3.
+# String
+P1498 =
+
+# Matching Rule 3 Distinctive Ringtone.
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1499 = 0
+
+# Ring Timeout (in seconds) Default is 60
+# Number: 30 - 3600
+# Mandatory
+P476 = 60
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P421 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P446 = 0
+
+# Auto Answer. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P425 = 0
+
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P438 = 0
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P469 = 0
+
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2404 = 0
+
+# No Key Entry Timeout. Default is 4
+# Number: 1 - 15
+# Mandatory
+P491 = 4
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P492 = 1
+
+# DND Call Feature ON
+# String
+P2444 =
+
+# DND Call Feature OFF
+# String
+P2445 =
+
+####################################################################
+# Account 3
+####################################################################
+#--------------------------------------
+# Account 3/General Settings
+#--------------------------------------
+# Account Active. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P501 = 1
+
+# Account Name
+# String
+# P517 = 
+
+# SIP Server
+# String
+P502 = 
+
+# Secondary SIP Server
+# String
+P2512 =
+
+# Outbound Proxy
+# String
+P503 =
+
+# SIP User ID
+# String
+P504 =
+
+# Authenticate ID
+# String
+P505 = 
+
+# Authenticate Password
+# String
+P506 = 
+
+# Display Name
+# String
+P507 =
+
+# Voice Mail UserID
+# String
+P526 =
+
+#--------------------------------------
+# Account 3/Network Settings
+#--------------------------------------
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV, 3 - Use Configured IP. Default is 0 
+# Number: 0, 1, 2, 3
+# Mandatory
+P508 = 0
+
+# Primary IP. Maximum 15 characters
+# String
+P2508 = 
+
+# Backup IP 1
+# String
+P2509 = 
+
+# Backup IP 2
+# String
+P2510 =
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default is 0
+# Number: 0, 1, 2, 3, 4, 5
+# Mandatory
+P514 = 0
+
+# Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
+# String
+P518 =
+
+#-----------------------------------------
+# Account 3/SIP Settings/Basic Settings
+#-----------------------------------------
+# TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P509 = 0
+
+# SIP Registration. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P510 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P511 = 0
+
+# Register Expiration (in minutes). Default is 60. Max is 45 days
+# Number: 1 - 64800
+# Mandatory
+P512 = 60
+
+# Reregister before Expiration (in seconds). Default is 0 second
+# Number: 0 - 64800
+# Mandatory
+P2530 = 0
+
+# Local SIP Port. Default is 5064
+# Number
+# Mandatory
+P513 = 5064
+
+# SIP Registration Failure Retry Wait Time (in seconds). Default is 20
+# Number: 1 - 3600
+# Mandatory
+P571 = 20
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default is 100
+# Number: 50, 100, 200
+# Mandatory
+P540 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value. The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default is 400
+# Number: 200, 400, 800
+# Mandatory
+P541 = 400
+
+# SIP Transport. 0 - UDP, 1 - TCP. 2- TCP/TLS. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P548 = 0
+
+# SIP URI Scheme When Using TLS. 0 - sip, 1 - sips. Default is 1
+# Number: 0, 1
+# Mandatory
+P2529 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2531 = 0
+
+# Remove OBP from Route. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2505 = 0
+
+# Support SIP Instace ID. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P589 = 1
+
+# SUBSCRIBE for MWI (Whether or not send SUBSCRIBE for Message Waiting Indication). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P515 = 0
+
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2519 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P535 = 0
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2524 = 0
+
+# Use Privacy Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2538 = 0
+
+# Use P-Preferred-Identity Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2539 = 0
+
+#-----------------------------------------
+# Account 3/SIP Settings/Advanced Features
+#-----------------------------------------
+# Broadsoft Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2541 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2542 = 0
+
+# Call Center Status. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2543 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2540 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0
+# Number: 0, 1
+# Mandatory
+P2525 = 0
+
+# Line-Seize Timeout (in seconds). Default is 15
+# Number: 15 - 60
+# Mandatory
+P2513 = 15
+
+# Eventlist BLF URI
+# String
+P544 = 
+
+# Conference URI
+# String
+P2518 =
+
+# Music On Hold URI
+# String
+P2550 =
+
+# BLF Call-pickup Prefix. Default is **
+# String
+# Mandatory
+P581 = **
+
+# PUBLISH for Presence. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P588 = 0
+
+# Special Feature. 100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK, 110 - Sylantro, 117 - Huawei IMS. Default is 100
+# Number: 100, 101, 102, 108, 109, 110, 117
+# Mandatory
+P524 = 100
+
+#-----------------------------------------
+# Account 3/SIP Settings/Session Timer
+#-----------------------------------------
+# Session Expiration (in seconds). Default is 180
+# Number: 90 - 64800
+# Mandatory
+P534 = 180
+
+# Minimum SE (in seconds). Default is 90. This value must be lower than or equal to P534
+# Number: 90 - 64800
+# Mandatory
+P527 = 90
+
+# Caller Request Timer (Request for timer when calling) 0 - No, 1 - Yes
+# Number: 0, 1
+# Mandatory
+P528 = 0
+
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one)
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P529 = 0
+
+# Force Timer (Still use timer when remote party does not support timer). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P530 = 0
+
+# UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P532 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default is 1
+# Number: 1, 2
+# Mandatory
+P533 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P531 = 0
+
+#-----------------------------------------
+# Account 3/SIP Settings/Security Settings
+#-----------------------------------------
+# Check Domain Certificates. When set to Yes/Enabled, the domain certificate will be checked as defined in RFC5922
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2511 = 0
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2506 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P549 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2547 = 0
+
+# Authenticate Incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2546 = 0
+
+#-----------------------------------------
+# Account 3/Audio Settings
+#-----------------------------------------
+# Send DTMF: In-audio. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2501 = 0
+
+# Send DTMF: Via RTP (RFC2833). 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P2502 = 1
+
+# Send DTMF: Via SIP INFO. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2503 = 0
+
+# DTMF Payload Type. Default is 101
+# Number: 96 - 127
+# Mandatory
+P596 = 101
+
+# Preferred Vocoder
+# 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 9 - G.722, 18 - G.729A/B, 98 - iLBC
+# choice 1. Default is 0
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P551 = 0
+
+# choice 2. Default is 8
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P552 = 8
+
+# choice 3. Default is 4
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P553 = 4
+
+# choice 4. Default is 18
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P554 = 18
+
+# choice 5. Default is 9
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P555 = 9
+
+# choice 6. Default is 98
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P556 = 98
+
+# choice 7. Default is 2
+# Number: 0, 2, 4, 8, 9, 18, 98
+# Mandatory
+P557 = 2
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2548 = 0
+
+# SRTP Mode
+# 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced, 3 - Optional. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P543 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P560 = 0
+
+# Silence Suppression 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P585 = 0
+
+# Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively). Default is 2
+# Number: 1 - 64
+# Mandatory
+P586 = 2
+
+# G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate. Default is 1
+# Number: 0, 1
+# Mandatory
+P593 = 1
+
+# G.726-32 Packing Mode. 0 - ITU, 1 - IETF. Default is 0
+# Number: 0, 1
+# Mandatory
+P2523 = 0
+
+# iLBC Frame Size. 0 - 20ms, 1 - 30ms. Default is 1
+# Number: 0, 1
+# Mandatory
+P595 = 1
+
+# iLBC payload type. Default is 97
+# Number: 96-127
+# Mandatory
+P594 = 97
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is 1
+# Number: 0, 1
+# Mandatory
+P598 = 1
+
+# Jitter Buffer Length. 0 - 100ms, 1 - 200ms, 2 - 300ms, 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms. Default is 2
+# Number: 0, 1, 2, 3, 4, 5, 6, 7
+# Mandatory
+P597 = 2
+
+#-----------------------------------------
+# Account 3/Call Settings
+#-----------------------------------------
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P522 = 0
+
+# Dial Plan Prefix
+# String
+P519 = 
+
+# Dial Plan. Default is { x+ | *x+ | *xx*x+ }
+# String
+# Mandatory
+P559= { x+ | *x+ | *xx*x+ }
+
+# Delayed Call Forward Wait Time (in seconds). Default is 20
+# Number: 1 - 120
+# Mandatory
+P570 = 20
+
+# Enable Call Features. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P520 = 1
+
+# Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P542 = 0
+
+# Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P523 = 0
+
+# Matching Incoming Caller ID. Matching Rule 1
+# String
+P1500 = 
+
+# Matching Rule 1 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1501 = 0
+
+# Matching Incoming Caller ID. Matching Rule 2
+# String
+P1502 =
+
+# Matching Rule 2 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1503 = 0
+
+# Matching Incoming Caller ID. Matching Rule 3
+# String
+P1504 =
+
+# Matching Rule 3 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1505 = 0
+
+# Ring Timeout (in seconds). Default is 60
+# Number: 30 - 3600
+# Mandatory
+P576 = 60
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P521 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P546 = 0
+
+# Auto Answer. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P525 = 0
+
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P538 = 0
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P569 = 0
+
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2504 = 0
+
+# No Key Entry Timeout. Default is 4
+# Number: 1 - 15
+# Mandatory
+P591 = 4
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P592 = 1
+
+# DND Call Feature ON
+# String
+P2544 =
+
+# DND Call Feature OFF
+# String
+P2545 =
+
+####################################################################
+# Account 4
+####################################################################
+#--------------------------------------
+# Account 4/General Settings
+#--------------------------------------
+# Account Active. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P601 = 1
+
+# Account Name
+# String
+# P617 =
+
+# SIP Server
+# String
+P602 = 
+
+# Secondary SIP Server
+# String
+P2612 =
+
+# Outbound Proxy
+# String
+P603 =
+
+# SIP User ID
+# String
+P604 = 
+
+# Authenticate ID
+# String
+P605 =
+
+# Authenticate password
+# String
+P606 =
+
+# Display Name
+# String
+P607 =
+
+# Voice Mail UserID
+# String
+P626 =
+
+#--------------------------------------
+# Account 4/Network Settings
+#--------------------------------------
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV, 3 - Use Configured IP. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P608 = 0
+
+# Primary IP. Maximum 15 characters
+# String 
+P2608 = 
+
+# Backup IP 1
+# String
+P2609 =
+
+# Backup IP 2
+# String
+P2610 =
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - keep alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default is 0
+# Number: 0, 1, 2, 3, 4, 5
+# Mandatory
+P614 = 0
+
+# Proxy-Require (A SIP extension to enable firewall penetration). Max length is 64 characters
+# String
+P618 =
+
+#-----------------------------------------
+# Account 4/SIP Settings/Basic Settings
+#-----------------------------------------
+# TEL URI. 0 - Disabled, 1 - User=Phone, 2 - Enabled. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P609 = 0
+
+# SIP Registration. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P610 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P611 = 0
+
+# Register Expiration (in minutes). Default is 60. Max is 45 days
+# Number: 1 - 64800
+# Mandatory
+P612 = 60
+
+# Reregister before Expiration (in seconds). Default is 0
+# Number: 0 - 64800
+# Mandatory
+P2630 = 0
+
+# Local SIP port. Default is 5066
+# Number
+# Mandatory
+P613 = 5066
+
+# SIP Registration Failure Retry Wait Time (in seconds). Default is 20
+# Number: 1 - 3600
+# Mandatory
+P671 = 20
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default is 100
+# Number: 50, 100, 200
+# Mandatory
+P640 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value. The maximum retransmit interval for non-INVITE requests and INVITE responses
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default is 400
+# Number: 200, 400, 800
+# Mandatory
+P641 = 400
+
+# SIP Transport. 0 - UDP, 1 - TCP. 2 - TCP/TLS. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P648 = 0
+
+# SIP URI Scheme When Using TLS. 0 - sip, 1 - sips. Default is 1
+# Number: 0, 1
+# Mandatory
+P2629 = 1
+
+# Use Actual Ephemeral Port in Contact with TCP/TLS. 0 - No, 1- Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2631 = 0
+
+# Remove OBP from Route. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2605 = 0
+
+# Support SIP Instace ID. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P689 = 1
+
+# SUBSCRIBE for MWI (Whether or not send SUBSCRIBE for Message Waiting Indication). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P615 = 0
+
+# SUBSCRIBE for Registration. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2619 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P635 = 0
+
+# Caller ID Display. 0 - Auto, 1 - Disabled, 2 - From Header. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2624 = 0
+
+# Use Privacy Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2638 = 0
+
+# Use P-Preferred-Identity Header
+# 0 - Default, 1 - No, 2 - Yes. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P2639 = 0
+
+#-----------------------------------------
+# Account 4/SIP Settings/Advanced Features
+#-----------------------------------------
+# Broadsoft Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2641 = 0
+
+# Hoteling Event. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2642 = 0
+
+# Call Center Status. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2643 = 0
+
+# PUBLISH to Call Center. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2640 = 0
+
+# Feature Key Synchronization. 0 - Disabled, 1 - Enabled. Default is 0
+# Number: 0, 1
+# Mandatory
+P2625 = 0
+
+# Line-Seize Timeout (in seconds). Default is 15
+# Number: 15 - 60
+# Mandatory
+P2613 = 15
+
+# Eventlist BLF URI
+# String
+P644 = 
+
+# Conference URI
+# String
+P2618 =
+
+# Music On Hold
+# String
+P2650 =
+
+# BLF Call-pickup Prefix. Default is **
+# String
+# Mandatory
+P681 = **
+
+# PUBLISH for Presence. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P688 = 0
+
+# Special Feature. 100 - Standard, 101 - Nortel MCS, 102- Broadsoft, 108 - CBCOM, 109 - RNK, 110 - Sylantro, 117 - Huawei IMS. Default is 100
+# Number: 100, 101, 102, 108, 109, 110, 117
+# Mandatory
+P624 = 100
+
+#-----------------------------------------
+# Account 4/SIP Settings/Session Timer
+#-----------------------------------------
+# Session Expiration (in seconds). Default is 180
+# Number: 90 - 64800
+# Mandatory
+P634 = 180
+
+# Minimum SE (in seconds). Default is 90 seconds. This value must be lower than or equal to P634
+# Number: 90 - 64800
+# Mandatory
+P627 = 90
+
+# Caller Request Timer (Request for timer when calling). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P628 = 0
+
+# Callee Request Timer (Request for timer when called. i.e. if remote party supports timer but did not request for one)
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P629 = 0
+
+# Force Timer (Still use timer when remote party does not support timer). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P630 = 0
+
+# UAC Specify Refresher. 0 - omit, 1 - UAC, 2 - UAS. Default is 0
+# Number: 0 - 2
+# Mandatory
+P632 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default is 1
+# Number: 1, 2
+# Mandatory
+P633 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE).
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P631 = 0
+
+#-----------------------------------------
+# Account 4/SIP Settings/Security Settings
+#-----------------------------------------
+# Check Domain Certificates. When set to Yes/Enabled, the domain certificate will be checked as defined in RFC5922
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2611 = 0
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2606 = 0
+
+# Check SIP User ID for incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P649 = 0
+
+# Accept Incoming SIP from Proxy Only. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2647 = 0
+
+# Authenticate Incoming INVITE. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2646 = 0
+
+#-----------------------------------------
+# Account 4/Audio Settings
+#-----------------------------------------
+# Send DTMF: In-audio. 0 - on, 1 - off. Default is 0
+# Number: 0, 1
+# Mandatory
+P2601 = 0
+
+# Send DTMF: Via RTP (RFC2833). 0 - on, 1 - off. Default is 1
+# Number: 0, 1
+# Mandatory
+P2602 = 1
+
+# Send DTMF: Via SIP INFO. 0 - on, 1 - off. Default is 0
+# Number: 0, 1
+# Mandatory
+P2603 = 0
+
+# DTMF Payload Type. Default is 101
+# Number: 96 - 127
+# Mandatory
+P696 = 101
+
+# Preferred Vocoder
+# 0 - PCMU, 2 - G.726-32, 4 - G.723.1, 8 - PCMA, 9 - G.722, 18 - G.729A/B, 98 - iLBC
+# choice 1. Default is 0
+# Number: 0, 2, 4, 8, 9, 18, 98
+P651 = 0
+
+# choice 2. Default is 8
+# Number: 0, 2, 4, 8, 9, 18, 98
+P652 = 8
+
+# choice 3. Default is 4
+# Number: 0, 2, 4, 8, 9, 18, 98
+P653 = 4
+
+# choice 4. Default is 18
+# Number: 0, 2, 4, 8, 9, 18, 98
+P654 = 18
+
+# choice 5. Default is 9
+# Number: 0, 2, 4, 8, 9, 18, 98
+P655 = 9
+
+# choice 6. Default is 98
+# Number: 0, 2, 4, 8, 9, 18, 98
+P656 = 98
+
+# choice 7. Default is 2
+# Number: 0, 2, 4, 8, 9, 18, 98
+P657 = 2
+
+# Use First Matching Vocoder in 200OK SDP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2648 = 0
+
+# SRTP Mode
+# 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced, 3 - Optional. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P643 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P660 = 0
+
+# Silence Suppression 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P685 = 0
+
+# Voice Frames per TX (up to 10/20/32/64 frames for G711/G726/G723/other codecs respectively). Default is 2
+# Number: 1 - 64
+# Mandatory
+P686 = 2
+
+# G723 rate. 0 - 6.3kbps encoding rate, 1 - 5.3kbps encoding rate. Default is 1
+# Number: 0, 1
+# Mandatory
+P693 = 1
+
+# G.726-32 Packing Mode. 0 - ITU, 1 - IETF. Default is 0
+# Number: 0, 1
+# Mandatory
+P2623 = 0
+
+# iLBC Frame Size. 0 - 20ms, 1 - 30ms. Default is 1
+# Number: 0, 1
+# Mandatory
+P695 = 1
+
+# iLBC payload type. Between 96 and 127. Default is 97.
+# Number: 96 - 127
+# Mandatory
+P694 = 97
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default is 1
+# Number: 0, 1
+# Mandatory
+P698 = 1
+
+# Jitter Buffer Length. 
+# 0 - 100ms, 1 - 200ms, 2 - 300ms, 3 - 400ms, 4 - 500ms, 5 - 600ms, 6 - 700ms, 7 - 800ms. Default is 2
+# Number: 0, 1, 2, 3, 4, 5, 6, 7
+# Mandatory
+P697 = 2
+
+#-----------------------------------------
+# Account 4/Call Settings
+#-----------------------------------------
+# Early Dial (use "Yes" only if proxy supports 484 response). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P622 = 0
+
+# Dial Plan Prefix
+# String
+P619 = 
+
+# Dial Plan. Default is { x+ | *x+ | *xx*x+ }
+# String
+# Mandatory
+P659= { x+ | *x+ | *xx*x+ }
+
+
+# Delayed Call Forward Wait Time (in seconds). Default is 20
+# Number: 1 - 120
+# Mandatory
+P670 = 20
+
+# Enable Call Features. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P620 = 1
+
+# Call Log. 0 - Log All, 1 - Log Incoming/Outgoing only (Missed calls NOT recorded), 2 - Disable Call Log. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P642 = 0
+
+# Account Ring Tone. 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P623 = 0
+
+# Matching Incoming Caller ID. Matching Rule 1
+# String
+P1506 = 
+
+# Matching Rule 1 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1507 = 0
+
+# Matching Incoming Caller ID. Matching Rule 2
+# String
+P1508 = 
+
+# Matching Rule 2 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1509 = 0
+
+# Matching Incoming Caller ID. Matching Rule 3
+# String
+P1510 =
+
+# Matching Rule 3 Distinctive Ringtone
+# 0 - system ring tone, 1 - custom ring tone 1, 2 - custom ring tone 2, 3 - custom ring tone 3. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P1511 = 0
+
+# Ring Timeout (in seconds). Default is 60
+# Number: 30 - 3600
+# Mandatory
+P676 = 60
+
+# Send Anonymous (caller ID will be blocked if set to Yes). 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P621 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P646 = 0
+
+# Auto Answer. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P625 = 0
+
+# Allow Auto Answer by Call-Info. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P638 = 0
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P669 = 0
+
+# Transfer on conference Hang-Up. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P2604 = 0
+
+# No Key Entry Timeout. Default is 4
+# Number: 1 - 15
+# Mandatory
+P691 = 4
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P692 = 1
+
+# DND Call Feature ON
+# String
+P2644 =
+
+# DND Call Feature OFF
+# String
+P2645 =
+
+
+##############################################################################
+## Network/Basic Settings                                                   ##
+##############################################################################
+
+# Internet Protocol. 0 - Prefer IPv4, 1 - Prefer IPv6. Default is 0
+# Number: 0, 1
+# Mandatory
+P1415 = 0
+
+# IP Address Mode. 0 - DHCP, 1 - Static IP, 2 - PPPoE. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+# P8 = 0
+
+#--------------------------------------
+# DHCP
+#--------------------------------------
+# Host name, DHCP option 12. Max length allowed is 64 characters
+# String
+P146 =
+
+# Vendor Class ID, DHCP option 60. Max length allowed is 64 characters
+# Default value for GXP2124 - Grandstream GXP2124
+# String
+P148 =  Grandstream GXP2124
+
+#--------------------------------------
+# PPPoE
+#--------------------------------------
+# PPPoE Account ID
+# String
+P82 =
+
+# PPPoE Password
+# String
+# Cannot contain ` or "
+P83 =
+
+# PPPoE Service Name
+# String 
+P269 =
+
+#--------------------------------------
+# Statically Configured
+#--------------------------------------
+# IP Address. Ignore if DHCP or PPPoE is used
+# Number: 0 - 255
+P9 = 192
+
+# Number: 0 - 255
+P10 = 168
+
+# Number: 0 - 255
+P11 = 0
+
+# Number: 0 - 255
+P12 = 160
+
+# Subnet mask. Ignore if DHCP or PPPoE is used
+# Number: 0 - 255
+P13 = 255
+
+# Number: 0 - 255
+P14 = 255
+
+# Number: 0 - 255
+P15 = 0
+
+# Number: 0 - 255
+P16 = 0
+
+# Gateway. Ignore if DHCP or PPPoE is used
+# Number: 0 - 255
+P17 = 0
+
+# Number: 0 - 255
+P18 = 0
+
+# Number: 0 - 255
+P19 = 0
+
+# Number: 0 - 255
+P20 = 0
+
+# DNS 1 Server. Ignore if DHCP or PPPoE is used
+# Number: 0 - 255
+P21 = 0
+
+# Number: 0 - 255
+P22 = 0
+
+# Number: 0 - 255
+P23 = 0
+
+# Number: 0 - 255
+P24 = 0
+
+# DNS 2 Server. Ignore if DHCP or PPPoE is used
+# Number: 0 - 255
+P25 = 0
+
+# Number: 0 - 255
+P26 = 0
+
+# Number: 0 - 255
+P27 = 0
+
+# Number: 0 - 255
+P28 = 0
+
+# Preferred DNS server.  (if specified).
+# Number: 0 - 255
+P92 = 0
+
+# Number: 0 - 255
+P93 = 0
+
+# Number: 0 - 255
+P94 = 0
+
+# Number: 0 - 255
+P95 = 0
+
+# IPv6 Address type. 0 - Auto Configured, 1 - Statically Configured. Default is 0.
+# Number: 0, 1
+# Mandatory
+P1419 = 0
+
+# DNS Server 1 for IPv6 Address
+# String: a-z, A-Z, 0-9, ".", ":", "[", "]"
+P1424 =
+
+# DNS Server 2 for IPv6 Address
+# String: a-z, A-Z, 0-9, ".", ":", "[", "]"
+P1425 =
+
+# Preferred DNS Server for IPv6 Address
+# String: a-z, A-Z, 0-9, ".", ":", "[", "]"
+P1423 =
+
+# IPv6 Address type: Statically configured. 0 - Full Static, 1 - Prefix Static
+# Number: 0, 1
+# P1426 =
+
+# Full Static: Static IPv6 Address
+# P1420 =
+
+# Full Static: IPv6 Prefix Length
+# P1421 =
+
+# Prefix Static: IPv6 Prefix (64bits)
+# P1422 =
+
+##############################################################################
+## Network/Advanced Settings
+##############################################################################
+
+# 802.1X Mode. 0 - disable, 1 - EAP-MD5. Default is 0
+# Number: 0, 1
+# Mandatory
+P7901 = 0
+
+# 802.1X Identity. Max length allowed is 64 characters
+# String
+P7902 = 
+
+# MD5 Password. Max length allowed is 64 characters
+# String
+P7903 =
+
+# HTTP Proxy
+# String
+P1552 =
+
+# HTTPS Proxy
+# String
+P1553 =
+
+# Layer 3 QoS (IP Diff-Serv or Precedence value for RTP). Default is 12
+# Number: 0 - 63
+# Mandatory
+P38 = 12
+
+# Layer 2 QoS. 802.1Q/VLAN Tag (VLAN classification for RTP). Default is 0
+# Number: 0 - 4094
+# Mandatory
+P51 = 0
+
+# Layer 2 QoS. 802.1p priority value (0 - 7). Default is 0
+# Number: 0 - 7
+# Mandatory
+P87 = 0
+
+# PC Port Mode. 0 - Enable, 1 - Disabled, 2 - Mirrored. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P1348 = 0
+
+##############################################################################
+##  Maintenance/ Web/Telnet Access
+##############################################################################
+
+# Disable Telnet. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P276 = 0
+
+# End User Password
+# String: a-z, A-Z, 0-9
+P196 =
+
+# Admin password for web interface
+# String: a-z, A-Z, 0-9
+P2 = admin
+
+
+##############################################################################
+##  Maintenance/Upgrade and Provisioning
+##############################################################################
+
+# Firmware Upgrade and Provisioning
+# 0 - Always Check For New Firmware
+# 1 - Check New Firmware only when F/W pre/suffix changes
+# 2 - Always Skip the Firmware Check
+# Number: 0, 1, 2
+# Mandatory
+P238 = 0
+
+# XML Config File Password
+# String
+P1359 =
+
+# HTTP/HTTPS User Name
+# String
+P1360 =
+
+# HTTP/HTTPS Password
+# String
+P1361 =
+
+# Firmware Upgrade Via. 0 - TFTP Upgrade,  1 - HTTP Upgrade, 2 - HTTPS Upgrade. Default is 1
+# Number: 0, 1, 2
+# Mandatory
+P212 = 1
+
+# Firmware Server Path
+# String
+P192 = fm.grandstream.com/gs
+
+# Config Server Path
+# String
+P237 = fm.grandstream.com/gs
+
+# Firmware File Prefix
+# String
+P232 =
+
+# Firmware File Postfix
+# String
+P233 =
+
+# Config File Prefix
+# String
+P234 =
+
+# Config File Postfix
+# String
+P235 =
+
+# Allow DHCP Option 43 and Option 66 to override server. 0 - No, 1 - Yes. Default is 1
+# When set to Yes(1), it will override the configured provision path and method
+# Number: 0, 1
+# Mandatory
+P145 = 1
+
+# Allow DHCP Option 120 to Override SIP Server
+# 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1411 = 0
+
+# Automatic Upgrade. 0 - No, 1 - Yes. Default is No
+# Number: 0, 1
+# Mandatory
+P194 = 0
+
+# Check for new firmware every () minutes. Default is 7 days.
+# Number: 60-86400
+# Mandatory
+P193 = 10080
+
+# Hour of the Day (0-23). Default is 1
+# Number: 0 - 23
+P285 = 1
+
+# Day of the Week (0-6). Default is 1
+# Number: 0-6
+P286 = 1
+
+# Authenticate Conf File. 0 - No, 1 - Yes. Default is No
+# Number: 0, 1
+# Mandatory
+P240 = 0
+
+##############################################################################
+##  Maintenance/Syslog
+##############################################################################
+
+# Syslog Server (name of the server, max length is 64 characters)
+# String
+P207 =
+
+# Syslog Level. 0 - NONE, 1 - DEBUG, 2 - INFO, 3 - WARNING, 4 - ERROR. Default is 0
+# Number: 0, 1 , 2, 3, 4
+# Mandatory
+P208 = 0
+
+# Send SIP Log. 0 - Do not send SIP log in Syslog, 1 - Send SIP log in Syslog if configured and set to DEBUG level. Default is 0
+# Number: 0, 1
+# Mandatory
+P1387 = 0
+
+# Auto recover from abnormal. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P1438 = 1
+
+##############################################################################
+##  Maintenance/Language
+##############################################################################
+
+# Display Language. Default is auto
+# ar - Arabic, cz - Czech, de - Deutsh
+# en - English, es - Spanish, fr - Francais
+# he - Hebrew, hr - Hrvatski, hu - Magyar 
+# it - Italiano, ja - japanese, ko - korean
+# nl - Dutch, pl - Polski, pt - Portugue
+# ru - Russian, sl - Slovenian, tr - Turkish
+# zh-tw - traditional chinese, zh - simplified chinese, auto - Automatic
+# gxp - Downloaded Language
+# String
+# Mandatory
+P1362 = auto
+
+# Language File postfix (for Downloaded Language)
+# String
+P399 =
+
+##############################################################################
+##  Maintenance/TR-069
+##############################################################################
+
+# Enable TR069. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+# P1409 = 0
+
+# ACS URL
+# String
+# P4503 =
+
+# TR-069 Username
+# String
+P4504 =
+
+# TR-069 Password
+# String
+P4505 =
+
+# Periodic Inform Enable. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P4506 = 0
+
+# Periodic Inform Interval
+# Number
+P4507 =
+
+# Connection Request Username	
+# String: a-z, A-Z, 0-9
+P4511 =
+
+# Connection Request Password	
+# String: a-z, A-Z, 0-9
+P4512 =
+
+# Connection Request Port
+# Number
+P4518 =
+
+# CPE SSL Certificate
+# String: a-z, A-Z, 0-9
+P8220 =
+
+# CPE SSL Private Key
+# String: a-z, A-Z, 0-9
+P8221 =
+
+##############################################################################
+##  Maintenance/Security
+##############################################################################
+
+# Configuration Via Keypad Menu. 0 - Unrestricted, 1 - Basic settings only, 2 - Constraint mode. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P1357 = 0
+
+# Enable STAR key Keypad locking. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P1382 = 1
+
+# Password to lock/unlock (0-9 only)
+# Number
+P1383 =
+
+# SIP TLS Certificate
+# String: a-z, A-Z, 0-9
+# P280 =
+
+# SIP TLS Private Key
+# String: a-z, A-Z, 0-9
+# P279 =
+
+# SIP TLS Private Key Password
+# String: a-z, A-Z, 0-9
+# P281 =
+
+##############################################################################
+##  Phonebook/Phonebook Management
+##############################################################################
+
+# Enable Phonebook XML Download. # 0 - No, 1 - YES, HTTP, 2 - YES, TFTP, 3 - Yes, HTTPS. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P330 = 0
+
+# Phonebook XML Server Path
+# This is a string of up to 256 characters that should contain a path to the XML file. It MUST be in the host/path format.
+# For example: directory.grandstream.com/engineering
+# String
+P331 =
+
+# Phonebook Download Interval (in minutes)
+# Valid value range is 5-720. Default is 0 for disabled
+# Number: 0, 5-720; 
+P332 = 0
+
+# Remove Manually-edited entries on Download. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P333 = 1
+
+##############################################################################
+##  Phonebook/LDAP
+##############################################################################
+# LDAP Directory
+# LDAP Server Address, up to 256 characters can be used. It can be IP address or Domain name
+# String
+P8020 = 
+
+# LDAP Server Port
+# Number: 1 - 65535
+P8021 =
+
+# Base. The LDAP search base refers to the location in the directory where the search is requested to begin
+# Example 1: dc=grandstream,dc=com
+# Example 2: ou=Boston, dc=grandstream,dc=com
+# String
+P8022 =
+
+# User name. The bind "Username" for querying LDAP servers. Some LDAP servers allow anonymous binds in which case the setting can be left blank
+# String
+P8023 =
+
+# Password. The bind "Password" for querying LDAP servers. And the field can be left blank if the LDAP server allows anonymous binds
+# String
+P8024 =
+
+# LDAP Number Filter
+# LDAP name filter is the filter used for name look ups. Please refer to usermanual for examples
+# String
+P8025 =
+
+# LDAP Name Filter
+# LDAP name filter is the filter used for name look ups. Please refer to usermanual for examples
+# String
+P8026 =
+
+# LDAP Version. Protocol version for the phone when send the bind requests
+# 2 - version 2, 3 - version 3. Default is 3
+# Mandatory
+P8027 = 3
+
+# LDAP Name Attributes. This setting specifies the "name" attributes of each record which are returned in the LDAP search result
+# The setting allows the users to configure multiple space separated name attributes
+# String
+P8028 =
+
+# LDAP Number Attributes. This setting specifies the “number” attributes of each record which are returned in the LDAP search result
+# The setting allows the users to configure multiple space separated number attributes
+# String
+P8029 =
+
+# LDAP Display Name. The entry information to be shown on phone LCD. Grandstream phones will display up to 3 fields
+# String
+P8030 =
+
+# Max Hits. The setting specifies the maximum number of results to be returned by the LDAP server
+# If the value is set to 0, server will return all search results. Default is 50
+# Number: 0 - 32000
+# Mandatory
+P8031 = 50
+
+# Search Timeout (in seconds). Default is 30
+# The setting specifies how long the server should process the request and client waits for server to return
+# Number: 0 - 180
+# Mandatory
+P8032 = 30
+
+# Sort Results. This setting is used for sorting searching result. Default is 0
+# Number: 0, 1
+# Mandatory
+P8033 = 0
+
+# LDAP Lookup
+# Incoming calls. 0 - No, 1 - Yes. Default is 0
+P8035 = 0
+
+# Outgoing calls. 0 - No, 1 - Yes. Default is 0
+P8034 = 0
+
+# Lookup Display Name
+# String
+P8036 =
+
+# Use phonebook key for LDAP search. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1526 = 0
+
+
+##############################################################################
+##  Settings/General Settings
+##############################################################################
+# Local RTP port. Default is 5004
+# Number: 1024 - 65535. Must be even number
+# Mandatory
+P39 = 5004
+
+# Use Random Port. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P78 = 0
+
+# Keep-alive interval (in seconds). Default is 20
+# Number: 10 - 160
+# Mandatory
+P84 = 20
+
+# Use NAT IP. This will enable our SIP client to use this IP in the SIP/SDP message. Example 64.3.153.50
+# String: a-z, A-Z, 0-9, ".", ":"
+P101 =
+
+# STUN server
+# String
+P76 =
+
+# Public Mode. 0 - No. 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1345 = 0
+
+##############################################################################
+##  Settings/Call Features
+##############################################################################
+# Off-hook Auto Dial
+# String
+P71 =
+
+# Off-hook timeout (in seconds). Default is 30
+# Number: 10 - 60
+# Mandatory
+P1485 = 30
+
+# Disable Call Waiting. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P91 = 0
+
+# Disable Call-Waiting Tone. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P186 = 0
+
+# Disable Direct IP Call. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1310 = 0
+
+# Use Quick IP-call mode. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P184 = 0
+
+# Disable Conference. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1311 = 0
+
+# Disable in-call DTMF display. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P338 = 0
+
+# Enable MPK sending DTMF, 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1339 = 0
+
+# Disable Transfer. 0 - No, 1 - Yes. Defauls is 0
+# Number: 0, 1
+# Mandatory
+P1341 = 0
+
+# In-call dial number on pressing transfer key
+# String
+P1525 =
+
+# Auto-Attended Transfer. 0 - No, 1 -Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1376 = 0
+
+# Do not escape '#' as 23% in SIP URL. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1406 = 0
+
+# Click-To-Dial Feature. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1561 = 0
+
+# Call History Flash Writing: 0 means this option is disabled
+# Write Timeout, 30-3600, in seconds, default is 300
+# Number: 30 - 3600
+# Mandatory
+P1433 = 300
+
+# Max Unsaved Log, 0-500, default is 200
+# Number: 0-500
+# Mandatory
+P1434 = 200
+
+
+##############################################################################
+##  Settings/Ring Tone
+##############################################################################
+
+### Call Progress Tones ###
+# Syntax: f1=val,f2=val[,c=on1/off1[-on2/off2[-on3/off3]]]; 
+# (Frequencies are in Hz and cadence on and off are in 10ms) 
+
+# System Ring Tone
+# String
+# Mandatory
+P345 = f1=440,f2=480,c=200/400;
+
+# Dial Tone
+# String
+# Mandatory
+P343 = f1=350,f2=440;
+
+# Message Waiting Tone
+# String
+# Mandatory
+P344 = f1=350,f2=440,c=10/10;
+
+# Ring Back Tone
+# String
+# Mandatory
+P346 = f1=440,f2=480,c=200/400;
+
+# Call-Waiting Tone
+# String
+# Mandatory
+P347 = f1=440,f2=440,c=25/525;
+
+# Call-Waiting Tone Gain. 0 - Low, 1 - Medium, 2 - High. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P1555 = 0
+
+# Busy Tone
+# String
+# Mandatory
+P348 = f1=480,f2=620,c=50/50;
+
+# Reorder Tone
+# String
+# Mandatory
+P349 = f1=480,f2=620,c=25/25;
+
+
+##############################################################################
+##  Settings/Audio Control
+##############################################################################
+# HEADSET Key Mode. 0 - Default Mode, 1 - Toggle Headset/Speaker. Default is 0
+# Number: 0, 1
+# Mandatory
+P1312 = 0
+
+# Headset Type. 0 - Normal, 1 - Plantronics EHS. Default is 0
+# Number: 0, 1
+# Mandatory
+P1487 = 0
+
+# Always Ring Speaker. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1439 = 0
+
+# Headset TX gain(db). 1 - -6, 0 - 0, 2 - +6. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P1301 = 0
+
+# Headset RX gain(db). 1 - -6, 0 - 0, 2 - +6. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P1302 = 0
+
+# Handset TX gain(db). 1 - -6, 0 - 0, 2 - +6. Default is 0
+# Number: 0, 1, 2
+# Mandatory
+P1464 = 0
+
+
+##############################################################################
+##  Settings/LCD Display
+##############################################################################
+# Backlight Brightness. Default is 6. Valid range is 0 - 8, where 0 is off and 8 is brightest
+# Active
+# Number: 0 - 8
+# Mandatory
+P334 = 6
+
+# Idle
+# Number: 0 - 8
+# Mandatory
+P335 = 2
+
+# LCD Contrast. Default is 10
+# Number: 0 - 20
+# Mandatory
+P1329 = 10
+
+# Disable Missed Call Backlight. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P351 = 0
+
+
+##############################################################################
+##  Settings/Date and Time
+##############################################################################
+# NTP Server
+# String
+P30 = us.pool.ntp.org
+
+# Allow DHCP Option 42 to override NTP server. 0 - No, 1 - Yes. Default is 1
+# When set to Yes(1), it will override the configured NTP server
+# Number: 0, 1
+# Mandatory
+P144 = 1
+
+# Time Zone
+# auto - Automatic
+# TZA+12 - GMT-12:00 (International Date Line West)
+# TZB+11 - GMT-11:00 (Midway Island, Samoa) 
+# HAW10 - GMT-10:00 (US Hawaiian Time) 
+# AKST9AKDT - GMT-9:00 (US Alaska Time) 
+# PST8PDT - GMT-8:00 (US Pacific Time, Los Angeles)
+# PST8PDT,M4.1.0,M10.5.0 - GMT-08:00 (Baja California)
+# MST7MDT - GMT-07:00 (US Mountain Time, Denver) 
+# MST7 - GMT-07:00 (Mountain Time (Arizona, no DST)) 
+# MST7MDT,M4.1.0,M10.5.0 - GMT-07:00 (Chihuahua, La Paz, Mazatlan)
+# CST6CDT - GMT-06:00 (Central Time) 
+# CST+6 - GMT-06:00 (Central America) 
+# CST6CDT,M4.1.0,M10.5.0 - GMT-06:00 (Guadalajara, Mexico City, Monterrey)
+# EST5EDT - GMT-05:00 (Eastern Time)
+# EST5 - GMT-05:00 (Eastern Time without daylight saving) 
+# TZf+4:30 - GMT-04:30 (Caracas) 
+# AST4ADT - GMT-04:00 (Atlantic Time) 
+# AST4ADT,M4.1.0/00:01:00,M10.5.0/00:01:00 - GMT-04:00 (Atlantic Time (New Brunswick)) 
+# NST+3:30NDT+2:30,M4.1.0/00:01:00,M10.5.0/00:01:00 - GMT-03:30 (Newfoundland Time) 
+# TZK+3 - GMT-03:00 (Greenland) 
+# BRST+3BRDT+2,M10.3.0,M2.3.0 - GMT-03:00 (Brazil, Sao Paulo) 
+# UTC+3 - GMT-02:00 (Argentina) 
+# TZL+2 - GMT-02:00 (Mid-Atlantic) 
+# TZM+1 - GMT-01:00 (Azores, Cape Verdi Is.) 
+# TZN+0 - GMT (Edinburgh, Casablanca, Monrovia) 
+# GMT+0BST-1,M3.5.0/01:00:00,M10.5.0/02:00:00 - GMT (London, Great Britain) 
+# WET-0WEST-1,M3.5.0/01:00:00,M10.5.0/02:00:00 - GMT (Lisbon, Portugal) 
+# GMT+0IST-1,M3.5.0/01:00:00,M10.5.0/02:00:00 - GMT (Dublin, Ireland) 
+# CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00 - GMT+01:00 (Paris, Vienna, Warsaw, Roma, Madrid, Prague, Berlin, Budapest, Amsterdam, Belgium)  
+# TZP-2 - GMT+02:00 (Israel, Cairo, Athens, Istanbul, Buchrest) 
+# EET-2EEST-3,M3.5.0/03:00:00,M10.5.0/04:00:00 - GMT+02:00 (Helsinki, Athens, Tallinn) 
+# EET-2EEST,M3.5.0/3,M10.5.0/4 - GMT+02:00 (Kyiv, Ukraine) 
+# TZQ-3 - GMT+03:00 (Kuwait, Baghdad, Tehran, Nairobi) 
+# MSK-3MSD,M3.5.0/2,M10.5.0/3 - GMT+03:00 (Moscow, Russia) 
+# MST-3MDT,M3.5.0/2,M10.5.0/3 - GMT+03:00 (St.Petersburg, Russia) 
+# TZR-4 - GMT+04:00 (Abu Dhabi, Baku) 
+# TZS-5 - GMT+05:00 (Islamabad, Ekaterinburg, Karachi, Tashkent) 
+# TZT-5:30 - GMT+05:30 (Chennai, New Delhi, Mumbai) 
+# TZU-5:45 - GMT+05:45 (Kathmandu) 
+# TZV-6 - GMT+06:00 (Almaty, Astana, Dhaka, Novosibirsk) 
+# TZW-6:30 - GMT+06:30 (Rangoon) 
+# TZX-7 - GMT+07:00 (Bankok, Hanoi, Krasnoyarsk) 
+# WIB-7 - GMT+07:00 (Jakarta) 
+# TZY-8 - GMT+08:00 (Beijing, Taipei, Kuala Lumpur, Irkutsk) 
+# SGT-8 - GMT+08:00 (Singapore) 
+# ULAT-8 - GMT+08:00 (Ulaanbaatar, Mongolia) 
+# WST-8 - GMT+08:00 (Perth) 
+# TZZ-9 - GMT+09:00 (Japan, Korea, Yakutsk) 
+# CST-9:30CDT-10:30,M10.5.0/02:00:00,M3.5.0/03:00:00 - GMT+09:30 (Adelaide) 
+# CST-9:30 - GMT+09:30 (Darwin) 
+# TZb-10 - GMT+10:00 (Guam) 
+# EST-10EDT-11,M10.1.0/02:00:00,M3.5.0/03:00:00 - GMT+10:00 (Hobart) 
+# EST-10EDT-11,M10.5.0/02:00:00,M3.5.0/03:00:00 - GMT+10:00 (Sydney, Melbourne, Canberra) 
+# EST-10 - GMT+10:00 (Brisbane) 
+# TZc-11 - GMT+11:00 (Magadan, Solomon Is., New Caledonia) 
+# NZST-12NZDT-13,M10.1.0/02:00:00,M3.3.0/03:00:00 - GMT+12:00 (Auckland, Wellington) 
+# TZd-12 - GMT+12:00 (Fiji) 
+# TZe-13 - GMT+13:00 (Nuku'alofa) 
+# customize - Self-Defined Time Zone
+# String
+# Mandatory
+P64 = auto
+
+# Allow DHCP Option 2 to override Time Zone setting. 0 - No, 1 - Yes. Default is 1
+# When set to Yes(1), it will override the configured Time Zone setting if available 
+# Number: 0, 1
+# Mandatory
+P143 = 1
+
+# Self Defined Time zone. Max length allowed is 64 characters
+# String
+# Mandatory
+P246 = MTZ+6MDT+5,M4.1.0,M11.1.0
+
+# Date Display Format
+# 0: yyyy-mm-dd      eg. 2011-10-31
+# 1: mm-dd-yyyy      eg. 10-31-2011
+# 2: dd-mm-yyyy      eg. 31-10-2011
+# 3: dddd, MMMM dd   eg. Monday, October 31
+# 4: MMMM dd, dddd   eg. October 31, Monday
+# Number: 0, 1, 2, 3, 4
+# Mandatory
+P102 = 0
+
+# Time Display Format. 0 - 12 Hour, 1 - 24 Hour
+# Number: 0, 1
+# Mandatory
+P122 = 0
+
+##############################################################################
+##  Settings/Web Service
+##############################################################################
+
+# Weather Update
+# Enable weather update. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P1402 = 1
+
+# City Code
+# 0 - Use Self-Defined City Code, 1 - Automatic. Default is 1
+# Number: 0, 1
+# Mandatory
+P1405 = 1
+
+# Self-Defined City Code
+# String
+P1377 =
+
+# Update Interval (in minutes). Default is 15
+# Number: 5 - 360
+# Mandatory
+P1378 = 15
+
+# Degree Unit. auto - Automatic, f - Fahrenheit, c - Celsius. Default is auto
+# String: auto, f, c
+# Mandatory
+P1379 = auto
+
+# Stock Update
+# Enable stocke update. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P1403 = 1
+
+# Stock Code
+# String
+# Mandatory
+P1380 = DJI;.IXIC;INX;.FTSE;.STOXX50E;.FCHI;.N225;.BSESN;.HSI;.TWII
+
+# Currency Update
+# Enable Currency update. 0 - No, 1 - Yes. Default is 1
+# Number: 0, 1
+# Mandatory
+P1404 = 1
+
+# Currency Code
+# String
+# Mandatory
+P1381 = EUR/USD;GBP/USD;CAD/USD;AUD/USD;CNY/USD;JPY/USD
+
+##############################################################################
+##  Settings/XML Applications
+##############################################################################
+# Enable Idle Screen XML Download
+# 0 - No, 1 - YES, HTTP, 2 - YES, TFTP, 3 - YES, HTTPS. Default is 0
+# Number: 0, 1, 2, 3
+# Mandatory
+P340 = 0
+
+# Download Screen XML At Boot-up. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1349 = 0
+
+# Use Custom File Name. 0 - No, 1 - Yes. Default is 0
+# Number: 0, 1
+# Mandatory
+P1343 = 0
+
+# Idle Screen XML Server Path
+# This is a string of up to 256 characters that should contain a path to the XML file
+# It MUST be in the host/path format. For example: directory.grandstream.com/engineering
+# String
+P341 =
+
+# Server Path
+# This is a string of up to 256 characters that should contain a path to the XML Application file
+# It MUST be in the host/path format. For example: directory.grandstream.com/engineering
+# String
+P337 =
+
+# Softkey Label
+# String: a-z, A-Z, 0-9
+P352 = XML Service
+
+#------------------------------------------------------------------------------------- 
+# Line Keys
+#------------------------------------------------------------------------------------- 
+# Line Key 1
+# ------------------------------------------------------------------------------------
+# Key Mode. 0 - Line ,1 - Shared Line
+# 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF
+# 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail
+# 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 0, 1, 10-21
+# Mandatory
+P1363 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1364 = 0
+
+# Name. Max length allowed is 32 characters.
+# String
+P1465 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P1466 =
+
+# Line Key 2
+# ------------------------------------------------------------------------------------
+# Key Mode. 0 - Line ,1 - Shared Line
+# 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF
+# 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail
+# 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 0, 1, 10-21
+# Mandatory
+P1365 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory 
+P1366 = 0
+
+# Name. Max length allowed is 32 characters.
+# String
+P1467 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P1468 =
+
+# Line Key 3.
+# ------------------------------------------------------------------------------------
+# Key Mode. 0 - Line ,1 - Shared Line
+# 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF
+# 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail
+# 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 0, 1, 10-21
+# Mandatory
+P1367 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory 
+P1368 = 0
+
+# Name. Max length allowed is 32 characters.
+# String
+P1469 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P1470 =
+
+# Line Key 4.
+# ------------------------------------------------------------------------------------
+# Key Mode. 0 - Line ,1 - Shared Line
+# 10 - Speeddial, 11 - BLF, 12 - Presence Watcher, 13 - Eventlist BLF
+# 14 - Speeddial via active account, 15 - Dial DTMF, 16 - Voicemail
+# 17 - Call Return, 18 - Transfer, 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 0, 1, 10-21
+# Mandatory
+P1369 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory 
+P1370 = 0
+
+# Name. Max length allowed is 32 characters.
+# String
+P1471 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P1472 =
+
+#------------------------------------------------------------------------------------- 
+# Line Key 5
+# ------------------------------------------------------------------------------------
+# Key Mode
+# 10 - Speed Dial, 11 - BLF, 12 - Presence Watcher, 13 - eventlist BLF 
+# 14 - Speed Dial via active account, 15 - DialDTMF, 17 - CallReturn, 18 - Transfer
+# 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 10-21
+# Mandatory
+P1371 = 10
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, ,2 ,3
+# Mandatory
+P1372 = 0
+
+# Name. Max length allowed is 32 characters.
+# String
+P1473 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P1474 =
+
+# Line Key 6
+# ------------------------------------------------------------------------------------
+# Key Mode. 
+# 10 - Speed Dial, 11 - BLF, 12 - Presence Watcher, 13 - eventlist BLF 
+# 14 - Speed Dial via active account, 15 - DialDTMF, 17 - CallReturn, 18 - Transfer
+# 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 10-21
+# Mandatory
+P1373 = 10
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1374 = 0
+
+# Name. Max length allowed is 32 characters.
+# String
+P1475 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P1476 =
+
+# Line Key 7
+# ------------------------------------------------------------------------------------
+# Key Mode. 
+# 10 - Speed Dial, 11 - BLF, 12 - Presence Watcher, 13 - eventlist BLF 
+# 14 - Speed Dial via active account, 15 - DialDTMF, 17 - CallReturn, 18 - Transfer
+# 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 10-21
+# Mandatory
+P1477 = 10
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1478 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1479 =
+
+# User ID.  Max length allowed is 64 characters.
+# String
+P1480 =
+
+# Line Key 8
+# ------------------------------------------------------------------------------------
+# Key Mode. 
+# 10 - Speed Dial, 11 - BLF, 12 - Presence Watcher, 13 - eventlist BLF 
+# 14 - Speed Dial via active account, 15 - DialDTMF, 17 - CallReturn, 18 - Transfer
+# 19 - CallPark, 20 - Intercom, 21 - LDAP Search
+# Number: 10-21
+# Mandatory
+P1481 = 10
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1482 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1483 =
+
+# User ID.  Max length allowed is 64 characters.
+# String
+P1484 =
+
+#-------------------------------------------------------------------------------------
+# End User Multi Purpose Keys 
+#------------------------------------------------------------------------------------- 
+# Multipupose Key 1
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P323 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P301 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P302 =
+
+# User ID.  Max length allowed is 64 characters.
+# String
+P303 =
+
+# Multipupose Key 2
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P324 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P304 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P305 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P306 =
+
+# Multipupose Key 3
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P325 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P307 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P308 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P309 =
+
+# Multipupose Key 4
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P326 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P310 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P311 =
+
+# User ID. Max length allowed is 64 characters.
+# String
+P312 =
+
+# Multipupose Key 5
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P327 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P313 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P314 =
+
+# User ID. Max length allowed is 64 character
+# String
+P315 =
+
+# Multipupose Key 6
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P328 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P316 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P317 =
+
+# User ID. Max length allowed is 64 character
+# String
+P318 =
+
+# Multipupose Key 7
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P329 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P319 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P320 =
+
+# User ID. Max length allowed is 64 character
+# String
+P321 =
+
+# Multipupose Key 8
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P353 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P354 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P355 =
+
+# User ID. Max length allowed is 64 character
+# String
+P356 =
+
+# Multipupose Key 9
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P357 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P358 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P359 =
+
+# User ID. Max length allowed is 64 character
+# String
+P360 =
+
+# Multipupose Key 10
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P361 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P362 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P363 =
+
+# User ID. Max length allowed is 64 character
+# String
+P364 =
+
+# Multipupose Key 11
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P365 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P366 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P367 =
+
+# User ID. Max length allowed is 64 character
+# String
+P368 =
+
+# Multipupose Key 12
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P369 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P370 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P371 =
+
+# User ID. Max length allowed is 64 character
+# String
+P372 =
+
+# Multipupose Key 13
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P373 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P374 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P375 =
+
+# User ID. Max length allowed is 64 character
+# String
+P376 =
+
+# Multipupose Key 14
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P377 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P378 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P379 =
+
+# User ID. Max length allowed is 64 character
+# String
+P380 =
+
+# Multipupose Key 15
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P381 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P382 = 0
+
+# Name. Max length allowed is 128 characters.
+# String 
+P383 =
+
+# User ID. Max length allowed is 64 character
+# String
+P384 =
+
+# Multipupose Key 16
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P385 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P386 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P387 =
+
+# User ID. Max length allowed is 64 character
+# String
+P388 =
+
+# Multipupose Key 17
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P389 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P390 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P391 =
+
+# User ID. Max length allowed is 64 character
+# String
+P392 =
+
+# Multipupose Key 18
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P393 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P394 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P395 =
+
+# User ID. Max length allowed is 64 character
+# String
+P396 =
+
+# Multipupose Key 19
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1440 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1441 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1442 =
+
+# User ID. Max length allowed is 64 character
+# String
+P1443 =
+
+# Multipupose Key 20
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1444 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1445 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1446 =
+
+# User ID. Max length allowed is 64 character
+# String
+P1447 =
+
+# Multipupose Key 21
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1448 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1449 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1450 =
+
+# User ID. Max length allowed is 64 character
+# String
+P1451 =
+
+# Multipupose Key 22
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1452 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1453 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1454 =
+
+# User ID. Max length allowed is 64 character
+# String
+P1455 =
+
+# Multipupose Key 23
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1456 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1457 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1458 =
+
+# User ID. Max length allowed is 64 character
+# String
+P1459 =
+
+# Multipupose Key 24
+# ------------------------------------------------------------------------------------- 
+# Key Mode.
+# 0 - Speed Dial, 1 - BLF, 2 - Presence Watcher, 3 - eventlist BLF 
+# 4 - Speed Dial via active account, 5 - DialDTMF, 6 - Voicemail, 7 - CallReturn
+# 8 - Transfer, 9 - CallPark, 10 - Intercom, 11 - LDAP Search
+# Number: 0-11
+# Mandatory
+P1460 = 0
+
+# Account. 0 - Account 1, 1 - Account 2, 2 - Account 3, 3 - Account 4
+# Number: 0, 1, 2, 3
+# Mandatory
+P1461 = 0
+
+# Name. Max length allowed is 128 characters.
+# String
+P1462 =
+
+# User ID. Max length allowed is 64 character
+# String
+P1463 =

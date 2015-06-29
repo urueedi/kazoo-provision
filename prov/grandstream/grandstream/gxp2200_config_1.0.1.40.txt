@@ -1,0 +1,2680 @@
+###############################################################################################
+##             Configuration Template for GXP2200 Firmware Version 1.0.1.40                  ##
+###############################################################################################
+
+####################################################################
+## Change Log                                                     ##
+####################################################################
+#-----------------------------------------
+# P values Options updated in 1.0.1.40           
+#-----------------------------------------
+# Time Display Format. 0 - 12 Hour, 1 - 24 Hour. Default value is 1.
+# Number: 0, 1
+# P122 = 1
+
+# Date Display Format
+# 0: YY-MM-DD
+# 1: MM-DD-YY
+# 2: DD-MM-YY
+# 3: Normal (M-D-YY)
+# Default value is 1
+# Number: 0, 1, 2, 3
+# P102 = 1
+
+#-----------------------------------------
+# P values Options updated since 1.0.1.30           
+#-----------------------------------------
+# Account Ring Tone P value options updated for Account 1 to 6:
+# 1. More ring tones are added
+# 2. The value for each ring tone is changed
+# P104, P423, P523, P623, P1723, P1823
+
+#-----------------------------------------
+# P values added since 1.0.1.27           
+#-----------------------------------------
+
+# Always Ring Speaker. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+# P1439 = 0
+
+#-----------------------------------------
+# P values added since 1.0.1.22           
+#-----------------------------------------
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+# P2346 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+# P2446 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+# P2546 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+# P2646 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+# P2746 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+# P2846 = 0
+
+####################################################################
+## Change Log End                                                 ##
+####################################################################
+
+
+##############################################################################
+##  Account 1 Settings                                                      ##
+##############################################################################
+
+#######################################################################
+##  Account 1 General Settings                                       ##
+#######################################################################
+
+# Account Active.
+# 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P271 = 1
+
+# Account Name.
+P270 =
+
+# SIP Server.
+P47 =
+
+# SIP User ID.
+P35 =
+
+# SIP Authenticate ID.
+P36 =
+
+# SIP Authenticate Password.
+P34 =
+
+# Voice Mail UserID.
+P33 =
+
+# Name (Display Name, e.g., John Doe).
+P3 =
+
+# Tel URI.
+# 0 - Disable, 1 - User=Phone, 2 - Enabled. Default value is 0.
+# Valid value: 0, 1, 2.
+P63 = 0
+
+#######################################################################
+##  Account 1 Network Settings                                       ##
+#######################################################################
+
+# Outbound Proxy.
+P48 =
+
+# Secondary Outbound Proxy.
+P2333 =
+
+# DNS Mode.
+# 0 - A Record, 1 - SRV, 2 - NAPTR/SRV. Default value is 0.
+# Valid value: 0, 1, 2.
+P103 = 0
+
+# NAT Traversal. 0 - NAT No, 1 - STUN, 2 - Keep-alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default value is 2.
+# Valid value: 0, 1, 2, 3, 4, 5.
+P52 = 2
+
+# Proxy-Require
+P197 =
+
+#######################################################################
+##  Account 1 SIP Settings                                           ##
+#######################################################################
+
+# SIP Registration. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P31 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P81 = 0
+
+# Register Expiration (m). In minutes. Default value is 60.
+# Valid value: 0 - 64800. 
+P32 = 60
+
+# Wait Time Retry Registration (s). In seconds. Default value is 20.
+# Valid value: 1 - 3600.
+P138 = 20
+
+# Local SIP Port. Default value is 5060.
+# Valid value: 5 - 65535. 
+P40 = 5060
+
+# SUBSCRIBE For MWI. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P99 = 0
+
+# Session Expiration. In seconds. Default value is 180 seconds.
+# Valid value: 90 - 64800.
+P260 = 180
+
+# Min-SE (s). Default value is 90 seconds.
+# Valid value: 90 - 64800.
+P261 = 90
+
+# UAC Specify Refresher. 0 - Omit, 1 - UAC, 2 - UAS. Default value is 0.
+# Valid value: 0, 1, 2.
+P266 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default value is 1.
+# Valid value: 1, 2.
+P267 = 1
+
+# Force INVITE. Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P265 = 0
+
+# Caller Request Timer. Request for timer when calling.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P262 = 0
+
+# Callee Request Timer.
+# Request for timer when being called (i.e., if remote party supports timer but did not request for one).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P263 = 0
+
+# Force Timer. Still use timer when remote party does not support timer.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P264 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P272 = 0 
+
+# SIP Transport.
+# 0 - UDP , 1 - TCP, 2 - TLS. Default value is 0.
+# Valid value: 0, 1, 2.
+P130 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P291 = 0
+
+# Support SIP Instance ID.
+# 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P288 = 1
+
+# Validate Incoming SIP Messages.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2306 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+P2346 = 0
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default value is 50.
+# Valid value: 50, 100, 200.
+P209 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value.
+# The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default value is 400.
+# Valid value: 200, 400, 800.
+P250 = 400
+
+# Remove OBP from route.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2305 = 0
+
+#######################################################################
+##  Account 1 Codec Settings                                         ##
+#######################################################################
+
+# DTMF: in audio. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2301 = 0
+
+# DTMF: via RFC2833. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P2302 = 1
+
+# DTMF: via SIP INFO. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2303 = 0
+
+# DTMF Payload Type. Default value is 101.
+# Valid value: 96 - 127.
+P79 = 101
+
+# Preferred Vocoder
+# First codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P57 = 0
+
+# Second codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P58 = 0
+
+# Third codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P59 = 0
+
+# Forth codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P60 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced. Default value is 0.
+# Valid value: 0, 1, 2.
+P183 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P50 = 0
+
+# Voice Frames Per TX. Default value is 2.
+# Valid value: 1 - 64. 
+P37 = 2
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default value is 1.
+# Valid value: 0, 1.
+P133 = 1
+
+# Jitter Buffer Length. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+# Valid value: 0, 1.
+P132 = 1
+
+#######################################################################
+##  Account 1 Call Settings                                          ##
+#######################################################################
+
+# Dial Plan. Default value is { x+ | \+x+ | *x+ | *xx*x+ }.
+P290 = { x+ | \+x+ | *x+ | *xx*x+ }
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P135 = 0
+
+# Auto Answer. 0 - No, 1 - Yes, 2 - Enable Intercom/Paging. Default value is 0.
+# Valid value: 0, 1, 2.
+P90 = 0
+
+# Send Anonymous. 0 - No, 1 - Yes (caller ID will be blocked if set to Yes). Default value is 0.
+# Valid value: 0, 1.
+P65 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P129 = 0
+
+# Call Log. 
+# 0 - Log All, 1 - Log Incoming/Outgoing only (Missed Calls Not Recorded), 2 - Disable All.
+# Default is 0.
+# Valid value: 0, 1, 2.
+P182 = 0
+
+# Special Feature. 
+# 100 - Standard, 108 - CBCOM, 109 - RNK, 113 - China Mobile
+# 114 - ZTE IMS, 115 - Mobotix, 116 - ZTE NGN, 117 - Huawei IMS
+# Default value is 100.
+# Valid value: 100, 108, 109, 113, 114, 115, 116, 117.
+P198 = 100
+
+# Feature Key Synchronization. 0 - Disable,  1 - Broadsoft. Default value is 0.
+# Valid value: 0, 1.
+P2325 = 0
+
+# No Key Entry Timeout (s). Default value is 4.
+# Valid value: 1 - 15.
+P85 = 4
+
+# Ring Timeout (s). Default value is 60.
+# Valid value: 10 - 300.
+P1328 = 60
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P72 = 1
+
+# Account Ring Tone. Please refer to the options and value in the table below.
+#   --Web GUI Option--          ----------Value----------
+#	Default Ringtone			content://settings/system/ringtone
+#	Silent						ringtone_silence
+#	Bollywood               	/system/media/audio/ringtones/Bollywood.ogg
+#	bellcore-dr2				/system/media/audio/ringtones/bellcore-dr2.ogg
+#	bellcore-dr1				/system/media/audio/ringtones/bellcore-dr1.ogg
+#	Ring1_Ding              	/system/media/audio/ringtones/Ring1_Ding.ogg
+#	Safari						/system/media/audio/ringtones/Safari.ogg
+#	Club_Cubano					/system/media/audio/ringtones/Club_Cubano.ogg
+#	Eastern_Sky					/system/media/audio/ringtones/Eastern_Sky.ogg
+#	Default_ringtone			/system/media/audio/ringtones/Default_ringtone.ogg
+#	LoopyLounge					/system/media/audio/ringtones/LoopyLounge.ogg
+#	BussaMove					/system/media/audio/ringtones/BussaMove.ogg
+#	Funk_Yall               	/system/media/audio/ringtones/Funk_Yall.ogg
+#	CrayonRock					/system/media/audio/ringtones/CrayonRock.ogg
+#	Big_Easy					/system/media/audio/ringtones/Big_Easy.ogg
+#	Playa						/system/media/audio/ringtones/Playa.ogg
+#	DancinFool					/system/media/audio/ringtones/DancinFool.ogg
+#	bellcore-dr3				/system/media/audio/ringtones/bellcore-dr3.ogg
+#	BirdLoop					/system/media/audio/ringtones/BirdLoop.ogg
+#	Ring_Synth_04				/system/media/audio/ringtones/Ring_Synth_04.ogg
+#	World						/system/media/audio/ringtones/World.ogg
+#	Ring9_Nairobi				/system/media/audio/ringtones/Ring9_Nairobi.ogg
+#	Champagne_Edition			/system/media/audio/ringtones/Champagne_Edition.ogg
+#	Steppin_Out					/system/media/audio/ringtones/Steppin_Out.ogg
+#	Ring_Synth_02				/system/media/audio/ringtones/Ring_Synth_02.ogg
+#	bellcore-dr4				/system/media/audio/ringtones/bellcore-dr4.ogg
+#	DonMessWivIt				/system/media/audio/ringtones/DonMessWivIt.ogg
+#	Road_Trip					/system/media/audio/ringtones/Road_Trip.ogg
+#	MildlyAlarming				/system/media/audio/ringtones/MildlyAlarming.ogg
+#	Ring_Classic_02				/system/media/audio/ringtones/Ring_Classic_02.ogg
+#	Third_Eye					/system/media/audio/ringtones/Third_Eye.ogg
+#	LoveFlute					/system/media/audio/ringtones/LoveFlute.ogg
+#	Ring6_Glacial_Groove		/system/media/audio/ringtones/Ring6_Glacial_Groove.ogg
+#	Shes_All_That				/system/media/audio/ringtones/Shes_All_That.ogg
+#	Ring8_MidEvilJaunt			/system/media/audio/ringtones/Ring8_MidEvilJaunt.ogg
+#	CurveBall					/system/media/audio/ringtones/CurveBall.ogg
+#	SilkyWay					/system/media/audio/ringtones/SilkyWay.ogg
+#	bellcore-dr5				/system/media/audio/ringtones/bellcore-dr5.ogg
+#	Enter_the_Nexus				/system/media/audio/ringtones/Enter_the_Nexus.ogg
+#	Ring_Digital_02				/system/media/audio/ringtones/Ring_Digital_02.ogg
+#	Ring2_OrganDub				/system/media/audio/ringtones/Ring2_OrganDub.ogg
+#	Seville						/system/media/audio/ringtones/Seville.ogg
+#	No_Limits					/system/media/audio/ringtones/No_Limits.ogg
+#	Calypso_Steel				/system/media/audio/ringtones/Calypso_Steel.ogg
+#	Terminated					/system/media/audio/ringtones/Terminated.ogg
+#	Ring7_HalfwayHome			/system/media/audio/ringtones/Ring7_HalfwayHome.ogg
+#	Growl						/system/media/audio/ringtones/Growl.ogg
+#	Ring3_Paradise_Island		/system/media/audio/ringtones/Ring3_Paradise_Island.ogg
+#	Gimme_Mo_Town				/system/media/audio/ringtones/Gimme_Mo_Town.ogg
+#	Ring10_Nassau				/system/media/audio/ringtones/Ring10_Nassau.ogg
+#	Ring5_FreeFlight			/system/media/audio/ringtones/Ring5_FreeFlight.ogg
+#	TwirlAway					/system/media/audio/ringtones/TwirlAway.ogg
+#	Backroad					/system/media/audio/ringtones/Backroad.ogg
+#	Cairo						/system/media/audio/ringtones/Cairo.ogg
+#	Ring4_EtherShake			/system/media/audio/ringtones/Ring4_EtherShake.ogg
+P104 = content://settings/system/ringtone
+
+# No Answer Timeout (s). Default value is 20.
+# Valid value: 1 - 120.
+P139 = 20
+
+
+##############################################################################
+##  Account 2 Settings                                                      ##
+##############################################################################
+
+#######################################################################
+##  Account 2 General Settings                                       ##
+#######################################################################
+
+# Account Active. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P401 = 0
+
+# Account Name.
+P417 =
+
+# SIP Server.
+P402 =
+
+# SIP User ID.
+P404 =
+
+# SIP Authenticate ID.
+P405 =
+
+# SIP Authenticate Password.
+P406 =
+
+# Voice Mail UserID.
+P426 =
+
+# Name (Display name, e.g., John Doe).
+P407 =
+
+# Tel URL Support. 0 - Disabled, 1 - User=Phone, 2 - Enabled. Default value is 0.
+# Valid value: 0, 1, 2.
+P409 = 0
+
+#######################################################################
+##  Account 2 Network Settings                                       ##
+#######################################################################
+
+# Outbound Proxy.
+P403 =
+
+# Secondary Outbound Proxy.
+P2433 =
+
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV. Default value is 0.
+# Valid value: 0, 1, 2.
+P408 = 0
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - Keep-alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default value is 2.
+# Valid value: 0, 1, 2, 3, 4, 5.
+P414 = 2
+
+# Proxy-Require
+P418 =
+
+#######################################################################
+##  Account 2 SIP Settings                                           ##
+#######################################################################
+
+# SIP Registration. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P410 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P411 = 0
+
+# Register Expiration (m). In minutes. Default value is 60.
+# Valid value: 0 - 64800.
+P412 = 60
+
+# Wait Time Retry Registration (s). In seconds. Default value is 20.
+# Valid value: 1 - 3600.
+P471 = 20
+
+# Local SIP Port. Default value is 5062.
+# Valid value: 5 - 65535.
+P413 = 5062
+
+# SUBSCRIBE for MWI (Whether or not send SUBSCRIBE for Message Waiting Indication).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P415 = 0
+
+# Session Expiration. In seconds. Default value is 180 seconds.
+# Valid value: 90 - 64800.
+P434 = 180
+
+# Min-SE (s). Default value is 90 seconds.
+# Valid value: 90 - 64800.
+P427 = 90
+
+# UAC Specify Refresher. 0 - Omit, 1 - UAC, 2 - UAS. Default value is 0.
+# Valid value: 0, 1, 2.
+P432 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default value is 1.
+# Valid value: 1, 2.
+P433 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE)
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P431 = 0
+
+# Caller Request Timer (Request for timer when calling).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P428 = 0
+
+# Callee Request Timer (Request for timer when being called, i.e. if remote party supports timer but did not request for one)
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P429 = 0
+
+# Force Timer (Still use timer when remote party does not support timer).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P430 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P435 = 0 
+
+# SIP Transport.
+# 0 - UDP, 1 - TCP, 2 - TLS. Default value is 0.
+# Valid value: 0, 1, 2.
+P448 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P460 = 0 
+
+# Support SIP Instance ID. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P489 = 1
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2406 = 0 
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+P2446 = 0
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default value is 50.
+# Valid value: 50, 100, 200.
+P440 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value.
+# The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default is value 400.
+# Valid value: 200, 400, 800.
+P441 = 400
+
+# Remove OBP from route. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2405 = 0
+
+#######################################################################
+##  Account 2 Codec Settings                                         ##
+#######################################################################
+
+# DTMF: in audio. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2401 = 0
+
+# DTMF: via RFC2833. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P2402 = 1
+
+# DTMF: via SIP INFO. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2403 = 0
+
+# DTMF Payload Type. Default value is 101.
+# Valid value: 96 - 127.
+P496 = 101
+
+# Preferred Vocoder
+# First codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P451 = 0
+
+# Second codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B.
+# Valid value: 0, 8, 9, 18.
+P452 = 0
+
+# Third codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B.
+# Valid value: 0, 8, 9, 18.
+P453 = 0
+
+# Forth codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B.
+# Valid value: 0, 8, 9, 18.
+P454 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced. Default value is 0.
+# Valid value: 0, 1, 2.
+P443 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P485 = 0
+
+# Voice Frames per TX. Default value is 2.
+# Valid value: 1 - 64. 
+P486 = 2
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default value is 1.
+# Valid value: 0, 1.
+P498 = 1
+
+# Jitter Buffer Length. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+# Valid value: 0, 1, 2.
+P497 = 1
+
+#######################################################################
+##  Account 2 Call Settings                                          ##
+#######################################################################
+
+# Dial Plan. Default value is { x+ | \+x+ | *x+ | *xx*x+ }.
+P459 = { x+ | \+x+ | *x+ | *xx*x+ }
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P469 = 0
+
+# Auto Answer. 0 - No, 1 - Yes, 2 - Enable Intercom/Paging. Default value is 0.
+# Valid value: 0, 1, 2.
+P425 = 0
+
+# Send Anonymous. 0 - No, 1 - Yes (caller ID will be blocked if set to Yes). Default value is 0.
+# Valid value: 0, 1.
+P421 = 0
+
+# Anonymous Call Rejection. 0 - No,  1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P446 = 0
+
+# Call Log
+# 0 - Log All, 1 - Log Incoming/Outgoing Only (Missed Calls Not Recorded), 2 - Disable All. Default value is 0.
+# Valid value: 0, 1, 2.
+P442 = 0
+
+# Special Feature. 
+# 100 - Standard, 108 - CBCOM, 109 - RNK, 113 - China Mobile
+# 114 - ZTE IMS, 115 - Mobotix, 116 - ZTE NGN, 117 - Huawei IMS
+# Default value is 100.
+# Valid value: 100, 108, 109, 113, 114, 115, 116, 117.
+P424 = 100
+
+# Feature Key Synchronization. 0 - Disable, 1 - Broadsoft. Default value is 0.
+# Valid value: 0, 1.
+P2425 = 0
+
+# No Key Entry Timeout (s). Default value is 4.
+# Valid value: 1-15.
+P491 = 4
+
+# Ring Timeout (s). Default value is 60.
+# Valid value: 10 - 300.
+P476 = 60
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P492 = 1
+
+# Account Ring Tone. Please refer to the options and value in the table below.            
+#   --Web GUI Option--          ----------Value----------
+#	Default Ringtone			content://settings/system/ringtone
+#	Silent						ringtone_silence
+#	Bollywood               	/system/media/audio/ringtones/Bollywood.ogg
+#	bellcore-dr2				/system/media/audio/ringtones/bellcore-dr2.ogg
+#	bellcore-dr1				/system/media/audio/ringtones/bellcore-dr1.ogg
+#	Ring1_Ding              	/system/media/audio/ringtones/Ring1_Ding.ogg
+#	Safari						/system/media/audio/ringtones/Safari.ogg
+#	Club_Cubano					/system/media/audio/ringtones/Club_Cubano.ogg
+#	Eastern_Sky					/system/media/audio/ringtones/Eastern_Sky.ogg
+#	Default_ringtone			/system/media/audio/ringtones/Default_ringtone.ogg
+#	LoopyLounge					/system/media/audio/ringtones/LoopyLounge.ogg
+#	BussaMove					/system/media/audio/ringtones/BussaMove.ogg
+#	Funk_Yall               	/system/media/audio/ringtones/Funk_Yall.ogg
+#	CrayonRock					/system/media/audio/ringtones/CrayonRock.ogg
+#	Big_Easy					/system/media/audio/ringtones/Big_Easy.ogg
+#	Playa						/system/media/audio/ringtones/Playa.ogg
+#	DancinFool					/system/media/audio/ringtones/DancinFool.ogg
+#	bellcore-dr3				/system/media/audio/ringtones/bellcore-dr3.ogg
+#	BirdLoop					/system/media/audio/ringtones/BirdLoop.ogg
+#	Ring_Synth_04				/system/media/audio/ringtones/Ring_Synth_04.ogg
+#	World						/system/media/audio/ringtones/World.ogg
+#	Ring9_Nairobi				/system/media/audio/ringtones/Ring9_Nairobi.ogg
+#	Champagne_Edition			/system/media/audio/ringtones/Champagne_Edition.ogg
+#	Steppin_Out					/system/media/audio/ringtones/Steppin_Out.ogg
+#	Ring_Synth_02				/system/media/audio/ringtones/Ring_Synth_02.ogg
+#	bellcore-dr4				/system/media/audio/ringtones/bellcore-dr4.ogg
+#	DonMessWivIt				/system/media/audio/ringtones/DonMessWivIt.ogg
+#	Road_Trip					/system/media/audio/ringtones/Road_Trip.ogg
+#	MildlyAlarming				/system/media/audio/ringtones/MildlyAlarming.ogg
+#	Ring_Classic_02				/system/media/audio/ringtones/Ring_Classic_02.ogg
+#	Third_Eye					/system/media/audio/ringtones/Third_Eye.ogg
+#	LoveFlute					/system/media/audio/ringtones/LoveFlute.ogg
+#	Ring6_Glacial_Groove		/system/media/audio/ringtones/Ring6_Glacial_Groove.ogg
+#	Shes_All_That				/system/media/audio/ringtones/Shes_All_That.ogg
+#	Ring8_MidEvilJaunt			/system/media/audio/ringtones/Ring8_MidEvilJaunt.ogg
+#	CurveBall					/system/media/audio/ringtones/CurveBall.ogg
+#	SilkyWay					/system/media/audio/ringtones/SilkyWay.ogg
+#	bellcore-dr5				/system/media/audio/ringtones/bellcore-dr5.ogg
+#	Enter_the_Nexus				/system/media/audio/ringtones/Enter_the_Nexus.ogg
+#	Ring_Digital_02				/system/media/audio/ringtones/Ring_Digital_02.ogg
+#	Ring2_OrganDub				/system/media/audio/ringtones/Ring2_OrganDub.ogg
+#	Seville						/system/media/audio/ringtones/Seville.ogg
+#	No_Limits					/system/media/audio/ringtones/No_Limits.ogg
+#	Calypso_Steel				/system/media/audio/ringtones/Calypso_Steel.ogg
+#	Terminated					/system/media/audio/ringtones/Terminated.ogg
+#	Ring7_HalfwayHome			/system/media/audio/ringtones/Ring7_HalfwayHome.ogg
+#	Growl						/system/media/audio/ringtones/Growl.ogg
+#	Ring3_Paradise_Island		/system/media/audio/ringtones/Ring3_Paradise_Island.ogg
+#	Gimme_Mo_Town				/system/media/audio/ringtones/Gimme_Mo_Town.ogg
+#	Ring10_Nassau				/system/media/audio/ringtones/Ring10_Nassau.ogg
+#	Ring5_FreeFlight			/system/media/audio/ringtones/Ring5_FreeFlight.ogg
+#	TwirlAway					/system/media/audio/ringtones/TwirlAway.ogg
+#	Backroad					/system/media/audio/ringtones/Backroad.ogg
+#	Cairo						/system/media/audio/ringtones/Cairo.ogg
+#	Ring4_EtherShake			/system/media/audio/ringtones/Ring4_EtherShake.ogg
+P423 = content://settings/system/ringtone
+
+# No Answer Timeout (s). Default value is 20.
+# Valid value: 1 - 120.
+P470 = 20
+
+
+##############################################################################
+##  Account 3 Settings                                                      ##
+##############################################################################
+
+#######################################################################
+##  Account 3 General Settings                                       ##
+#######################################################################
+
+# Account Active. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P501 = 0
+
+# Account Name.
+P517 =
+
+# SIP Server.
+P502 =
+
+# SIP User ID.
+P504 =
+
+# SIP Authenticate ID.
+P505 =
+
+# SIP Authenticate Password.
+P506 =
+
+# Voice Mail UserID.
+P526 =
+
+# Name (Display name: John Doe).
+P507 =
+
+# Tel URL Support. 0 - Disable, 1 - User=Phone, 2 - Enabled. Default value is 0.
+# Valid value: 0, 1, 2.
+P509 = 0
+
+#######################################################################
+##  Account 3 Network Settings                                       ##
+#######################################################################
+
+# Outbound Proxy.
+P503 =
+
+# Secondary Outbound Proxy.
+P2533 =
+
+# DNS Mode  0 - A Record, 1 - SRV, 2 - NAPTR/SRV. Default is 0.
+# Valid value: 0, 1, 2.
+P508 = 0
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - Keep-alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default value is 2.
+# Valid value: 0, 1, 2, 3, 4, 5.
+P514 = 2
+
+# Proxy-Require.
+P518 =
+
+#######################################################################
+##  Account 3 SIP Settings                                           ##
+#######################################################################
+
+# SIP Registration. 0 - No, 1 - Yes. Default is 1.
+# Valid value: 0, 1.
+P510 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default is 0.
+# Valid value: 0, 1.
+P511 = 0
+
+# Register Expiration (m). In minutes. Default value is 60.
+# Valid value: 0 - 64800.
+P512 = 60
+
+# Wait Time Retry Registration (s). In seconds. Default value is 20.
+# Valid value: 1 - 3600.
+P571 = 20
+
+# Local SIP Port. Default value is 5064.
+# Valid value: 5 - 65535.
+P513 = 5064
+
+# SUBSCRIBE for MWI.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P515 = 0
+
+# Session Expiration. In seconds. Default value is 180 seconds.
+# Valid value: 90 - 64800.
+P534 = 180
+
+# Min-SE (s). Default value is 90 seconds.
+# Valid value: 5 - 65535.
+P527 = 90
+
+# UAC Specify Refresher. 0 - Omit, 1 - UAC, 2 - UAS. Default value is 0.
+# Valid value: 0, 1, 2.
+P532 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default value is 1.
+# Valid value: 1, 2.
+P533 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P531 = 0
+
+# Caller Request Timer (Request for timer when calling).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P528 = 0
+
+# Callee Request Timer. Request for timer when called (i.e. if remote party supports timer but did not request for one).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P529 = 0
+
+# Force Timer (Still use timer when remote party does not support timer)
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P530 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P535 = 0
+
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS. Default value is 0.
+# Valid value: 0, 1, 2.
+P548 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P560 = 0
+
+# Support SIP Instance ID. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P589 = 1
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2506 = 0
+ 
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+P2546 = 0 
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default value is 50.
+# Valid value: 50, 100, 200.
+P540 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value.
+# The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
+# Valid value: 200, 400, 800.
+P541 = 400
+
+# Remove OBP from route. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2505 = 0
+
+#######################################################################
+##  Account 3 Codec Settings                                         ##
+#######################################################################
+
+# DTMF: in audio. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2501 = 0
+
+# DTMF: in RFC2833. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P2502 = 1
+
+# DTMF: in SIP INFO. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2503 = 0
+
+# DTMF Payload Type. Default value is 101.
+# Valid value: 96 - 127.
+P596 = 101
+
+# Preferred Vocoder
+# First codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P551 = 0
+
+# Second codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P552 = 0
+
+# Third codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P553 = 0
+
+# Forth codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P554 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced. Default value is 0.
+# Valid value: 0, 1, 2.
+P543 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P585 = 0
+
+# Voice Frames per TX. Default valule is 2.
+# Valid value: 1 - 64.
+P586 = 2
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default value is 1.
+# Valid value: 0, 1.
+P598 = 1
+
+# Jitter Buffer Length. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+# Valid value: 0, 1, 2.
+P597 = 1
+
+#######################################################################
+##  Account 3 Call Settings                                          ##
+#######################################################################
+
+# Dial Plan. Default value is { x+ | \+x+ | *x+ | *xx*x+ }.
+P559 = { x+ | \+x+ | *x+ | *xx*x+ }
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P569 = 0
+
+# Auto Answer. 0 - No, 1 - Yes, 2 - Enable Intercom/Paging. Default value is 0.
+# Valid value: 0, 1, 2.
+P525 = 0
+
+# Send Anonymous. 0 - No, 1 - Yes (caller ID will be blocked if set to Yes). Default value is 0.
+# Valid value: 0, 1.
+P521 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P546 = 0
+
+# Call Log.
+# 0 - Log All, 1 - Log Incoming/Outgoing only (Missed Calls Not Recorded), 2 - Disable Call All.
+# Default value is 0.
+# Valid value: 0, 1.
+P542 = 0
+
+# Special Feature. 
+# 100 - Standard, 108 - CBCOM, 109 - RNK, 113 - China Mobile
+# 114 - ZTE IMS, 115 - Mobotix, 116 - ZTE NGN, 117 - Huawei IMS
+# Default value is 100.
+# Valid value: 100, 108, 109, 113, 114, 115, 116, 117.
+P524 = 100
+
+# Feature Key Synchronization. 0 - Disable, 1 - Broadsoft. Default value is 0.
+# Valid value: 0, 1.
+P2525 = 0
+
+# No Key Entry Timeout (s). Default value is 4.
+# Valid value: 1 - 15.
+P591 = 4
+
+# Ring Timeout. Default value is 60 seconds.
+# Valid value: 10 - 300. 
+P576 = 60
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P592 = 1 
+
+# Account Ring Tone. Please refer to the options and value in the table below.
+#   --Web GUI Option--          ----------Value----------
+#	Default Ringtone			content://settings/system/ringtone
+#	Silent						ringtone_silence
+#	Bollywood               	/system/media/audio/ringtones/Bollywood.ogg
+#	bellcore-dr2				/system/media/audio/ringtones/bellcore-dr2.ogg
+#	bellcore-dr1				/system/media/audio/ringtones/bellcore-dr1.ogg
+#	Ring1_Ding              	/system/media/audio/ringtones/Ring1_Ding.ogg
+#	Safari						/system/media/audio/ringtones/Safari.ogg
+#	Club_Cubano					/system/media/audio/ringtones/Club_Cubano.ogg
+#	Eastern_Sky					/system/media/audio/ringtones/Eastern_Sky.ogg
+#	Default_ringtone			/system/media/audio/ringtones/Default_ringtone.ogg
+#	LoopyLounge					/system/media/audio/ringtones/LoopyLounge.ogg
+#	BussaMove					/system/media/audio/ringtones/BussaMove.ogg
+#	Funk_Yall               	/system/media/audio/ringtones/Funk_Yall.ogg
+#	CrayonRock					/system/media/audio/ringtones/CrayonRock.ogg
+#	Big_Easy					/system/media/audio/ringtones/Big_Easy.ogg
+#	Playa						/system/media/audio/ringtones/Playa.ogg
+#	DancinFool					/system/media/audio/ringtones/DancinFool.ogg
+#	bellcore-dr3				/system/media/audio/ringtones/bellcore-dr3.ogg
+#	BirdLoop					/system/media/audio/ringtones/BirdLoop.ogg
+#	Ring_Synth_04				/system/media/audio/ringtones/Ring_Synth_04.ogg
+#	World						/system/media/audio/ringtones/World.ogg
+#	Ring9_Nairobi				/system/media/audio/ringtones/Ring9_Nairobi.ogg
+#	Champagne_Edition			/system/media/audio/ringtones/Champagne_Edition.ogg
+#	Steppin_Out					/system/media/audio/ringtones/Steppin_Out.ogg
+#	Ring_Synth_02				/system/media/audio/ringtones/Ring_Synth_02.ogg
+#	bellcore-dr4				/system/media/audio/ringtones/bellcore-dr4.ogg
+#	DonMessWivIt				/system/media/audio/ringtones/DonMessWivIt.ogg
+#	Road_Trip					/system/media/audio/ringtones/Road_Trip.ogg
+#	MildlyAlarming				/system/media/audio/ringtones/MildlyAlarming.ogg
+#	Ring_Classic_02				/system/media/audio/ringtones/Ring_Classic_02.ogg
+#	Third_Eye					/system/media/audio/ringtones/Third_Eye.ogg
+#	LoveFlute					/system/media/audio/ringtones/LoveFlute.ogg
+#	Ring6_Glacial_Groove		/system/media/audio/ringtones/Ring6_Glacial_Groove.ogg
+#	Shes_All_That				/system/media/audio/ringtones/Shes_All_That.ogg
+#	Ring8_MidEvilJaunt			/system/media/audio/ringtones/Ring8_MidEvilJaunt.ogg
+#	CurveBall					/system/media/audio/ringtones/CurveBall.ogg
+#	SilkyWay					/system/media/audio/ringtones/SilkyWay.ogg
+#	bellcore-dr5				/system/media/audio/ringtones/bellcore-dr5.ogg
+#	Enter_the_Nexus				/system/media/audio/ringtones/Enter_the_Nexus.ogg
+#	Ring_Digital_02				/system/media/audio/ringtones/Ring_Digital_02.ogg
+#	Ring2_OrganDub				/system/media/audio/ringtones/Ring2_OrganDub.ogg
+#	Seville						/system/media/audio/ringtones/Seville.ogg
+#	No_Limits					/system/media/audio/ringtones/No_Limits.ogg
+#	Calypso_Steel				/system/media/audio/ringtones/Calypso_Steel.ogg
+#	Terminated					/system/media/audio/ringtones/Terminated.ogg
+#	Ring7_HalfwayHome			/system/media/audio/ringtones/Ring7_HalfwayHome.ogg
+#	Growl						/system/media/audio/ringtones/Growl.ogg
+#	Ring3_Paradise_Island		/system/media/audio/ringtones/Ring3_Paradise_Island.ogg
+#	Gimme_Mo_Town				/system/media/audio/ringtones/Gimme_Mo_Town.ogg
+#	Ring10_Nassau				/system/media/audio/ringtones/Ring10_Nassau.ogg
+#	Ring5_FreeFlight			/system/media/audio/ringtones/Ring5_FreeFlight.ogg
+#	TwirlAway					/system/media/audio/ringtones/TwirlAway.ogg
+#	Backroad					/system/media/audio/ringtones/Backroad.ogg
+#	Cairo						/system/media/audio/ringtones/Cairo.ogg
+#	Ring4_EtherShake			/system/media/audio/ringtones/Ring4_EtherShake.ogg
+P523 = content://settings/system/ringtone
+
+# No Answer Timeout (s). Default value is 20.
+# Valid value: 1 - 120.
+P570 = 20
+
+##############################################################################
+##  Account 4 Settings                                                      ##
+##############################################################################
+
+#######################################################################
+##  Account 4 General Settings                                       ##
+#######################################################################
+
+# Account Active. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P601 = 0
+
+# Account Name.
+P617 =
+
+# SIP Server.
+P602 =
+
+# SIP User ID.
+P604 =
+
+# SIP Authenticate ID.
+P605 =
+
+# SIP Authenticate Password.
+P606 =
+
+# Voice Mail UserID.
+P626 =
+
+# Name (Display Name, e.g., John Doe).
+P607 =
+
+# Tel URI. 0 - Disable, 1 - User=Phone, 2 - Enabled. Default value is 0.
+# Valid value: 0, 1, 2.
+P609 = 0
+
+#######################################################################
+##  Account 4 Network Settings                                       ##
+#######################################################################
+
+# Outbound Proxy.
+P603 =
+
+# Secondary Outbound Proxy.
+P2633 =
+
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV. Default value is 0.
+# Valid value: 0, 1, 2.
+P608 = 0
+
+# NAT Traversal. 0 - NAT No, 1 - STUN, 2 - Keep-alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default value is 2.
+# Valid value: 0, 1, 2, 3, 4, 5.
+P614 = 2
+
+# Proxy-Require.
+P618 =
+
+#######################################################################
+##  Account 4 SIP Settings                                           ##
+#######################################################################
+
+# SIP Registration. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P610 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P611 = 0
+
+# Register Expiration (m). In minutes. Default value is 60.
+# Valid value: 0 - 64800.
+P612 = 60
+
+# Wait Time Retry Registration (s). In seconds. Default value is 20.
+# Valid value: 1 - 3600.
+P671 = 20
+
+# Local SIP Port. Default value is 5066.
+# Valid value: 5 - 65535.
+P613 = 5066
+
+# SUBSCRIBE For MWI. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P615 = 0
+
+# Session Expiration. In seconds. Default value is 180 seconds.
+# Valid value: 90 - 64800.
+P634 = 180
+
+# Min-SE (s). Default value is 90 seconds.
+# Valid value: 90 - 64800.
+P627 = 90
+
+# UAC Specify Refresher. 0 - Omit, 1 - UAC, 2 - UAS. Default value is 0.
+# Valid value: 0, 1, 2.
+P632 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default value is 1.
+# Valid value: 1, 2.
+P633 = 1
+
+# Force INVITE. Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P631 = 0
+
+# Caller Request Timer. Request for timer when calling.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P628 = 0
+
+# Callee Request Timer.
+# Request for timer when being called (i.e., if remote party supports timer but did not request for one).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P629 = 0
+
+# Force Timer. Still use timer when remote party does not support timer.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P630 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P635 = 0 
+
+# SIP Transport. 0 - UDP , 1 - TCP, 2 - TLS. Default value is 0.
+# Valid value: 0, 1, 2.
+P648 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P660 = 0
+
+# Support SIP Instance ID.
+# 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P689 = 1
+
+# Validate Incoming SIP Messages.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2606 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+P2646 = 0
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate)
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default value is 50.
+# Valid value: 50, 100, 200.
+P640 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value.
+# The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default value is 400.
+# Valid value: 200, 400, 800.
+P641 = 400
+
+# Remove OBP from route. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2605 = 0
+
+#######################################################################
+##  Account 4 Codec Settings                                         ##
+#######################################################################
+
+# DTMF: in audio. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2601 = 0
+
+# DTMF: via RFC2833. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P2602 = 1
+
+# DTMF: via SIP INFO. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2603 = 0
+
+# DTMF Payload Type. Default value is 101.
+# Valid value: 96 - 127.
+P696 = 101
+
+# Preferred Vocoder
+# First codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P651 = 0
+
+# Second codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P652 = 0
+
+# Third codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P653 = 0
+
+# Forth codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P654 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced. Default value is 0.
+# Valid value: 0, 1, 2.
+P643 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P685 = 0
+
+# Voice Frames per TX. Default value is 2.
+# Valid value: 1 - 64.
+P686 = 2
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default value is 1.
+# Valid value: 0, 1.
+P698 = 1
+
+# Jitter Buffer Length. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+# Valid value: 0, 1, 2.
+P697 = 1
+
+#######################################################################
+##  Account 4 Call Settings                                          ##
+#######################################################################
+
+# Dial Plan. Default value is { x+ | \+x+ | *x+ | *xx*x+ }.
+P659 = { x+ | \+x+ | *x+ | *xx*x+ }
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P669 = 0
+
+# Auto Answer. 0 - No, 1 - Yes, 2 - Enable Intercom/Paging. Default value is 0.
+# Valid value: 0, 1, 2.
+P625 = 0
+
+# Send Anonymous. 0 - No, 1 - Yes (caller ID will be blocked if set to Yes). Default value is 0.
+# Valid value: 0, 1.
+P621 = 0
+
+# Anonymous Call Rejection. 0 - No,  1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P646 = 0
+
+# Call Log
+# 0 - Log All, 1 - Log Incoming/Outgoing only (Missed Calls Not Recorded), 2 - Disable All. Default value is 0.
+# Valid value: 0, 1, 2.
+P642 = 0
+
+# Special Feature. 
+# 100 - Standard, 108 - CBCOM, 109 - RNK, 113 - China Mobile
+# 114 - ZTE IMS, 115 - Mobotix, 116 - ZTE NGN, 117 - Huawei IMS
+# Default value is 100.
+# Valid value: 100, 108, 109, 113, 114, 115, 116, 117.
+P624 = 100
+
+# Feature Key Synchronization. 0 - Disable,  1 - Broadsoft. Default value is 0.
+# Valid value: 0, 1.
+P2625 = 0
+
+# No Key Entry Timeout (s). Default value is 4.
+# Valid value: 1 - 15.
+P691 = 4
+
+# Ring Timeout (s). Default value is 60.
+# Valid value: 10 - 300.
+P676 = 60
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P692 = 1
+
+# Account Ring Tone. Please refer to the options and value in the table below.
+#   --Web GUI Option--          ----------Value----------
+#	Default Ringtone			content://settings/system/ringtone
+#	Silent						ringtone_silence
+#	Bollywood               	/system/media/audio/ringtones/Bollywood.ogg
+#	bellcore-dr2				/system/media/audio/ringtones/bellcore-dr2.ogg
+#	bellcore-dr1				/system/media/audio/ringtones/bellcore-dr1.ogg
+#	Ring1_Ding              	/system/media/audio/ringtones/Ring1_Ding.ogg
+#	Safari						/system/media/audio/ringtones/Safari.ogg
+#	Club_Cubano					/system/media/audio/ringtones/Club_Cubano.ogg
+#	Eastern_Sky					/system/media/audio/ringtones/Eastern_Sky.ogg
+#	Default_ringtone			/system/media/audio/ringtones/Default_ringtone.ogg
+#	LoopyLounge					/system/media/audio/ringtones/LoopyLounge.ogg
+#	BussaMove					/system/media/audio/ringtones/BussaMove.ogg
+#	Funk_Yall               	/system/media/audio/ringtones/Funk_Yall.ogg
+#	CrayonRock					/system/media/audio/ringtones/CrayonRock.ogg
+#	Big_Easy					/system/media/audio/ringtones/Big_Easy.ogg
+#	Playa						/system/media/audio/ringtones/Playa.ogg
+#	DancinFool					/system/media/audio/ringtones/DancinFool.ogg
+#	bellcore-dr3				/system/media/audio/ringtones/bellcore-dr3.ogg
+#	BirdLoop					/system/media/audio/ringtones/BirdLoop.ogg
+#	Ring_Synth_04				/system/media/audio/ringtones/Ring_Synth_04.ogg
+#	World						/system/media/audio/ringtones/World.ogg
+#	Ring9_Nairobi				/system/media/audio/ringtones/Ring9_Nairobi.ogg
+#	Champagne_Edition			/system/media/audio/ringtones/Champagne_Edition.ogg
+#	Steppin_Out					/system/media/audio/ringtones/Steppin_Out.ogg
+#	Ring_Synth_02				/system/media/audio/ringtones/Ring_Synth_02.ogg
+#	bellcore-dr4				/system/media/audio/ringtones/bellcore-dr4.ogg
+#	DonMessWivIt				/system/media/audio/ringtones/DonMessWivIt.ogg
+#	Road_Trip					/system/media/audio/ringtones/Road_Trip.ogg
+#	MildlyAlarming				/system/media/audio/ringtones/MildlyAlarming.ogg
+#	Ring_Classic_02				/system/media/audio/ringtones/Ring_Classic_02.ogg
+#	Third_Eye					/system/media/audio/ringtones/Third_Eye.ogg
+#	LoveFlute					/system/media/audio/ringtones/LoveFlute.ogg
+#	Ring6_Glacial_Groove		/system/media/audio/ringtones/Ring6_Glacial_Groove.ogg
+#	Shes_All_That				/system/media/audio/ringtones/Shes_All_That.ogg
+#	Ring8_MidEvilJaunt			/system/media/audio/ringtones/Ring8_MidEvilJaunt.ogg
+#	CurveBall					/system/media/audio/ringtones/CurveBall.ogg
+#	SilkyWay					/system/media/audio/ringtones/SilkyWay.ogg
+#	bellcore-dr5				/system/media/audio/ringtones/bellcore-dr5.ogg
+#	Enter_the_Nexus				/system/media/audio/ringtones/Enter_the_Nexus.ogg
+#	Ring_Digital_02				/system/media/audio/ringtones/Ring_Digital_02.ogg
+#	Ring2_OrganDub				/system/media/audio/ringtones/Ring2_OrganDub.ogg
+#	Seville						/system/media/audio/ringtones/Seville.ogg
+#	No_Limits					/system/media/audio/ringtones/No_Limits.ogg
+#	Calypso_Steel				/system/media/audio/ringtones/Calypso_Steel.ogg
+#	Terminated					/system/media/audio/ringtones/Terminated.ogg
+#	Ring7_HalfwayHome			/system/media/audio/ringtones/Ring7_HalfwayHome.ogg
+#	Growl						/system/media/audio/ringtones/Growl.ogg
+#	Ring3_Paradise_Island		/system/media/audio/ringtones/Ring3_Paradise_Island.ogg
+#	Gimme_Mo_Town				/system/media/audio/ringtones/Gimme_Mo_Town.ogg
+#	Ring10_Nassau				/system/media/audio/ringtones/Ring10_Nassau.ogg
+#	Ring5_FreeFlight			/system/media/audio/ringtones/Ring5_FreeFlight.ogg
+#	TwirlAway					/system/media/audio/ringtones/TwirlAway.ogg
+#	Backroad					/system/media/audio/ringtones/Backroad.ogg
+#	Cairo						/system/media/audio/ringtones/Cairo.ogg
+#	Ring4_EtherShake			/system/media/audio/ringtones/Ring4_EtherShake.ogg
+P623 = content://settings/system/ringtone
+
+# No Answer Timeout (s). Default value is 20.
+# Valid value: 1 - 120.
+P670 = 20
+
+
+##############################################################################
+##  Account 5 Settings                                                      ##
+##############################################################################
+
+#######################################################################
+##  Account 5 General Settings                                       ##
+#######################################################################
+
+# Account Active. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1701 = 0
+
+# Account Name.
+P1717 =
+
+# SIP Server.
+P1702 =
+
+# SIP User ID.
+P1704 =
+
+# SIP Authenticate ID.
+P1705 =
+
+# SIP Authenticate Password.
+P1706 =
+
+# Voice Mail UserID.
+P1726 =
+
+# Name (Display name, e.g., John Doe).
+P1707 =
+
+# Tel URL Support. 0 - Disabled, 1 - User=Phone, 2 - Enabled. Default value is 0.
+# Valid value: 0, 1, 2.
+P1709 = 0
+
+#######################################################################
+##  Account 5 Network Settings                                       ##
+#######################################################################
+
+# Outbound Proxy.
+P1703 =
+
+# Secondary Outbound Proxy.
+P2733 =
+
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV. Default value is 0.
+# Valid value: 0, 1, 2.
+P1708 = 0
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - Keep-alive, 3 - UPnP, 4 - Auto, 5 - VPN.
+# Default value is 2.
+# Valid value: 0, 1, 2, 3, 4, 5.
+P1714 = 2
+
+# Proxy-Require.
+P1718 =
+
+#######################################################################
+##  Account 5 SIP Settings                                           ##
+#######################################################################
+
+# SIP Registration. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P1710 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1711 = 0
+
+# Register Expiration (m). In minutes. Default value is 60.
+# Valid value: 0 - 64800.
+P1712 = 60
+
+# Wait Time Retry Registration (s). In seconds. Default value is 20.
+# Valid value: 1 - 3600.
+P1771 = 20
+
+# Local SIP Port. Default value is 5068.
+# Valid value: 5 - 65535.
+P1713 = 5068
+
+# SUBSCRIBE for MWI. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1715 = 0
+
+# Session Expiration. In seconds. Default value is 180 seconds.
+# Valid value: 90 - 64800.
+P1734 = 180
+
+# Min-SE (s). Default value is 90 seconds.
+# Valid value is 90 - 64800.
+P1727 = 90
+
+# UAC Specify Refresher. 0 - Omit, 1 - UAC, 2 - UAS. Default value is 0.
+# Valid value: 0, 1, 2.
+P1732 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default value is 1.
+# Valid value: 1, 2.
+P1733 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE)
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1731 = 0
+
+# Caller Request Timer (Request for timer when calling).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1728 = 0
+
+# Callee Request Timer (Request for timer when being called, i.e. if remote party supports timer but did not request for one)
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1729 = 0
+
+# Force Timer (Still use timer when remote party does not support timer).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1730 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1735 = 0 
+
+# SIP Transport.
+# 0 - UDP, 1 - TCP, 2 - TLS. Default value is 0.
+# Valid value: 0, 1, 2.
+P1748 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1760 = 0 
+
+# Support SIP Instance ID. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P1789 = 1
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default value is 0. 
+# Valid value: 0, 1.
+P2706 = 0 
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+P2746 = 0
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate).
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default value is 50.
+# Valid value: 50, 100, 200.
+P1740 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value.
+# The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default is value 400.
+# Valid value: 200, 400, 800.
+P1741 = 400
+
+# Remove OBP from route. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2705 = 0
+
+#######################################################################
+##  Account 5 Codec Settings                                         ##
+#######################################################################
+
+# DTMF: in audio. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2701 = 0
+
+# DTMF: via RFC2833. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P2702 = 1
+
+# DTMF: via SIP INFO. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2703 = 0
+
+# DTMF Payload Type. Default value is 101.
+# Valid value: 96 - 127.
+P1796 = 101
+
+# Preferred Vocoder
+# First codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1751 = 0
+
+# Second codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1752 = 0
+
+# Third codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1753 = 0
+
+# Forth codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1754 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2- Enabled and forced.
+# Valid value: 0, 1, 2.
+P1743 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1785 = 0
+
+# Voice Frames per TX. Default value is 2.
+# Valid value: 1 - 64.
+P1786 = 2
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default value is 1.
+# Valid value: 0, 1.
+P1798 = 1
+
+# Jitter Buffer Length. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+# Valid value: 0, 1, 2.
+P1797 = 1
+
+#######################################################################
+##  Account 5 Call Settings                                          ##
+#######################################################################
+
+# Dial Plan Maxlength: unlimited, default is allow all { x+ | *x+ | *xx*x+ }.
+P1759 = { x+ | \+x+ | *x+ | *xx*x+ }
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1769 = 0
+
+# Auto Answer. 0 - No, 1 - Yes, 2 - Enable Intercom/Paging. Default value is 0.
+# Valid value: 0, 1, 2.
+P1725 = 0
+
+# Send Anonymous. 0 - No, 1 - Yes (caller ID will be blocked if set to Yes). Default value is 0.
+# Valid value: 0, 1.
+P1721 = 0
+
+# Anonymous Call Rejection. 0 - No,  1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1746 = 0
+
+# Call Log
+# 0 - Log All, 1 - Log Incoming/Outgoing Only (Missed Calls Not Recorded), 2 - Disable All. Default value is 0.
+# Valid value: 0, 1, 2.
+P1742 = 0
+
+# Special Feature. 
+# 100 - Standard, 108 - CBCOM, 109 - RNK, 113 - China Mobile
+# 114 - ZTE IMS, 115 - Mobotix, 116 - ZTE NGN, 117 - Huawei IMS
+# Default value is 100.
+# Valid value: 100, 108, 109, 113, 114, 115, 116, 117.
+P1724 = 100
+
+# Feature Key Synchronization. 0 - Disable, 1 - Broadsoft. Default value is 0.
+# Valid value: 0, 1.
+P2725 = 0
+
+# No Key Entry Timeout (s). Default value is 4.
+# Valid value: 1 - 15.
+P1791 = 4
+
+# Ring Timeout (s). Default value is 60.
+# Valid value: 10 - 300.
+P1776 = 60
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P1792 = 1
+
+# Account Ring Tone. Please refer to the options and value in the table below.
+#   --Web GUI Option--          ----------Value----------
+#	Default Ringtone			content://settings/system/ringtone
+#	Silent						ringtone_silence
+#	Bollywood               	/system/media/audio/ringtones/Bollywood.ogg
+#	bellcore-dr2				/system/media/audio/ringtones/bellcore-dr2.ogg
+#	bellcore-dr1				/system/media/audio/ringtones/bellcore-dr1.ogg
+#	Ring1_Ding              	/system/media/audio/ringtones/Ring1_Ding.ogg
+#	Safari						/system/media/audio/ringtones/Safari.ogg
+#	Club_Cubano					/system/media/audio/ringtones/Club_Cubano.ogg
+#	Eastern_Sky					/system/media/audio/ringtones/Eastern_Sky.ogg
+#	Default_ringtone			/system/media/audio/ringtones/Default_ringtone.ogg
+#	LoopyLounge					/system/media/audio/ringtones/LoopyLounge.ogg
+#	BussaMove					/system/media/audio/ringtones/BussaMove.ogg
+#	Funk_Yall               	/system/media/audio/ringtones/Funk_Yall.ogg
+#	CrayonRock					/system/media/audio/ringtones/CrayonRock.ogg
+#	Big_Easy					/system/media/audio/ringtones/Big_Easy.ogg
+#	Playa						/system/media/audio/ringtones/Playa.ogg
+#	DancinFool					/system/media/audio/ringtones/DancinFool.ogg
+#	bellcore-dr3				/system/media/audio/ringtones/bellcore-dr3.ogg
+#	BirdLoop					/system/media/audio/ringtones/BirdLoop.ogg
+#	Ring_Synth_04				/system/media/audio/ringtones/Ring_Synth_04.ogg
+#	World						/system/media/audio/ringtones/World.ogg
+#	Ring9_Nairobi				/system/media/audio/ringtones/Ring9_Nairobi.ogg
+#	Champagne_Edition			/system/media/audio/ringtones/Champagne_Edition.ogg
+#	Steppin_Out					/system/media/audio/ringtones/Steppin_Out.ogg
+#	Ring_Synth_02				/system/media/audio/ringtones/Ring_Synth_02.ogg
+#	bellcore-dr4				/system/media/audio/ringtones/bellcore-dr4.ogg
+#	DonMessWivIt				/system/media/audio/ringtones/DonMessWivIt.ogg
+#	Road_Trip					/system/media/audio/ringtones/Road_Trip.ogg
+#	MildlyAlarming				/system/media/audio/ringtones/MildlyAlarming.ogg
+#	Ring_Classic_02				/system/media/audio/ringtones/Ring_Classic_02.ogg
+#	Third_Eye					/system/media/audio/ringtones/Third_Eye.ogg
+#	LoveFlute					/system/media/audio/ringtones/LoveFlute.ogg
+#	Ring6_Glacial_Groove		/system/media/audio/ringtones/Ring6_Glacial_Groove.ogg
+#	Shes_All_That				/system/media/audio/ringtones/Shes_All_That.ogg
+#	Ring8_MidEvilJaunt			/system/media/audio/ringtones/Ring8_MidEvilJaunt.ogg
+#	CurveBall					/system/media/audio/ringtones/CurveBall.ogg
+#	SilkyWay					/system/media/audio/ringtones/SilkyWay.ogg
+#	bellcore-dr5				/system/media/audio/ringtones/bellcore-dr5.ogg
+#	Enter_the_Nexus				/system/media/audio/ringtones/Enter_the_Nexus.ogg
+#	Ring_Digital_02				/system/media/audio/ringtones/Ring_Digital_02.ogg
+#	Ring2_OrganDub				/system/media/audio/ringtones/Ring2_OrganDub.ogg
+#	Seville						/system/media/audio/ringtones/Seville.ogg
+#	No_Limits					/system/media/audio/ringtones/No_Limits.ogg
+#	Calypso_Steel				/system/media/audio/ringtones/Calypso_Steel.ogg
+#	Terminated					/system/media/audio/ringtones/Terminated.ogg
+#	Ring7_HalfwayHome			/system/media/audio/ringtones/Ring7_HalfwayHome.ogg
+#	Growl						/system/media/audio/ringtones/Growl.ogg
+#	Ring3_Paradise_Island		/system/media/audio/ringtones/Ring3_Paradise_Island.ogg
+#	Gimme_Mo_Town				/system/media/audio/ringtones/Gimme_Mo_Town.ogg
+#	Ring10_Nassau				/system/media/audio/ringtones/Ring10_Nassau.ogg
+#	Ring5_FreeFlight			/system/media/audio/ringtones/Ring5_FreeFlight.ogg
+#	TwirlAway					/system/media/audio/ringtones/TwirlAway.ogg
+#	Backroad					/system/media/audio/ringtones/Backroad.ogg
+#	Cairo						/system/media/audio/ringtones/Cairo.ogg
+#	Ring4_EtherShake			/system/media/audio/ringtones/Ring4_EtherShake.ogg
+P1723 = content://settings/system/ringtone
+
+# No Answer Timeout (s). Default value is 20.
+# Valid value: 1 - 120.
+P1770 = 20
+
+
+##############################################################################
+##  Account 6 Settings                                                      ##
+##############################################################################
+
+#######################################################################
+##  Account 6 General Settings                                       ##
+#######################################################################
+
+# Account Active. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1801 = 0
+
+# Account Name.
+P1817 =
+
+# SIP Server.
+P1802 =
+
+# SIP User ID.
+P1804 =
+
+# SIP Authenticate ID.
+P1805 =
+
+# SIP Authenticate Password.
+P1806 =
+
+# Voice Mail UserID.
+P1826 =
+
+# Name (Display name :John Doe).
+P1807 =
+
+# Tel URL Support. 0 - Disable, 1 - User=Phone, 2 - Enabled. Default value is 0.
+# Valid value: 0, 1, 2.
+P1809 = 0
+
+#######################################################################
+##  Account 6 Network Settings                                       ##
+#######################################################################
+
+# Outbound Proxy.
+P1803 =
+
+# Secondary Outbound Proxy.
+P2833 =
+
+# DNS Mode. 0 - A Record, 1 - SRV, 2 - NAPTR/SRV. Default is 0.
+# Valid value: 0, 1, 2.
+P1808 = 0
+
+# NAT Traversal. 0 - No, 1 - STUN, 2 - Keep-alive, 3 - UPnP, 4 - Auto, 5 - VPN. Default value is 2.
+# Valid value: 0, 1, 2, 3, 4, 5.
+P1814 = 2
+
+# Proxy-Require.
+P1818 =
+
+#######################################################################
+##  Account 6 SIP Settings                                           ##
+#######################################################################
+
+# SIP Registration. 0 - No, 1 - Yes. Default is 1.
+# Valid value: 0, 1.
+P1810 = 1
+
+# Unregister On Reboot. 0 - No, 1 - Yes. Default is 0.
+# Valid value: 0, 1.
+P1811 = 0
+
+# Register Expiration (m). In minutes. Default value is 60.
+# Valid value: 0 - 64800. 
+P1812 = 60
+
+# Wait Time Retry Registration (s). In seconds. Default value is 20.
+# Valid value: 1 - 3600.
+P1871 = 20
+
+# Local SIP Port. Default value is 5070.
+# Valid value: 5-65535.
+P1813 = 5070
+
+# SUBSCRIBE for MWI.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1815 = 0
+
+# Session Expiration (in seconds). Default value is 180 seconds.
+# Valid value: 90 - 64800.
+P1834 = 180
+
+# Min-SE (s). Default value is 90 seconds.
+# Valid value: 5 - 65535.
+P1827 = 90
+
+# UAC Specify Refresher. 0 - Omit, 1 - UAC, 2 - UAS. Default value is 0.
+# Valid value: 0, 1, 2.
+P1832 = 0
+
+# UAS Specify Refresher. 1 - UAC, 2 - UAS. Default value is 1.
+# Valid value: 1, 2.
+P1833 = 1
+
+# Force INVITE (Always refresh with INVITE instead of UPDATE even when remote party supports UPDATE).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1831 = 0
+
+# Caller Request Timer (Request for timer when calling).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1828 = 0
+
+# Callee Request Timer. Request for timer when called (i.e. if remote party supports timer but did not request for one).
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1829 = 0
+
+# Force Timer (Still use timer when remote party does not support timer)
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1830 = 0
+
+# Enable 100rel. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1835 = 0
+
+# SIP Transport. 0 - UDP, 1 - TCP, 2 - TLS. Default value is 0.
+# Valid value: 0, 1, 2.
+P1848 = 0
+
+# Symmetric RTP. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1860 = 0
+
+# Support SIP Instance ID. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P1889 = 1
+
+# Validate Incoming Messages. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2806 = 0
+
+# Authenticate Incoming INVITE.
+# 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1
+P2846 = 0
+
+# SIP T1 Timeout. RFC 3261 T1 value (RTT estimate).
+# 50 - 0.5 sec, 100 - 1 sec, 200 - 2 sec. Default value is 50.
+# Valid value: 50, 100, 200.
+P1840 = 50
+
+# SIP T2 Timeout. RFC 3261 T2 value.
+# The maximum retransmit interval for non-INVITE requests and INVITE responses.
+# 200 - 2 sec, 400 - 4 sec, 800 - 8 sec. Default 400.
+# Valid value: 200, 400, 800.
+P1841 = 400
+
+# Remove OBP from route. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2805 = 0
+
+#######################################################################
+##  Account 6 Codec Settings                                         ##
+#######################################################################
+
+# DTMF: in audio. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2801 = 0
+
+# DTMF: in RFC2833. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P2802 = 1
+
+# DTMF: in SIP INFO. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P2803 = 0
+
+# DTMF Payload Type. Default value is 101.
+# Valid value: 96 - 127.
+P1896 = 101
+
+# Preferred Vocoder
+# First codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1851 = 0
+
+# Second codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1852 = 0
+
+# Third codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1853 = 0
+
+# Forth codec. 0 - PCMU, 8 - PCMA, 9 - G.722, 18 - G.729A/B. Default value is 0.
+# Valid value: 0, 8, 9, 18.
+P1854 = 0
+
+# SRTP Mode. 0 - Disabled, 1 - Enabled but not forced, 2 - Enabled and forced. Default value is 0.
+# Valid value: 0, 1, 2.
+P1843 = 0
+
+# Silence Suppression. 0 - No, 1 - Yes.
+# Valid value: 0, 1.
+P1885 = 0
+
+# Voice Frames per TX. Default valule is 2.
+# Valid value: 1 - 64. 
+P1886 = 2 
+
+# Jitter Buffer Type. 0 - Fixed, 1 - Adaptive. Default value is 1.
+# Valid value: 0, 1.
+P1898 = 1
+
+# Jitter Buffer Length. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+# Valid value: 0, 1, 2.
+P1897 = 1
+
+#######################################################################
+##  Account 6 Call Settings                                          ##
+#######################################################################
+
+# Dial Plan. Default value is { x+ | \+x+ | *x+ | *xx*x+ }.
+P1859 = { x+ | \+x+ | *x+ | *xx*x+ }
+
+# Refer-To Use Target Contact. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1869 = 0
+
+# Auto Answer. 0 - No, 1 - Yes, 2 - Enable Intercom/Paging. Default value is 0.
+# Valid value: 0, 1.
+P1825 = 0
+
+# Send Anonymous. 0 - No, 1 - Yes (caller ID will be blocked if set to Yes). Default value is 0.
+# Valid value: 0, 1.
+P1821 = 0
+
+# Anonymous Call Rejection. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1846 = 0
+
+# Call Log.
+# 0 - Log All, 1 - Log Incoming/Outgoing only (Missed Calls Not Recorded), 2 - Disable Call All.
+# Default value is 0.
+# Valid value: 0, 1, 2.
+P1842 = 0
+
+# Special Feature. 
+# 100 - Standard, 108 - CBCOM, 109 - RNK, 113 - China Mobile
+# 114 - ZTE IMS, 115 - Mobotix, 116 - ZTE NGN, 117 - Huawei IMS
+# Default value is 100.
+# Valid value: 100, 108, 109, 113, 114, 115, 116, 117.
+P1824 = 100
+
+# Feature Key Synchronization. 0 - Disable, 1 - Broadsoft. Default value is 0.
+# Valid value: 0, 1.
+P2825 = 0
+
+# No Key Entry Timeout (s). Default value is 4.
+# Valid value: 1 - 15.
+P1891 = 4
+
+# Ring Timeout. Default value is 60 seconds.
+# Valid value: 10 - 300.
+P1876 = 60
+
+# Use # as Dial Key. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P1892 = 1 
+
+# Account Ring Tone. Please refer to the options and value in the table below.
+#   --Web GUI Option--          ----------Value----------
+#	Default Ringtone			content://settings/system/ringtone
+#	Silent						ringtone_silence
+#	Bollywood               	/system/media/audio/ringtones/Bollywood.ogg
+#	bellcore-dr2				/system/media/audio/ringtones/bellcore-dr2.ogg
+#	bellcore-dr1				/system/media/audio/ringtones/bellcore-dr1.ogg
+#	Ring1_Ding              	/system/media/audio/ringtones/Ring1_Ding.ogg
+#	Safari						/system/media/audio/ringtones/Safari.ogg
+#	Club_Cubano					/system/media/audio/ringtones/Club_Cubano.ogg
+#	Eastern_Sky					/system/media/audio/ringtones/Eastern_Sky.ogg
+#	Default_ringtone			/system/media/audio/ringtones/Default_ringtone.ogg
+#	LoopyLounge					/system/media/audio/ringtones/LoopyLounge.ogg
+#	BussaMove					/system/media/audio/ringtones/BussaMove.ogg
+#	Funk_Yall               	/system/media/audio/ringtones/Funk_Yall.ogg
+#	CrayonRock					/system/media/audio/ringtones/CrayonRock.ogg
+#	Big_Easy					/system/media/audio/ringtones/Big_Easy.ogg
+#	Playa						/system/media/audio/ringtones/Playa.ogg
+#	DancinFool					/system/media/audio/ringtones/DancinFool.ogg
+#	bellcore-dr3				/system/media/audio/ringtones/bellcore-dr3.ogg
+#	BirdLoop					/system/media/audio/ringtones/BirdLoop.ogg
+#	Ring_Synth_04				/system/media/audio/ringtones/Ring_Synth_04.ogg
+#	World						/system/media/audio/ringtones/World.ogg
+#	Ring9_Nairobi				/system/media/audio/ringtones/Ring9_Nairobi.ogg
+#	Champagne_Edition			/system/media/audio/ringtones/Champagne_Edition.ogg
+#	Steppin_Out					/system/media/audio/ringtones/Steppin_Out.ogg
+#	Ring_Synth_02				/system/media/audio/ringtones/Ring_Synth_02.ogg
+#	bellcore-dr4				/system/media/audio/ringtones/bellcore-dr4.ogg
+#	DonMessWivIt				/system/media/audio/ringtones/DonMessWivIt.ogg
+#	Road_Trip					/system/media/audio/ringtones/Road_Trip.ogg
+#	MildlyAlarming				/system/media/audio/ringtones/MildlyAlarming.ogg
+#	Ring_Classic_02				/system/media/audio/ringtones/Ring_Classic_02.ogg
+#	Third_Eye					/system/media/audio/ringtones/Third_Eye.ogg
+#	LoveFlute					/system/media/audio/ringtones/LoveFlute.ogg
+#	Ring6_Glacial_Groove		/system/media/audio/ringtones/Ring6_Glacial_Groove.ogg
+#	Shes_All_That				/system/media/audio/ringtones/Shes_All_That.ogg
+#	Ring8_MidEvilJaunt			/system/media/audio/ringtones/Ring8_MidEvilJaunt.ogg
+#	CurveBall					/system/media/audio/ringtones/CurveBall.ogg
+#	SilkyWay					/system/media/audio/ringtones/SilkyWay.ogg
+#	bellcore-dr5				/system/media/audio/ringtones/bellcore-dr5.ogg
+#	Enter_the_Nexus				/system/media/audio/ringtones/Enter_the_Nexus.ogg
+#	Ring_Digital_02				/system/media/audio/ringtones/Ring_Digital_02.ogg
+#	Ring2_OrganDub				/system/media/audio/ringtones/Ring2_OrganDub.ogg
+#	Seville						/system/media/audio/ringtones/Seville.ogg
+#	No_Limits					/system/media/audio/ringtones/No_Limits.ogg
+#	Calypso_Steel				/system/media/audio/ringtones/Calypso_Steel.ogg
+#	Terminated					/system/media/audio/ringtones/Terminated.ogg
+#	Ring7_HalfwayHome			/system/media/audio/ringtones/Ring7_HalfwayHome.ogg
+#	Growl						/system/media/audio/ringtones/Growl.ogg
+#	Ring3_Paradise_Island		/system/media/audio/ringtones/Ring3_Paradise_Island.ogg
+#	Gimme_Mo_Town				/system/media/audio/ringtones/Gimme_Mo_Town.ogg
+#	Ring10_Nassau				/system/media/audio/ringtones/Ring10_Nassau.ogg
+#	Ring5_FreeFlight			/system/media/audio/ringtones/Ring5_FreeFlight.ogg
+#	TwirlAway					/system/media/audio/ringtones/TwirlAway.ogg
+#	Backroad					/system/media/audio/ringtones/Backroad.ogg
+#	Cairo						/system/media/audio/ringtones/Cairo.ogg
+#	Ring4_EtherShake			/system/media/audio/ringtones/Ring4_EtherShake.ogg
+P1823 = content://settings/system/ringtone
+
+# No Answer Timeout (s). Default value is 20.
+# Valid value: 1 - 120.
+P1870 = 20
+
+
+##############################################################################
+##  Advanced Settings                                                       ##
+##############################################################################
+
+#######################################################################
+##  Advanced Settings -> General Settings                            ##
+#######################################################################
+# Local RTP Port. Default value is 5004.
+# Valid value: 1024 - 65535.
+P39 = 5004
+
+# Use Random Port. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P78 = 1
+
+# Disable in-call DTMF display.  0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P338 = 0
+
+# Keep-alive Interval (s). Default value is 20 seconds.
+# Valid value: 10 - 160.
+P84 = 20
+
+# STUN Server.
+# Reboot is required.
+P76 = stun.ipvideotalk.com
+
+# Use NAT IP. This will enable our SIP client to use this IP in the SIP message. 
+# Example 64.3.153.50.
+# Reboot is required.
+P101 =
+
+# SIP TLS Certificate.
+# Reboot is required.
+# P280 =
+
+# SIP TLS Private Key.
+# Reboot is required. 
+# P279 = 
+
+# SIP TLS Private Key Password.
+# Reboot is required.
+# P281 =
+
+#######################################################################
+##  Advanced Settings - Call Features                                ##
+#######################################################################
+# Always Ring Speaker. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1439 = 0
+
+# Disable Call-Waiting. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P91 = 0
+
+# Disable Call-Waiting Tone. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P186 = 0
+
+# Disable DND Reminder Ring. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1486 = 0
+
+# Disable Direct IP Call. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P277 = 0
+
+# Use Quick IP-Call Mode. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P184 = 0
+
+# Disable Conference. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1311 = 0
+
+# Disable Transfer. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P1341 = 0
+
+# Escape '#' as %23 in SIP URI. 0 - No, 1 - Yes.
+# Valid value: 0, 1.
+P1406 = 1
+
+# Offhook Auto Dial.
+P71 =
+
+#######################################################################
+##  Advanced Settings - Tone Generator                               ##
+#######################################################################
+
+# Dial Tone
+P4000 = f1=350@-13,f2=440@-13,c=0/0;
+
+# Ring Back Tone
+P4001 = f1=440@-19,f2=480@-19,c=2000/4000;
+
+# Busy Tone
+P4002 = f1=480@-24,f2=620@-24,c=500/500;
+
+# Reorder Tone
+P4003 = f1=480@-24,f2=620@-24,c=250/250;
+
+# Confirmation Tone
+P4004 = f1=350@-11,f2=440@-11,c=100/100-100/100-100/100;
+
+# Call-Waiting Tone
+P4005 = f1=440@-13,c=300/10000-300/10000-0/0;
+
+# Call-Waiting Tone Gain. 0 - Low, 1 - Medium, 2 - High. Default value is 1.
+P1555 = 1
+
+# PSTN Disconnect Tone.
+P841 = f1=480@-32,f2=620@-32,c=500/500;
+
+# Default Ring Cadence.
+P4040 = c=2000/4000;
+
+
+##############################################################################
+##  Maintenance                                                             ##
+##############################################################################
+
+#######################################################################
+##  Maintenance - Network Settings                                   ##
+#######################################################################
+
+# Address Type. 0 - DHCP, 1 - Static, 2 - PPPoE. Default value is 0.
+# Valid value: 0, 1, 2.
+P8 = 0
+
+# Host name (DHCP option 12).
+P146 =
+
+# Vendor Class ID (DHCP option 60).
+P148 = GXP
+
+# Static IP. IP address.
+#P9 = 192
+#P10 = 168
+#P11 = 0
+#P12 = 160
+
+# Static IP. Subnet Mask.
+#P13 = 255
+#P14 = 255
+#P15 = 0
+#P16 = 0
+
+# Static IP. Default Gateway.
+#P17 = 0
+#P18 = 0
+#P19 = 0
+#P20 = 0
+
+# Static IP. DNS Server 1. Ignore if DHCP or PPPoE is used.
+#P21 = 0
+#P22 = 0
+#P23 = 0
+#P24 = 0
+
+# Static IP. DNS Server 2. Ignore if DHCP or PPPoE is used.
+#P25 = 0
+#P26 = 0
+#P27 = 0
+#P28 = 0
+
+# PPPoE Account ID.
+# P82 =
+
+# PPPoE Password.
+# Max lenght: 32 characters.
+# P83 =
+
+# PPPoE Service Name.
+# P269 =
+
+# Layer 3 QoS for SIP. Default value is 48.
+P1558 = 48
+
+# Layer 3 QoS for Audio. Default value is 48.
+P1559 = 48
+
+# Layer 2 QoS. 802.1Q/VLAN Tag. Default value is 0.
+# Valid value: 0 - 4095.
+P51 = 0
+
+# Layer 2 QoS. 802.1p priority value. Default value is 0.
+# Valid value: 0 - 7.
+# Reboot is required.
+P87 = 0
+
+# 802.1x Mode. 0 - Disable, 1 - EAP-MD5, 2 - EAP-TLS, 3-EAP-PEAP.
+# Valid value: 0, 1, 2, 3.
+# Reboot is required.
+P7901 = 0
+
+# 802.1x Identity.
+# Reboot is required.
+P7902 =
+
+# MD5 Password.
+# Reboot is required.
+P7903 =
+
+#######################################################################
+##  Maintenance - Time Settings                                      ##
+#######################################################################
+
+# Assign NTP Server Address
+P30 = ntp.ipvideotalk.com
+
+# DHCP Option 42 override NTP server. 0 - No, 1 - Yes. Default value is 1.
+# When set to Yes (1), it will override the configured NTP server.
+# Valid value: 0, 1.
+# Reboot is required.
+P144 = 1
+
+# DHCP Option 2 to Override Time Zone setting. 0 - No, 1 - Yes. Default value is 0.
+# When set to Yes (1), it will override the configured Time Zone setting if available.
+# Valid value: 0, 1.
+# Reboot is required.
+P143 = 0
+
+# Time Zone
+# --Location--                         --Web GUI Option--       -P value-
+# Pacific/Majuro                       Marshall Islands         UTC+1200
+# Pacific/Midway                       Midway Island            UTC-1100
+# Pacific/Honolulu                     Hawaii                   UTC-1000
+# America/Anchorage                    Alaska                   UTC-0900
+# America/Los_Angeles                  Pacific Time             UTC-0900
+# America/Tijuana                      Tijuana                  UTC-0800
+# America/Phoenix                      Arizona                  UTC-0700
+# America/Chihuahua                    Chihuahua                UTC-0700
+# America/Denver                       Mountain Time            UTC-0700
+# America/Costa_Rica                   Central America          UTC-0600
+# America/Chicago                      Central Time             UTC-0600
+# America/Mexico_City                  Mexico City              UTC-0600
+# America/Regina                       Saskatchewan             UTC-0600
+# America/Bogota                       Bogota                   UTC-0500
+# America/New_York                     Eastern Time             UTC-0500
+# America/Caracas                      Venezuela                UTC-0430
+# America/Barbados                     Atlantic Time            UTC-0400
+# America/Manaus                       Manaus                   UTC-0400
+# America/Santiago                     Santiago                 UTC-0400
+# America/St_Johns                     Newfoundland             UTC-0330
+# America/Sao_Paulo                    Brasilia                 UTC-0300
+# America/Argentina/Buenos_Aires       Buenos Aires             UTC-0300
+# America/Godthab                      Greenland                UTC-0300
+# America/Montevideo                   Montevideo               UTC-0300
+# Atlantic/South_Georgia               Mid-Atlantic             UTC-0200
+# Atlantic/Azores             		   Azores					UTC-1000
+# Atlantic/Cape_Verde                  Cape Verde Islands       UTC-0100
+# Africa/Casablanca                    Casablanca               UTC+0000
+# Europe/London                        London, Dublin           UTC+0000
+# Europe/Amsterdam                     Amsterdam, Berlin        UTC+0100
+# Europe/Belgrade                      Belgrade                 UTC+0100
+# Europe/Brussels             		   Brussels				    UTC+0100
+# Europe/Sarajevo                      Sarajevo                 UTC+0100
+# Africa/Windhoek                      Windhoek                 UTC+0100
+# Africa/Brazzaville                   W. Africa Time           UTC+0100
+# Asia/Amman                           Amman, Jordan            UTC+0200
+# Europe/Athens                        Athens, Istanbul         UTC+0200
+# Asia/Beirut                          Beirut, Lebanon          UTC+0200
+# Africa/Cairo                         Cairo                    UTC+0200
+# Europe/Helsinki                      Helsinki                 UTC+0200
+# Asia/Jerusalem                       Jerusalem                UTC+0200
+# Europe/Minsk                         Minsk                    UTC+0200
+# Africa/Harare                        Harare                   UTC+0200
+# Asia/Baghdad                         Baghdad                  UTC+0300
+# Europe/Moscow                        Moscow                   UTC+0300
+# Asia/Kuwait                          Kuwait                   UTC+0300
+# Africa/Nairobi                       Nairobi                  UTC+0300
+# Asia/Tehran                          Tehran                   UTC+0330
+# Asia/Baku                            Baku                     UTC+0400
+# Asia/Tbilisi                         Tbilisi                  UTC+0400
+# Asia/Yerevan                         Yerevan                  UTC+0400
+# Asia/Dubai                           Dubai                    UTC+0400
+# Asia/Kabul                           Kabul                    UTC+0430
+# Asia/Karachi                         Islamabad, Karachi       UTC+0500
+# Asia/Oral                            Ural'sk                  UTC+0500
+# Asia/Yekaterinburg                   Yekaterinburg            UTC+0500
+# Asia/Calcutta                        Kolkata                  UTC+0530
+# Asia/Colombo                         Sri Lanka                UTC+0530
+# Asia/Katmandu                        Kathmandu                UTC+0545
+# Asia/Almaty                          Astana                   UTC+0600
+# Asia/Rangoon                         Yangon                   UTC+0630
+# Asia/Krasnoyarsk                     Krasnoyarsk              UTC+0700
+# Asia/Bangkok                         Bangkok                  UTC+0700
+# Asia/Shanghai                        Beijing                  UTC+0800
+# Asia/Hong_Kong                       Hong Kong                UTC+0800
+# Asia/Irkutsk                         Irkutsk                  UTC+0800
+# Asia/Kuala_Lumpur                    Kuala Lumpur             UTC+0800
+# Australia/Perth                      Perth                    UTC+0800
+# Asia/Taipei                          Taipei                   UTC+0800
+# Asia/Seoul                           Seoul                    UTC+0900
+# Asia/Tokyo                           Tokyo, Osaka             UTC+0900
+# Asia/Yakutsk                         Yakutsk                  UTC+0900
+# Australia/Adelaide                   Adelaide                 UTC+0930
+# Australia/Darwin                     Darwin                   UTC+0930
+# Australia/Brisbane                   Brisbane                 UTC+1000
+# Australia/Hobart                     Hobart                   UTC+1000
+# Australia/Sydney                     Sydney, Canberra         UTC+1000
+# Asia/Vladivostok                     Vladivostok              UTC+1000
+# Pacific/Guam                         Guam                     UTC+1000
+# Asia/Magadan                         Magadan                  UTC+1100
+# Pacific/Auckland                     Auckland                 UTC+1200
+# Pacific/Fiji                         Fiji                     UTC+1200
+# Pacific/Tongatapu                    Tonga                    UTC+1300
+
+# P64 = UTC-0900
+
+# Time Display Format. 0 - 12 Hour, 1 - 24 Hour. Default value is 1.
+# Number: 0, 1
+P122 = 1
+
+# Date Display Format
+# 0: YY-MM-DD
+# 1: MM-DD-YY
+# 2: DD-MM-YY
+# 3: Normal (M-D-YY)
+# Default value is 1
+# Number: 0, 1, 2, 3
+P102 = 1
+
+#######################################################################
+##  Maintenance - Web/SSH Access                                     ##
+#######################################################################
+
+# Disable SSH. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P276 = 0
+
+# Web Access Method. 0 - HTTP, 1 - HTTPS. Default value is 0.
+# Valid value: 0, 1.
+P900 = 0  
+
+# Web Port. HTTP default is 80, HTTPS default is 443.
+# Valid value: 0 - 65535.
+P901 = 80
+
+# Admin password for web interface.
+# Max length: 30 characters.
+P2 = admin
+
+# End User Password.
+# Max lenght: 30 characters.
+P196 = 123
+
+#######################################################################
+##  Maintenance - Upgrade                                            ##
+#######################################################################
+
+# Lock Keypad Update. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P88 = 0
+
+# XML Config File Password.
+# Max length: 41 characters.
+# Reboot is required.
+P1359 =
+
+# HTTP/HTTPS User Name.
+# Reboot is required.
+P1360 =
+
+# HTTP/HTTPS Password.
+# Max length: 41 characters.
+# Reboot is required.
+P1361 =
+
+# Upgrade Via. 0 - TFTP, 1 - HTTP, 2 - HTTPS, 3 - Manual Upload. Default value is 1.
+# Valid value: 0, 1, 2, 3.
+# Reboot is required.
+P212 = 1
+
+# Firmware Server Path.
+P192 = fw.ipvideotalk.com/gs
+
+# Config Server Path
+P237 = fm.grandstream.com/gs
+
+# Firmware File Prefix.
+# Reboot is required.
+P232 =
+
+# Firmware File Postfix.
+# Reboot is required.
+P233 =
+
+# Config File Prefix.
+# Reboot is required.
+P234 =
+
+# Config File Postfix.
+# Reboot is required.
+P235 =
+
+# DHCP Option 66 Override server. 0 - No, 1 - Yes. Default value is 1.
+# When set to Yes(1), it will override the configured provision path and method.
+# Valid value: 0, 1.
+# Reboot is required.
+P145 = 1
+
+# DHCP Option 120 Override SIP Server.  0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+# Reboot is required.
+P1411 = 1
+
+# 3CX Auto Provision. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+# Reboot is required.
+P1414 = 1
+
+# Automatic Upgrade. 0 - No, 1 - Check Every Day, 2 - Check Every Week, 3 - Check at a Period Time. Default value is 0.
+# Valid value: 0, 1, 2, 3.
+# Reboot is required.
+P194 = 0
+
+# Automatic Upgrade Check Interval (m). Minimum 60 minutes. Default value is 10080 (7 days).
+# Valid value: 60 - 5256000.
+# Reboot is required.
+P193 = 10080
+
+# Hour of the day (0-23).
+# Valid value: 0 - 23.
+# Reboot is required.
+P285 = 1
+
+# Day of the week (0-6).
+# Valid value: 0 - 6.
+# Reboot is required.
+P286 = 1
+
+# Automatic Upgrade Rule.
+# 0 - Always Check at Bootup. 
+# 1 - When F/W pre/suffix changes.
+# 2 - Skip the Firmware Check.
+# Valid value: 0, 1, 2.
+# Reboot is required.
+P238 = 0
+
+# Auto Reboot to Upgrade Without Prompt. 0 - No, 1 - Yes. Default value is 1.
+# Valid value: 0, 1.
+P1549 = 1
+
+# Authenticate Conf File. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+P240 = 0
+
+#######################################################################
+##  Maintenance - Syslog                                             ##
+#######################################################################
+
+# Syslog Server. Name of the server.
+# Reboot is required.
+P207 = log.ipvideotalk.com
+
+# Syslog Level.
+# 0 - NONE, 1 - DEBUG, 2 - INFO, 3 - WARNING, 4 - ERROR. Default value is 0.
+# Valid value: 0, 1, 2, 3, 4.
+P208 = 0
+
+#######################################################################
+##  Maintenance - Language                                           ##
+#######################################################################
+
+# Language. Configure the language to be displayed on LCD.
+# Note: for some languages that have 2 codes avaiable, both are working.
+# ca_ES - Català
+# cs_CZ - Ceština
+# da_DK - Dansk
+# de_DE - Deutsch
+# en_GB - English (United Kingdom)
+# en_US - English (United States), en - English (United States)
+# es_ES - Español (España)
+# es_US - Español (Estados Unidos)
+# fr_FR - Français, fr - Français
+# iw_IL - Hebrew
+# hr_HR - Hrvatski
+# in_ID - Indonesian
+# it_IT - Italiano, or it - Italiano
+# lv_LV - Latviešu
+# lt_LT - Lietuviu
+# hu_HU - Magyar, or hu - Magyar
+# nl_NL - Nederlands, or nld - Nederlands
+# nb_NO - Norsk bokmål
+# pl_PL - Polski, or pl - Polski
+# pt_BR - Português (Brasil)
+# pt_PT - Português (Portugal)
+# ro_RO - Româna
+# rm_CH - Romansh
+# sk_SK - Slovencina
+# sl_SI - Slovenšcina
+# fi_FI - Suomi, or fi
+# sv_SE - Svenska, or sv - Svenska
+# tl_PH - Tagalog
+# vi_VN - Tieng Viet
+# tr_TR - Türkçe, or tr - Türkçe
+# el_GR - Greek
+# bg_BG - Bulgarian
+# ru_RU - Russian, or ru - Russian
+# sr_RS - Serbian
+# uk_UA - Ukrainian
+# ko_KR - Korean, or kr - Korean
+# zh_TW - Traditional Chinese, or zh-tw - Traditional Chinese
+# zh_CN - Simplified Chinese, or zh - Simplified Chinese
+# ja_JP - Japanese, or jp - Japanese
+
+# P1362 = en
+
+#######################################################################
+##  Maintenance - TR-069                                             ##
+#######################################################################
+
+# Enable TR-069. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+# Reboot is required.
+P1409 = 0
+
+# ACS URL - (Use a valid URL).
+# Reboot is required.
+P4503 =
+
+# ACS Username.
+# Reboot is required.
+P4504 = 
+
+# ACS Password.
+# Reboot is required.
+P4505 = 
+
+# Periodic Inform Enable. 0 - No, 1 - Yes. Default value is 0.
+# Valid value: 0, 1.
+# Reboot is required.
+P4506 = 0
+
+# Periodic Inform Interval (s). Default value is 86400.
+# Valid value: 1 - 4294967295.
+# Reboot is required.
+P4507 = 86400
+
+# Connection Request Username.
+# Reboot is required.
+P4511 = 
+
+# Connection Request Password.
+# Reboot is required.
+P4512 = 
+
+# Connection Request Port.
+# Reboot is required.
+P4518 =
+
+# CPE Cert File.
+# Reboot is required.
+P8220 =
+
+# CPE Cert Key.
+# Reboot is required.
+P8221 =
+
+#######################################################################
+##  Maintenance - Device Manager                                     ##
+#######################################################################
+
+# Headset TX Gain (dB). 0 - 0, 1 - -6, 2 - +6. Default value is 0.
+# Valid value: 0, 1, 2.
+P1301 = 0
+
+# Headset RX Gain (dB). 0 - 0, 1 - -6, 2 - +6. Default value is 0.
+# Valid value: 0, 1, 2.
+P1302 = 0
+
+# Headset Type. 0 - Normal Headset, 1 - Plantronics EHS. Default value is 0.
+# Valid value: 0, 1.
+P1487 = 0
+
+# Headset Key Mode. 0 - Default Mode, 1 - Toggle Headset/Speaker. Default value is 0.
+# Valid value: 0, 1.
+P1312 = 0

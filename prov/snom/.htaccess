@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+        RewriteEngine On
+
+        # snom setting-{macfile}.php
+        RewriteRule ^settings-([0-9A-Fa-f]*)\.(php)$       settings.php?file=mac&mac=$1&fmt=$2&pass=$3 [QSA,L]
+
+        # just make sure that /var/www/.asterisk_history is not accessible
+        # RewriteRule ^\.asterisk - [F,L]
+</IfModule>
