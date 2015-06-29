@@ -3,7 +3,7 @@ provision integration in monster-ui
 
 feel free to add more of ip-phones, because i don't have all the devices
 
-THIS IS BETA_CODE IT WORKS BUT WAIT UNIT IS VERSION 1, THEN INTEGRATION FINISHED WITH MONSTER-UI
+THIS IS BETA_CODE IT WORKS BUT WAIT UNTIL IS VERSION 1 OUT, THEN INTEGRATION FINISHED WITH MONSTER-UI
 
 1. INSTALL kazoo-platform
 2. INSTALL monster-ui (from this repository because of adds in ui) AND php for webserver
