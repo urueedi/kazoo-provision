@@ -37,6 +37,4 @@ $myip4 = get_ip(4);
 //show_debug();
 get_groundsettings($f_path);
 
-//include("debug_footer.php");
-
 ?>

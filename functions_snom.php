@@ -100,7 +100,7 @@ global $HTTP;
         '{{INTERNAL}}',
         '{{ACCESSPROVPASS}}',
         '{{SETTINGS_REFRESH_TIMER}}',
-        '{{Phone_Reregister_Prov}}',
+        '{{PHONE_REREGISTER}}',
         '{{PROV_SERVER_URL_WEBLANG_DE_XML}}',
         '{{PROV_SERVER_URL_WEBLANG_EN_XML}}',
         '{{PROV_SERVER_URL_WEBLANG_FR_XML}}',

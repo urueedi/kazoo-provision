@@ -8,159 +8,177 @@ $sag = new Sag($host);
 $myip4 = get_ip(4);
 
 /* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
-$prov['endpoint_brand'] = 'snom';
-$prov['endpoint_family'] = 'm3x';
-$prov['endpoint_model'] = 'm3999';
+$del = ':'; /* set a delimiter to strip key and value */
+$prov['endpoint_brand'] = 'mitel';
+$prov['endpoint_family'] = '99xx';
+$prov['endpoint_model'] = '9999';
 
+/* this is programable keys on phone */
 $prov['usr_keys']['setable_phone_keys'] = '0';
 $prov['usr_keys']['setable_phone_key_counter'] = '0';
-
+$prov['usr_keys']['setable_phone_key_value'] = 'fkey';
+/* this is extensions module keys */
+$prov['usr_keys']['setable_module_keys'] = '0';
+$prov['usr_keys']['setable_module_key_counter'] = '0';
+/* there use an special key for extensionsmodule */
+$prov['usr_keys']['setable_module_key_value'] = 'extkey';
 
 
 // this is example manual plain to jaon format (ACCOUNT MUST BE!)
 $in = 
 '
-
-%SRV_{ACCOUNT}_SIP_UA_DATA_DOMAIN%:""
-%SRV_{ACCOUNT}_SIP_URI_DOMAIN_CONFIG%:2
-%SRV_{ACCOUNT}_SIP_UA_DATA_SERVER_PORT%:{PROXY_PORT}
-%SRV_{ACCOUNT}_SIP_UA_DATA_SERVER_TYPE%:0
-%SRV_{ACCOUNT}_SIP_UA_DATA_SERVER_IS_LOCAL%:1
-%SRV_{ACCOUNT}_SIP_UA_DATA_REREG_TIME%:{Phone_Reregister_Prov}
-%SRV_{ACCOUNT}_SIP_UA_DATA_PROXY_ADDR%:""
-%SRV_{ACCOUNT}_DTMF_SIGNALLING%:1
-%SRV_{ACCOUNT}_SIP_UA_CODEC_PRIORITY%:0, 1, 2, 4, 255
-%SUBSCR_{ACCOUNT}_SIP_UA_DATA_SIP_NAME%:""
-%SUBSCR_{ACCOUNT}_UA_DATA_DISP_NAME%:""
-%SUBSCR_{ACCOUNT}_SIP_UA_DATA_SIP_NAME_ALIAS%:""
-%SUBSCR_{ACCOUNT}_SIP_UA_DATA_VOICE_MAILBOX_NAME%:""
-%SUBSCR_{ACCOUNT}_SIP_UA_DATA_VOICE_MAILBOX_NUMBER%:""
-%SUBSCR_{ACCOUNT}_UA_DATA_AUTH_NAME%:""
-%SUBSCR_{ACCOUNT}_UA_DATA_AUTH_PASS%:""
-%CLIR_CODE_ENABLE_UA_{ACCOUNT}%:0
-%CLIR_PREFIX_UA_{ACCOUNT}%:""
-%SRV_{ACCOUNT}_SIP_UA_DATA_PROXY_PORT%:{PROXY_PORT}
-%HANDSET_{ACCOUNT_2}_NAME%:""
-%HANDSET_{ACCOUNT_2}_CW%:1
-%HANDSET_{ACCOUNT_2}_DND%:0
-%FWD_ON_BUSY_ACT_{ACCOUNT_2}%:""
-%FWD_ON_BUSY_DEACT_{ACCOUNT_2}%:""
-%FWD_ON_NO_ANSWER_ACT_{ACCOUNT_2}%:""
-%FWD_ON_NO_ANSWER_DEACT_{ACCOUNT_2}%:""
-%FWD_UNCOND_ACT_{ACCOUNT_2}%:"61*"
-%FWD_UNCOND_DEACT_{ACCOUNT_2}%:""
-%DECT_SUBS_{ACCOUNT_2}%:0, 0, 0, 0, 0
-
+sip line{ACCOUNT} auth name: {SIPAUTHNAME}
+sip line{ACCOUNT} password: {SIPSECRET}
+sip line{ACCOUNT} user name: {SIPUSERNAME}
+sip line{ACCOUNT} display name: {SIPCALLERID}
+sip line{ACCOUNT} screen name: {INTERNAL} {SIPCALLERID}
+sip line{ACCOUNT} proxy ip: {PROXY_SERVER}
+sip line{ACCOUNT} proxy port: {PROXY_PORT}
+sip line{ACCOUNT} backup proxy ip:
+sip line{ACCOUNT} backup proxy port:
+sip line{ACCOUNT} registrar ip: {REGISTRAR_SERVER}
+sip line{ACCOUNT} registrar port: {PROXY_PORT}
+sip line{ACCOUNT} backup registrar ip:
+sip line{ACCOUNT} backup registrar port:
+sip line{ACCOUNT} vmail: {VMSD}
+sip line{ACCOUNT} mode: 0
+sip line{ACCOUNT} registration period: {PHONE_REREGISTERk}
 
 ';
 
-$prov['cfg_account'] = plain2json($in, ':'); /* ":" is for split line in 2 pices on : */
+$prov['cfg_account'] = json_decode(plain2json($in, $del)); /* ":" is for split line in 2 pices on : */
 
 // this is example manual plain to jaon format (BASE OPTIONAL)
 $in = 
 '
+# Setup DHCP mode
+# dhcp: 1
 
-%GMT_TIME_ZONE%:16
-%PLAY_INBAND_DTMF%:1
-%AUTOMATIC_SYNC_CLOCK%:1
-%AC_CODE%:{PROVPASS}
-%COMMON_PHONEBOOK%:1
-%PINCODE_PROTECTED_SETTINGS%:255
-%DECT_SUBS_MATCH_IPEI%:0
-%FWU_POLLING_ENABLE%:0
-%FWU_POLLING_MODE%:0
-%FWU_POLLING_PERIOD%:86400
-%FWU_POLLING_TIME_HH%:3
-%FWU_POLLING_TIME_MM%:0
-%DST_ENABLE%:2
-%DST_FIXED_DAY_ENABLE%:0
-%DST_START_MONTH%:3
-%DST_START_DATE%:1
-%DST_START_TIME%:2
-%DST_START_DAY_OF_WEEK%:1
-%DST_START_WDAY_LAST_IN_MONTH%:1
-%DST_STOP_MONTH%:10
-%DST_STOP_DATE%:1
-%DST_STOP_TIME%:2
-%DST_STOP_DAY_OF_WEEK%:1
-%DST_STOP_WDAY_LAST_IN_MONTH%:1
-%ENABLE_ENHANCED_IDLE_SCREEN%:0
-%COUNTRY_VARIANT_ID%:{COUNTRYID_M3}
-%EMERGENCY_PRIMARY_PORT%:1
-%JOIN_CALLS_ALLOWED%:0
-%SIP_KEEP_ALIVE_ENABLE%:1
-%SIP_SIP_PRIORITY%:4
-%DELAYED_MEDIA_BEHAVIOUR%:0
-%NETWORK_FWU_SERVER%:"provisioning.snom.com"
-%NETWORK_RTP_QOS_REPORT_SERVER%:""
-%NETWORK_RTP_QOS_REPORT_PATH%:"/QOSReports/"
-%NETWORK_RTP_QOS_REPORT_PROTOCOL%:1
-%NETWORK_RTP_QOS_REPORT_ENABLE%:0
-%NETWORK_VLAN_ID%:0
-%NETWORK_VLAN_USER_PRIORITY%:0
-%VOIP_LOG_AUTO_UPLOAD%:0
-%NETWORK_DHCP_CLIENT_TIMEOUT%:3
-%NETWORK_DHCP_CLIENT_BOOT_SERVER%:3
-%NETWORK_DHCP_CLIENT_BOOT_SERVER_OPTION%:160
-%NETWORK_DHCP_CLIENT_BOOT_SERVER_OPTION_DATATYPE%:1
-%INFOPUSH_ICO_PRELOAD_URL%:""
-%LOCAL_HTTP_SERVER_TEMPLATE_TITLE%:"SNOM M3"
-%LOCAL_HTTP_SERVER_AUTH_NAME%:"admin"
-%LOCAL_HTTP_SERVER_AUTH_PASS%:"{PROVPASS}"
-%LOCAL_HTTP_SERVER_ACCESS%:36863
-%CODEC_SILENCE_SUPPRESSION%:0
-%SIP_STUN_ENABLE%:0
-%SIP_RPORT_ENABLE%:0
-%SIP_STUN_BINDTIME_GUARD%:0
-%SIP_STUN_BINDTIME_DETERMINE%:0
-%SIP_STUN_KEEP_ALIVE_TIME%:0
-%SIP_SIP_PORT%:{PROXY_PORT}
-%SIP_RTP_PORT%:15000
-%SIP_RTP_PORT_RANGE%:20
-%FWU_TFTP_SERVER_PATH%:"/m3/firmware/"
-%SIP_RTP_PRIORITY%:4
-%TRACE_MODE%:1
-%CONFIGURATION_FILE_FLAG%:1
-%MANAGEMENT_TRANSFER_PROTOCOL%:1
-%MANAGEMENT_PASSWORD%:"VoipLan"
-%MANAGEMENT_UPLOAD_SCRIPT%:"/CfgUpload"
-%ENABLE_SIP_MESSAGE_ENCRYPTION%:0
-%NETWORK_STUN_SERVER%:""
-%NETWORK_SNTP_SERVER%:"{WEB_SERVER}"
-%NETWORK_TFTP_SERVER%:"{WEB_SERVER}"
-%NETWORK_SNTP_SERVER_UPDATE_TIME%:60
+# Setup HTTP server address
+contact rcs: 0
+download protocol: HTTP
+http server: {HOST_PROVSERVER}
+http path: prov/aastra
+auto resync mode: 0
+lldp: 0
+
+# Time server
+time server disabled: 0
+time server1: {HOST_TIMESERVER}
+time server2:
+
+# Startup URI
+action uri startup:
+
+# English Language have no file
+language 1: lang_de.txt
+language 2: lang_fr.txt
+language 3: lang_it.txt
+language: 1
+
+priority alerting enabled: 0
+admin password: {PROV_PASSWORD}
+xml status scroll delay: 3
+missed calls indicator disabled: 0
+sip update callerid: 0
+sip pai: 1
+sip diversion display: 1
+show call destination name: 1
+web language: 1
+input language: {INPUT_LANG}
+time format: 1
+date format: 11
+use lldp elin: 0
+tone set: Europe
+# sip nat ip:
+sip blf subscription period: {PHONE_REREGISTER}
+sip dial plan: "x+^"
+sip dial plan terminator: 1
+sip dtmf method: 1
+auto resync time: 19:00
+
 
 ';
 
-$prov['cfg_base'] = plain2json($in, ':'); /* ":" is for split line in 2 pices on : */
+$prov['cfg_base'] = json_decode(plain2json($in, $del)); /* ":" is for split line in 2 pices on : */
 
 
 // this is example manual plain to jaon format (BASE OPTIONAL)
 $in =  /* putin behavior settings from phone  !!!!!!!*/
 '
+input language: German
+language: {LANGUAGE_IDX}
+language 1: lang_de.txt
+language 3: lang_fr.txt
+language 4: lang_it.txt
+sip registration period: 60
+sip centralized conf: 1000
+auto resync time: 19:30
+auto resync mode: 1
+contrast level: 2
+ring tone: 3
+time zone name: CH-Zurich
+directed call pickup: 1
+directed call pickup prefix: *8
+play a ring splash: 1
+sip dial plan: "x+^"
+sip silence suppression: 0
+https validate certificates: 0
+https validate hostname: 0
+https validate expires: 0
+# Action URI
+action uri startup:
 
 ';
 
-$prov['cfg_behavior'] = plain2json($in, $del);
+$prov['cfg_behavior'] = json_decode(plain2json($in, $del));
 
 
 // this is example manual plain to jaon format (BASE OPTIONAL)
 $in =   /* putin behavior settings from phone  !!!!!!!!!*/
 '
+alert external: 1
+alert internal: 2
+speaker volume: 1
+backlight mode: 2
+callers list disabled: 1
+bl on time: 16
+ringer volume: 3
+handset volume: 6
+tone set: Germany
+xml beep notification: 1
 
 ';
 
-$prov['cfg_tone'] = plain2json($in, $del);
+$prov['cfg_tone'] = json_decode(plain2json($in, $del));
 
 // this is example manual plain to jaon format (BASE OPTIONAL)
 $in =   /* putin behavior settings from phone  !!!!!!!!!!*/
 '
 
+prgkey1 type: xml
+prgkey1 value: {START_SCRIPT}
+
+topsoftkey1 type: xml
+topsoftkey1 label: {NEW_LOGIN}
+topsoftkey1 value: {LOGOUT_SCRIPT}
+
+prgkey1 type: xml
+prgkey1 value: {LOGOUT_SCRIPT}
+prgkey2 type: xml
+prgkey2 value: {DND_SCRIPT}
+prgkey3 type: xml
+prgkey3 value: {CFWD_SCRIPT}
+prgkey4 type: xml
+prgkey4 value: {PB_SCRIPT}
+prgkey5 type: speeddialconf
+prgkey5 value: {VMSD}
+prgkey6 type: xfer
+prgkey6 line: 0
 ';
 
-$tprov['cfg_key'] = plain2json($in, $del);
+$tprov['cfg_key'] = json_decode(plain2json($in, $del));
 
-$prov['usr_keys']['setable_phone_key_value'] = 'fkey';
 $prov['pvt_generator'] = 'json2plain';
 echo upload_phone_data($prov);
 

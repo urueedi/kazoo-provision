@@ -13,10 +13,16 @@ $myip4 = get_ip(4);
 /* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
 $prov['endpoint_brand'] = 'snom';
 $prov['endpoint_family'] = '3xx';
-$prov['endpoint_model'] = '3999';
-
+$prov['endpoint_model'] = '399999';
+/* this is programable keys on phone */
 $prov['usr_keys']['setable_phone_keys'] = '0';
 $prov['usr_keys']['setable_phone_key_counter'] = '0';
+$prov['usr_keys']['setable_phone_key_value'] = 'fkey';
+/* this is extensions module keys */
+$prov['usr_keys']['setable_module_keys'] = '0';
+$prov['usr_keys']['setable_module_key_counter'] = '0';
+/* there use an special key for extensionsmodule */
+$prov['usr_keys']['setable_module_key_value'] = 'extkey';
 
 
 
@@ -43,16 +49,16 @@ $in = /* putin account settings from phone  !!!!!!!*/ '
 <user_active idx="{ACCOUNT}" perm="RW">{STATUS}</user_active>
 <user_dtmf_info idx="{ACCOUNT}" perm="RW">sip_info_only</user_dtmf_info>
 <user_descr_contact idx="{ACCOUNT}" perm="RW">off</user_descr_contact>
-<user_expiry idx="{ACCOUNT}" perm="RW">{Phone_Reregister_Prov}</user_expiry>
-<user_subscription_expiry idx="{ACCOUNT}" perm="RW">{Phone_Reregister_Prov}</user_subscription_expiry>
-<retry_after_failed_subscribe idx="{ACCOUNT}" perm="RW">{Phone_Reregister_Prov}</retry_after_failed_subscribe>
+<user_expiry idx="{ACCOUNT}" perm="RW">{PHONE_REREGISTER}</user_expiry>
+<user_subscription_expiry idx="{ACCOUNT}" perm="RW">{PHONE_REREGISTER}</user_subscription_expiry>
+<retry_after_failed_subscribe idx="{ACCOUNT}" perm="RW">{PHONE_REREGISTER}</retry_after_failed_subscribe>
 <user_sipusername_as_line idx="{ACCOUNT}" perm="RW">on</user_sipusername_as_line>
 <user_ringer idx="{ACCOUNT}" perm="RW">Ringer1</user_ringer>
 <user_srtp idx="{ACCOUNT}" perm="">{SRTP}</user_srtp>
 <user_savp idx="{ACCOUNT}" perm="">optional</user_savp> 
 </phone-settings>
 ';
-$prov['cfg_account'] = json_encode(XML2Array::createArray($in));
+$prov['cfg_account'] = XML2Array::createArray($in);
 
 $in = /* putin behavior settings from phone  !!!!!!!*/ '
 
@@ -84,14 +90,14 @@ $in = /* putin behavior settings from phone  !!!!!!!*/ '
 <display_method perm="RW">display_number_name</display_method>
 </phone-settings>
 ';
-$prov['behavior'] = json_encode(XML2Array::createArray($in));
+$prov['cfg_behavior'] = XML2Array::createArray($in);
 
 /* if you have more the 1 subselection add this seperatly */
 $in = '<certificates>
 <certificate url="http://{WEB_SERVER}/prov/snom/opennet-ca-root.der" />
 </certificates>
 ';
-$prov['cfg_behavior'] .= json_encode(XML2Array::createArray($in));
+$prov['cfg_behavior'] = array_merge($prov['cfg_behavior'], XML2Array::createArray($in));
 
 
 
@@ -127,7 +133,7 @@ $in = /* putin base settings from phone  !!!!!!!*/ '
 <action_dnd_off_url perm="">{WEB_SERVER}</action_dnd_off_url>
 </phone-settings>
 ';
-$prov['cfg_base'] = json_encode(XML2Array::createArray($in));
+$prov['cfg_base'] = XML2Array::createArray($in);
 
 /* if you have more the 1 subselection add this seperatly */
 $in ='
@@ -138,7 +144,7 @@ $in ='
 <language url="http://{WEB_SERVER}/prov/snom/lang/gui_lang_IT.xml" name="Italiano"/>
 </gui-languages>
 ';
-$prov['cfg_base'] .= json_encode(XML2Array::createArray($in));
+$prov['cfg_base'] = array_merge($prov['cfg_base'], XML2Array::createArray($in));
 
 $in = '
 <web-languages>
@@ -148,7 +154,7 @@ $in = '
 <language url="http://{WEB_SERVER}/prov/snom/lang/web_lang_IT.xml" name="Italiano"/>
 </web-languages>
 ';
-$prov['cfg_base'] .= json_encode(XML2Array::createArray($in));
+$prov['cfg_base'] = array_merge($prov['cfg_base'], XML2Array::createArray($in));
 
 
 
@@ -170,7 +176,7 @@ $in = /* putin tone settings from phone  !!!!!!!*/ '
 </phone-settings>
 
 ';
-$prov['cfg_tone'] = json_encode(XML2Array::createArray($in)); 
+$prov['cfg_tone'] = XML2Array::createArray($in); 
 
 $in = /* putin keys settings from phone  !!!!!!!*/ '
 
@@ -190,10 +196,9 @@ $in = /* putin keys settings from phone  !!!!!!!*/ '
 </functionKeys>
 
 ';
-$prov['cfg_keys'] = json_encode(XML2Array::createArray($in));
+$prov['cfg_keys'] = XML2Array::createArray($in);
 
 
-$prov['usr_keys']['setable_phone_key_value'] = 'fkey';
 $prov['pvt_generator'] = 'json2xml';
 echo upload_phone_data($prov);
 

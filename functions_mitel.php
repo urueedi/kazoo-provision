@@ -57,7 +57,7 @@ function generate_mitel_provision($phone_data) {
         '{{PROXY_PORT}}',
         '{{NTP_SERVER}}',
         '{{INTERNAL}}',
-        '{{Phone_Reregister_Prov}}',
+        '{{}}',
         '{{PROV_SERVER_URL_WEBLANG_DE_XML}}',
         '{{PROV_SERVER_URL_GUILANG_DE_XML}}',
         '{{PROV_PHONE_USER}}',
