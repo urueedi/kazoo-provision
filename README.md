@@ -6,7 +6,7 @@ feel free to add more of ip-phones, because i don't have all the devices
 THIS IS BETA CODE IT WORKS BUT WAIT UNTIL IS VERSION 1 OUT, THEN INTEGRATION FINISHED WITH MONSTER-UI
 
 Install procedure
-----------------------------------------------------------------------------------------
+-----------------
 1. INSTALL kazoo-platform
 2. INSTALL monster-ui (from this repository because of adds in ui) AND php for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is
@@ -15,11 +15,9 @@ Install procedure
 7. To use https we use lets-encrypt after 27 of july 2015
 8. To use Plug&Play for ip-phones you need openwrt and luci with dnsmasq from this github site
 9. If you need Quality of Service (No chrrr in line) there is also in OpenWRT included (qos-luci) 
-----------------------------------------------------------------------------------------
 
 Add a New Brand or Phones to support provision (Panasonic or so...)
 ---------------------------------------------------------------------
-
 Add first by handsetting your phone to work, then export it from phone (most of that kind have this function..?)
 
 1. Add phone on (brand_provisioner) db incouchdb to the tree (add same as you can see there)
