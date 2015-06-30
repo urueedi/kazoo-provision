@@ -191,21 +191,4 @@ function json2plain($obj_datas, $type=false, $account=false)
 return($plain);
 }
 
-/* generate json string for settings
-*  obj_datas = object or array of hole or part of provisions data
-*/
-function plain2json($plain, $delimiter=false)
-{
-        $plainArray = explode("\n", $plain);
-        foreach($plainArray as $key => $line) {
-            if(! $line) continue;
-            $arr = explode($delimiter, $line);
-            if(! $arr[0]) continue;
-            $jsonArray[$arr[0]]['value'] = $arr[1];
-        }
-    $json = json_encode($jsonArray);
-
-return($json);
-}
-
 ?>

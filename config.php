@@ -5,6 +5,8 @@ $host=false; $hosts = 'localhost localhost localhost';$HTTP="http://"; /* define
 $testsleep=15; // loop between next try all hosts
 require_once('phplib/Sag.php');
 include_once("functions.php");
+include_once("functions_snom.php");
+include_once("functions_mitel.php");
 // debug info settings
 
 define('DEBUG_REMOTE', 'your.domain'); // '' for all, name or ip address of debug view. multiple addresses with space

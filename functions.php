@@ -454,7 +454,6 @@ function merge_togetaher($object1, $object2, $typ)
 return($res);
 }
 
-
 function get_urlallowed($url)
 {
     $remote_ip = @$_SERVER['REMOTE_ADDR'];

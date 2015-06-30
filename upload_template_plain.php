@@ -7,18 +7,11 @@ $host = get_dbhost($hosts);
 $sag = new Sag($host);
 $myip4 = get_ip(4);
 
-/*$g = json_decode('{
-   "sip line{ACCOUNT} auth name": {
-       "value": " {SIPAUTHNAME}"
-   }}');
-print_r($g);
-sleep(888);
-*/
 
+// this is example manual plain to jaon format
 $in = 
 
 '
-
 %SRV_{ACCOUNT}_SIP_UA_DATA_DOMAIN%:""
 %SRV_{ACCOUNT}_SIP_URI_DOMAIN_CONFIG%:2
 %SRV_{ACCOUNT}_SIP_UA_DATA_SERVER_PORT%:{PROXY_PORT}
@@ -48,7 +41,6 @@ $in =
 %FWD_UNCOND_ACT_{ACCOUNT_2}%:"61*"
 %FWD_UNCOND_DEACT_{ACCOUNT_2}%:""
 %DECT_SUBS_{ACCOUNT_2}%:0, 0, 0, 0, 0
-
 ';
 
 $out = plain2json($in, ':');
