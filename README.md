@@ -5,17 +5,17 @@ feel free to add more of ip-phones, because i don't have all the devices
 
 THIS IS BETA CODE IT WORKS BUT WAIT UNTIL IS VERSION 1 OUT, THEN INTEGRATION FINISHED WITH MONSTER-UI
 
-
 Install procedure
 ----------------------------------------------------------------------------------------
 1. INSTALL kazoo-platform
 2. INSTALL monster-ui (from this repository because of adds in ui) AND php for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is
 5. INSTALL with setup.php the database and add some brands on couchdb
-6. set in config.php your couochdb nodes in $hosts="localhost ...... "
+6. set in config.php your couochdb nodes in $hosts="localhost.. "
 7. To use https we use lets-encrypt after 27 of july 2015
+8. To use Plug&Play for ip-phones you need openwrt and luci with dnsmasq from this github site
+9. If you need Quality of Service (No chrrr in line) there is also in OpenWRT included (qos-luci) 
 ----------------------------------------------------------------------------------------
-
 
 Add a New Brand or Phones to support provision (Panasonic or so...)
 ---------------------------------------------------------------------
@@ -29,19 +29,16 @@ Add first by handsetting your phone to work, then export it from phone (most of 
 5. Now you can go to monster-ui you can see if you select to add a SIP-Phone you see the brands and you can select it
 6. Now you have to ADD a Template for your phone. Go to provision on monster-ui to do so
 7. Split Templates in 5 kinds of Template 1. base, 2. behavior, 3. account, 4. tone  5. keys.
-8  Split it as you can see we have done already (Need is only (3. account) must be in the this order)
+8  Split it as you can see we have done already (really need is only (3. account) must be in the this order)
 9. PUT in the template on DB the RIGHT MACRO-VARIABLE in IT (Example on (***)
 
-XML based config files    => use upload_temlate_xml.php to generate templates 
+XML based config files    => use upload_template_xml.php to generate templates 
 PLAIN based config files  => use upload_template_plain.php to generate templates 
-
 
 PLEASE GIVE ALSO YOUR TEMPLATES TO THIS GITHUB SITE (ON ISSUES maybe!!) to finished this....
 
-
 Brandtree Example
 -----------------
-
 {
    "snom": {
        "id": "snom",
@@ -59,8 +56,6 @@ Brandtree Example
                        "id": "snom_320",
                        "name": "320"
 
-
-
 Template Example
 ----------------
 {
@@ -75,7 +70,7 @@ Template Example
   },
    "cfg_account": {             2.  <--- cfg_account MUST BE!! THERE (kind of account) (PUT ALL RELEVANT SETTINGS LIKE USER, PASS, LINE in it)
 
-       "sip line{ACCOUNT} user name": {     (***) YOU CAN see {ACCOUNT} AND {SIPUSERNAME} you can see in db allready there!!
+       "sip line{ACCOUNT} user name": { (***) YOU CAN see {ACCOUNT} AND {SIPUSERNAME} you can see in db allready there!!
            "value": " {SIPUSERNAME}"
        },
 ...
