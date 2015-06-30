@@ -932,4 +932,61 @@ function get_groundsettings($f_path, $retype=false)
     }
 }
 
+/* do db->file (db=brand_provisioner, dir=./DB_BACKUP/) */
+function backup($db_a, $dir)
+{
+    // get_all_docs
+    $dbs = get_entry($db_a , '/_all_docs');
+    $dbs = json_decode(json_encode($dbs['res']->rows), true);
+
+    foreach($dbs AS $k => $db){
+        $data = get_entry($db_a , "/".urlencode($db['id']));
+        file_put_contents($dir.urlencode($db['id']),json_encode($data['res']));
+    }
+    return("backup db->file finished\n");
+}
+
+/* do file->db (db=brand_provisioner, dir=./DB_BACKUP/) type=update or restore[none]*/
+function restore($db_a, $dir, $type=false)
+{
+    global $sag;
+
+    if ($handle = opendir($dir)) {
+        if($type == false) { try {$sag->createDatabase($db_a);} catch(Exception $e) {echo $e->getMessage()."DB:".$db_a."\n";}}
+        $sag->setDatabase($db_a);
+        while (false !== ($entry = readdir($handle))) {
+            if(".." == $entry||"." == $entry) continue;
+            $obj = json_decode(file_get_contents($dir.$entry));
+            if($type == 'update') $obj->views++;
+            else unset($obj->_rev);
+            try {
+                if(preg_match("/^_/",urldecode($entry))) echo $sag->put(urldecode($entry), $obj)->body->ok;
+                else echo $sag->put($entry, $obj)->body->ok;
+            }
+            catch(Exception $e) {
+                echo $e->getMessage()."DB:".$db_a." file:".urlencode($entry)."\n";
+            }
+        }
+    }
+    return("restore file->db finished\n");
+}
+
+function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
+{
+    global $sag;
+    $prov['_id'] = 'ui/'.$prov['endpoint_brand']."/".$prov['endpoint_family']."/".$prov['endpoint_model'];
+    $obj = $prov; //json_decode(json_encode($prov), FALSE);
+    $sag->setDatabase($db_a);
+    if($type == 'update') $obj->views++;
+    else unset($obj->_rev);
+    try {
+        if(preg_match("/^_/",$prov['_id'])) echo $sag->put($prov['_id'], $obj)->body->ok;
+        else echo $sag->put(urlencode($prov['_id']), $obj)->body->ok;
+    }
+    catch(Exception $e) {
+        echo $e->getMessage()."DB:".$db_a." file:".$prov['_id']."\n";
+    }
+    return('uploaded');
+}
+
 ?>
