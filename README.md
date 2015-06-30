@@ -28,9 +28,11 @@ Add first by handsetting your phone to work, then export it from phone (most of 
 6. ADD a Template for new phones you have maybe. You have already a ip-phone set and it works correct?
 7. Download you settings from your phones and split and change some Settings like so "{PROV_SERVER}" (Example on ***)
 8. Split Templates in 5 kinds of Template 1. base, 2. behavior, 3. account, 4. tone  5. keys.
-9  Split it as you can see we have done already (really need is only (3. account) must be in the this order)
+9. Split it as you can see we have done already (really need is only (3. account) must be in the this order)
+
 XML based config files    => use upload_template_xml.php to generate templates
 PLAIN based config files  => use upload_template_plain.php to generate templates 
+
 10. set config (brand={snom}, family={3xx}, model={300}) in upload_template...php and run
 
 PLEASE GIVE ALSO YOUR TEMPLATES TO THIS GITHUB SITE (ON ISSUES maybe!) to finished this....
