@@ -123,6 +123,7 @@ global $HTTP;
         '{{PROXY_PORT}}',
         '{{COUNTRYID_M3}}',
         '{{PROV_SERVER}}',
+        '{{SUBSCRIPT_REREGISTER}}',
         );
     // create account part
     $account = 1;
@@ -191,6 +192,7 @@ global $HTTP;
                 '5060',                                                                    /* Port of Enduser phone */
                 $countryid,                                                                /* Snom M3 Country code */
                 $PROV_SERVER,                                                              /* prov server: eg. prov.allip.ovh */
+                '600',                                                                     /* key reregister after 600s */
                 );
             $output .= preg_replace($search, $replace, $read);
           }

@@ -20,21 +20,20 @@ Add a New Phones to provision Panasonic or ...
 ----------------------------------------------
 Add first by handsetting your phone to work, then export it from phone (most of that kind have this function..?)
 
-1. Add phone on (brand_provisioner) db incouchdb to the tree (add same as you can see there)
-2. Recheck this add by click on the OK GREEN-BUTTON right in Couchdb-UI
-3. If you see the tree already then is OK / or reload the page to go back, (there is some json Error you made!)
-4. ADD some nice pictures for your phones in the directory on monster-ui css/assets/brands and css/assents/models in named snom_3xx_300.jpg must be in order! {brand}_{family}_{model}.jpg
-5. Now you can go to monster-ui you can see if you select to add a SIP-Phone you see the brands and you can select it
-6. ADD a Template for new phones you have maybe. You have already a ip-phone set and it works correct?
-7. Download you settings from your phones and split and change some Settings like so "{PROV_SERVER}" (Example on ***)
-8. Split Templates in 5 kinds of Template 1. base, 2. behavior, 3. account, 4. tone  5. keys.
-9. Split it as you can see we have done already (really need is only (3. account) must be in the this order)
+1. ADD some nice pictures for your phones in the directory on monster-ui css/assets/brands and css/assents/models in named snom_3xx_300.jpg must be in order! {brand}_{family}_{model}.jpg
+2. Now you can go to monster-ui you can see if you select to add a SIP-Phone you see the brands and you can select it
+3. ADD a Template for new phones you have maybe. You have already a ip-phone set and it works correct?
+4. Download you settings from your phones and split and change some Settings like so "{PROV_SERVER}" (Example on ***)
+5. Split Templates in 5 kinds of Template 1. base, 2. behavior, 3. account, 4. tone  5. keys.
+6. Split it as you can see we have done already (really need is only (3. account) must be in the this order)
 
 XML based config files    => use upload_template_xml.php to generate templates
 PLAIN based config files  => use upload_template_plain.php to generate templates 
 
-10. set config (brand={snom}, family={3xx}, model={300}) in upload_template...php and run
+7. set config (brand={snom}, family={3xx}, model={300}) in upload_template...php and run
+8. After run one of script is tree updated and template is uploaded
 
+If you pull new brand in, i must also update settings.php in eg. panasonic directory
 PLEASE GIVE ALSO YOUR TEMPLATES TO THIS GITHUB SITE (ON ISSUES maybe!) to finished this....
 
 Brandtree Example

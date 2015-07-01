@@ -42,7 +42,7 @@ sip line{ACCOUNT} backup registrar ip:
 sip line{ACCOUNT} backup registrar port:
 sip line{ACCOUNT} vmail: {VMSD}
 sip line{ACCOUNT} mode: 0
-sip line{ACCOUNT} registration period: {PHONE_REREGISTERk}
+sip line{ACCOUNT} registration period: {PHONE_REREGISTER}
 
 ';
 
@@ -91,7 +91,7 @@ date format: 11
 use lldp elin: 0
 tone set: Europe
 # sip nat ip:
-sip blf subscription period: {PHONE_REREGISTER}
+sip blf subscription period: {SUBSCIPT_REREGISTER}
 sip dial plan: "x+^"
 sip dial plan terminator: 1
 sip dtmf method: 1

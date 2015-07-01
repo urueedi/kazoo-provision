@@ -975,10 +975,9 @@ function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
 {
     global $sag;
     $prov['_id'] = 'ui/'.$prov['endpoint_brand']."/".$prov['endpoint_family']."/".$prov['endpoint_model'];
-    $obj = $prov; //json_decode(json_encode($prov), FALSE);
+    $obj = $prov;
     $sag->setDatabase($db_a);
-    if($type == 'update') $obj->views++;
-    else unset($obj->_rev);
+    unset($obj->_rev);
     try {
         if(preg_match("/^_/",$prov['_id'])) echo $sag->put($prov['_id'], $obj)->body->ok;
         else echo $sag->put(urlencode($prov['_id']), $obj)->body->ok;
@@ -986,6 +985,20 @@ function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
     catch(Exception $e) {
         echo $e->getMessage()."DB:".$db_a." file:".$prov['_id']."\n";
     }
+    // add to phonetree
+    $tree = get_entry($db_a , "/phonetree");
+    $new = json_decode(json_encode($tree), true);
+    $new['res']['data'][$prov['endpoint_brand']]['id'] = $prov['endpoint_brand'];
+    $new['res']['data'][$prov['endpoint_brand']]['name'] = $prov['endpoint_brand'];
+    $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['id'] = $prov['endpoint_brand']."_".$prov['endpoint_family'];
+    $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['name'] = $prov['endpoint_family'];
+    $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['models'][$prov['endpoint_model']]['id'] = $prov['endpoint_brand']."_".$prov['endpoint_model'];
+    $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['models'][$prov['endpoint_model']]['name'] = $prov['endpoint_model'];
+    $new = json_decode(json_encode($new), FALSE);
+    $new = (array) $new;
+    $new['res']->views++;
+    $sag->put("phonetree", $new['res'])->body->ok;
+
     return('uploaded');
 }
 

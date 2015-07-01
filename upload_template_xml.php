@@ -50,8 +50,8 @@ $in = /* putin account settings from phone  !!!!!!!*/ '
 <user_dtmf_info idx="{ACCOUNT}" perm="RW">sip_info_only</user_dtmf_info>
 <user_descr_contact idx="{ACCOUNT}" perm="RW">off</user_descr_contact>
 <user_expiry idx="{ACCOUNT}" perm="RW">{PHONE_REREGISTER}</user_expiry>
-<user_subscription_expiry idx="{ACCOUNT}" perm="RW">{PHONE_REREGISTER}</user_subscription_expiry>
-<retry_after_failed_subscribe idx="{ACCOUNT}" perm="RW">{PHONE_REREGISTER}</retry_after_failed_subscribe>
+<user_subscription_expiry idx="{ACCOUNT}" perm="RW">{SUBSCRIPT_REREGISTER}</user_subscription_expiry>
+<retry_after_failed_subscribe idx="{ACCOUNT}" perm="RW">{SUBSCRIPT_REREGISTER}</retry_after_failed_subscribe>
 <user_sipusername_as_line idx="{ACCOUNT}" perm="RW">on</user_sipusername_as_line>
 <user_ringer idx="{ACCOUNT}" perm="RW">Ringer1</user_ringer>
 <user_srtp idx="{ACCOUNT}" perm="">{SRTP}</user_srtp>
