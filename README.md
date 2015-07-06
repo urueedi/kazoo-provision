@@ -1,9 +1,7 @@
 # kazoo-provision
-provision integration in monster-ui
+Provision integration in monster-ui
 
 feel free to add more of ip-phones, because i don't have all the devices
-
-THIS IS BETA CODE IT WORKS BUT WAIT UNTIL IS VERSION 1 OUT, THEN INTEGRATION FINISHED WITH MONSTER-UI
 
 Install procedure
 -----------------
@@ -38,7 +36,7 @@ PLEASE GIVE ALSO YOUR TEMPLATES TO THIS GITHUB SITE (ON ISSUES maybe!) to finish
 
 Brandtree Example
 -----------------
-{
+```json{
    "snom": {
        "id": "snom",
        "name": "snom",
@@ -50,11 +48,11 @@ Brandtree Example
                    "300": {
                        "id": "snom_300",
                        "name": "300"
-                   },
-
+                   },`
+```
 Template Example
 ----------------
-{
+```json{
    "_id": "ui/mitel/67xx/6753-1",   <--- Id must be ui/{BRANDNAME}/{FAMILYNAME}/{MODELNAME}-{EXTENSION-MODULE <- COUNT}
    "pvt_type": "provisioner",       <--- pvt_type must so
    "endpoint_brand": "mitel",       <--- brand must be so
@@ -87,4 +85,4 @@ Template Example
        "setable_module_key_counter": "1",   <-- extensions-module counter keys start at 0 or 1 or ...
        "setable_module_key_value": "extkey" <-- value of template for programmable keys on the extension-module
   }
-}
+}```
