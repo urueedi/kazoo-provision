@@ -126,7 +126,7 @@ global $HTTP;
         '{{SUBSCRIPT_REREGISTER}}',
         );
     // create account part
-    $account = 1;
+    $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
     if($phone_data['template']->endpoint_model != 'm3')
     $output .= '<?xml version="1.0" encoding="UTF-8"?>'."\n<settings>\n".$adda;
 //    if(is_array($phone_data['number'])) {
@@ -201,29 +201,29 @@ global $HTTP;
     // base settings
     $read = $generator($phone_data['template']->cfg_base, 'settings');
     if($read) {
-        $output .= "\n".@preg_replace($search, $replace, $read);
+        $output .= "".@preg_replace($search, $replace, $read);
     }
 
     // behavior settings
     $read = $generator($phone_data['template']->cfg_behavior, 'settings');
     if($read) {
-        $output .= "\n".@preg_replace($search, $replace, $read);
+        $output .= "".@preg_replace($search, $replace, $read);
     }
 
     // tone settings
     $read = $generator($phone_data['template']->cfg_tone, 'settings');
     if($read) {
-        $output .= "\n".@preg_replace($search, $replace, $read);
+        $output .= "".@preg_replace($search, $replace, $read);
     }
 
     $account = 0;
     // keys settings
     $read = $generator($phone_data, 'usrkeys', $account);
-    if($read) $output .= "\n".$read;
+    if($read) $output .= "".$read;
 
     // pbook settings
     $read = $generator($phone_data, 'usrpbook', $account);
-    if($read) $output .= "\n".$read;
+    if($read) $output .= "".$read;
 
 return $output;
 }

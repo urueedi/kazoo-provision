@@ -4,7 +4,7 @@ error_reporting(1);
 
 function generate_mitel_provision($phone_data) {
 
-    $account = 1;
+    $phone_data['template']->usr_keys->setable_phone_key_counter;
     $generator = $phone_data['template']->pvt_generator;
     $VM_EXT = "*98";
     $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/snom/";
