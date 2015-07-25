@@ -1,5 +1,5 @@
 # kazoo-provision
-Provision integration in monster-ui
+Provision integration in monster-ui-voip
 
 feel free to add more of ip-phones, because i don't have all the devices
 
