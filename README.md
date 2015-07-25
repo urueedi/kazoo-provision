@@ -5,7 +5,7 @@ feel free to add more of ip-phones, because i don't have all the devices
 
 Install procedure
 -----------------
-1. INSTALL kazoo-platform
+1. INSTALL kazoo-platform (from this repository because of changes: use 3.20)
 2. INSTALL monster-ui (from this repository because of adds in ui) AND php for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is
 5. INSTALL with setup.php the database and add some brands on couchdb
