@@ -4,16 +4,16 @@ error_reporting(1);
 
 function generate_mitel_provision($phone_data) {
 
-    $phone_data['template']->usr_keys->setable_phone_key_counter;
+    $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
     $generator = $phone_data['template']->pvt_generator;
     $VM_EXT = "*98";
-    $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/snom/";
+    $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/mitel/";
     $WEB_SERVER = $HTTP.$_SERVER['HTTP_HOST'];
     $PROV_SERVER = $_SERVER['HTTP_HOST'];
     $NTP_SERVER = $_SERVER['HTTP_HOST'];
     $PROXY_SERVER = $phone_data['account'][$account-1]['realm'];
     $REGISTRAR_SERVER = $phone_data['account'][$account-1]['realm'];
-    if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 60;
+    if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 360;
     switch($phone_data['shlang']) {
        case 'en':
            $lang_idx=2;

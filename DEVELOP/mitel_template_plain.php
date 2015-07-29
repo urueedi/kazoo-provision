@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-require_once('config.php');
+require_once('../config.php');
 
 $host = get_dbhost($hosts);
 $sag = new Sag($host);
@@ -177,7 +177,7 @@ prgkey6 type: xfer
 prgkey6 line: 0
 ';
 
-$tprov['cfg_key'] = json_decode(plain2json($in, $del));
+$prov['cfg_key'] = json_decode(plain2json($in, $del));
 
 $prov['pvt_generator'] = 'json2plain';
 echo upload_phone_data($prov);

@@ -99,7 +99,7 @@ global $HTTP;
         '{{NTP_SERVER}}',
         '{{INTERNAL}}',
         '{{ACCESSPROVPASS}}',
-        '{{SETTINGS_REFRESH_TIMER}}',
+        '{{SETTINGS_REFRSH_TIMER}}',
         '{{PHONE_REREGISTER}}',
         '{{PROV_SERVER_URL_WEBLANG_DE_XML}}',
         '{{PROV_SERVER_URL_WEBLANG_EN_XML}}',
@@ -168,7 +168,7 @@ global $HTTP;
                 $NTP_SERVER,                                                               /*   */
                 $value['sip']['internal'],                                                 /*   */
                 'accessprovpass',                                                          /*   */
-                '48600',                                                                   /*   */
+                '48600',                                                                   /* refresh config from server in seconds  */
                 $Phone_Reregister_Prov,                                                    /*   */
                 $XML_SERVER."lang/gui_lang_DE",                                            /*   */
                 $XML_SERVER."lang/gui_lang_EN",                                            /*   */

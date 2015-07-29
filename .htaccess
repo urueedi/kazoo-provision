@@ -4,7 +4,6 @@ RewriteEngine On
 #RewriteCond %{REQUEST_URI} !m3/.* [NC] # Don't rewrite if we already have
 #RewriteCond %{REQUEST_URI} !prov/.* [NC] # Don't rewrite if we already have
 #RewriteCond %{REQUEST_URI} !settings\.php [NC] # Don't rewrite if we already have
-#RewriteCond %{REQUEST_URI} !monster\.php [NC] # Don't rewrite if we already have
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^(.*)$ settings.php [L]

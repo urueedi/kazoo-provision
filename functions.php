@@ -439,21 +439,6 @@ function plain2json($plain, $delimiter=false)
 return($json);
 }
 
-function merge_togetaher($object1, $object2, $typ)
-{
-
-    switch($typ) {
-        case 'json':
-            $res = json_encode(array_merge_recursive(object_decode( $object1, true ) , json_decode( $object2, true )));
-        break;
-        case 'object':
-            $res = array_merge_recursive($object1 , $object2);
-        break;
-    }
-
-return($res);
-}
-
 function get_urlallowed($url)
 {
     $remote_ip = @$_SERVER['REMOTE_ADDR'];
@@ -932,21 +917,24 @@ function get_groundsettings($f_path, $retype=false)
     }
 }
 
-/* do db->file (db=brand_provisioner, dir=./DB_BACKUP/) */
-function backup($db_a, $dir)
+/* do db->file (db=system_config, dir=./DB_BACKUP/) */
+function backup($db_a, $dir, $match=false)
 {
     // get_all_docs
     $dbs = get_entry($db_a , '/_all_docs');
     $dbs = json_decode(json_encode($dbs['res']->rows), true);
+    @mkdir($dir, 0777, true);
 
     foreach($dbs AS $k => $db){
+        /* backup only if match */
+        if($match == true && $match != $db['id']) continue;
         $data = get_entry($db_a , "/".urlencode($db['id']));
         file_put_contents($dir.urlencode($db['id']),json_encode($data['res']));
     }
     return("backup db->file finished\n");
 }
 
-/* do file->db (db=brand_provisioner, dir=./DB_BACKUP/) type=update or restore[none]*/
+/* do file->db (db=system_config, dir=./DB_BACKUP/) type=update or restore[none]*/
 function restore($db_a, $dir, $type=false)
 {
     global $sag;
@@ -957,7 +945,11 @@ function restore($db_a, $dir, $type=false)
         while (false !== ($entry = readdir($handle))) {
             if(".." == $entry||"." == $entry) continue;
             $obj = json_decode(file_get_contents($dir.$entry));
-            if($type == 'update') $obj->views++;
+            if($type == 'update') {
+                $now = get_entry($db_a , "/".$entry);
+                $obj->_rev = $now['res']->_rev;
+                $obj->views++;
+            }
             else unset($obj->_rev);
             try {
                 if(preg_match("/^_/",urldecode($entry))) echo $sag->put(urldecode($entry), $obj)->body->ok;
@@ -969,6 +961,19 @@ function restore($db_a, $dir, $type=false)
         }
     }
     return("restore file->db finished\n");
+}
+
+function merge_togetaher($object1, $object2, $typ)
+{
+    switch($typ) {
+        case 'json':
+            $res = json_encode(array_merge_recursive(json_decode( $object1, true ) , json_decode( $object2, true )));
+        break;
+        case 'object':
+            $res = array_merge_recursive($object1 , $object2);
+        break;
+    }
+    return($res);
 }
 
 function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)

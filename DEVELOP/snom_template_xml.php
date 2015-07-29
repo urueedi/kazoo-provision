@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
 
-require_once('config.php');
+require_once('../config.php');
 
 $host = get_dbhost($hosts);
 $sag = new Sag($host);
@@ -13,7 +13,7 @@ $myip4 = get_ip(4);
 /* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
 $prov['endpoint_brand'] = 'snom';
 $prov['endpoint_family'] = '3xx';
-$prov['endpoint_model'] = '399999';
+$prov['endpoint_model'] = '300';
 /* this is programable keys on phone */
 $prov['usr_keys']['setable_phone_keys'] = '0';
 $prov['usr_keys']['setable_phone_key_counter'] = '0';
