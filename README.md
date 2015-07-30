@@ -1,18 +1,28 @@
 # kazoo-provision
 Provision integration in monster-ui-voip
 
-feel free to add more of ip-phones, because i don't have all the devices
+1. network settings will be local and never be part of this provision-solution.
+2. cache-solution will be there, if this provisioner will fail
+3. feel free to add more of ip-phones, because i don't have all the devices!
 
 Install procedure
 -----------------
 1. INSTALL kazoo-platform (from this repository because of changes: use 3.20)
 2. INSTALL monster-ui (from this repository because of adds in ui) AND php for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is
-5. INSTALL with setup.php the database and add some brands on couchdb
-6. set in config.php your couochdb nodes in $hosts="localhost.. "
-7. To use https we use lets-encrypt after 27 of july 2015
-8. To use Plug&Play for ip-phones you need openwrt and luci with dnsmasq from this github site
-9. If you need Quality of Service (No chrrr in line) there is also in OpenWRT included (qos-luci) 
+5. INSTALL with setup.php the database and add brand_provisioner to couchdb
+6. set in this folder config.php your cochdb nodes in $hosts="localhost domain2.com ..."
+7. set in monster-ui /js/config.js provisioner: "http://yourdomain.com/your_path_installed"
+   - check this by using the add <sip-phone button> in monster-ui/devices 
+8. If you need plug&play support for ip-phones you need openwrt and luci with dnsmasq from this github site. add for VoIP-Phones
+   - for snom:  00:04:13:*:*:* http://[prov_domain]/prov/snom/settings.php?mac={mac}&pass=[PROVPASS_ACCOUT_UI]
+   - for mitel: 00:08:5d:*:*:* http://[prov_domain]/prov/mitel
+9. If you need Quality of Service (No chrrr in line) there is also in OpenWRT included (qos-luci) add for QoS-Settings
+   - 1. priority src=all dst=[your_mediaserver] service=all proto=udp
+   - 2. priority src=[your_mediaserver] dst=all service=all proto=udp
+   - 3. normal src=all dst=all service=all proto=all
+   This QoS implementation is a professional phone and fax solution!
+   I have transmitted hundreds of fax docs with full load traffic on router and not 1 problems!
 
 Add a New Phones to provision Panasonic or ...
 ----------------------------------------------
