@@ -1,8 +1,8 @@
 # kazoo-provision
 Provision integration in monster-ui-voip
 
-![screenshot1](https://raw.githubusercontent.com/urueedi/kazoo-provision/DEVELOP/screenshot1.png)
-![screenshot2](https://raw.githubusercontent.com/urueedi/kazoo-provision/DEVELOP/screenshot2.png)
+![screenshot1](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot1.png)
+![screenshot2](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot2.png)
 
 1. network settings will be local from router and never be part of this provision-solution.
 2. cache-solution will be there, if this provisioner will fail
