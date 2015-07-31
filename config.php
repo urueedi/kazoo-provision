@@ -1,7 +1,7 @@
 <?php
 
 
-$host=false; $hosts = 'localhost1 localhost2 localhost';$HTTP="http://"; /* define one or more couchdb hosts (if one node is down is takes next... */
+$host=false; $hosts = 'your_couchdbhost1 your_couchdbhost2 localhost';$HTTP="http://"; /* define one or more couchdb hosts (if one node is down is takes next... */
 $testsleep=15; // loop between next try all hosts
 require_once('phplib/Sag.php');
 include_once("functions.php");
