@@ -13,7 +13,7 @@ Install procedure
 5. INSTALL with on console ./setup.php the database and add brand_provisioner to couchdb
 6. set in this folder config.php your cochdb nodes in $hosts="localhost domain2.com ..."
 7. set in monster-ui /js/config.js provisioner: "http://yourdomain.com/your_path_installed..."
-   - check this by using the add <sip-phone button> in monster-ui/devices 
+   - check this by using the add sip-phone-button in monster-ui->voip->devices 
 8. If you need plug&play support for ip-phones you need openwrt from this github site. To add for VoIP-Phones use e.g.
    - snom:  00:04:13:*:*:* http://[prov_domain]/prov/snom/settings.php?mac={mac}&pass=[PROVPASS_ACCOUT_UI]
    - mitel: 00:08:5d:*:*:* http://[prov_domain]/prov/mitel
