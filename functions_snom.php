@@ -16,57 +16,74 @@ global $HTTP;
     if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 60;
 
     unset($adda); unset($addb);
-    if($multiaccount) {$shlang = $value['shlang']; $device = $value['device']; $timez = $value['timezone'];}
-    else {$shlang = $phone_data[key($phone_data['number'])]['language']; $device = $phone_data[key($phone_data['number'])]['device']; $timez = $phone_data[key($phone_data['number'])]['timezone'];}
+    ($phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['timezone']) ? $timezone = $phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['timezone'] : $timezone = $phone_data['account'][$account]['timezone'];
 
-    switch($shlang) {
-       case 'en': $lang_idx="English"; $lang_code="en"; break;
-       case 'de': $lang_idx="Deutsch"; $lang_code="de"; break;
-       case 'fr': $lang_idx="France"; $lang_code="fr";  break;
-       case 'it': $lang_idx="Italian"; $lang_code="it"; break;
+    switch($timezon) {
+       case 'Europe/London':
+       case 'America/Boston':
+                    $lang_idx="English"; $lang_code="en"; break;
+       case 'Europe/Zurich':
+       case 'Europe/Berlin':
+       case 'Europe/Bern':
+       case 'Europe/Zurich':
+                    $lang_idx="Deutsch"; $lang_code="de"; break;
+       case 'Europe/Paris':
+       case 'Europe/Geneva':
+                    $lang_idx="France"; $lang_code="fr";  break;
+       case 'Europe/Rom':
+             $lang_idx="Italian"; $lang_code="it"; break;
        default; $lang_idx="Deutsch"; $lang_code="de";
     }
 
-// code ersetzten und per ip zeitzone definieren fuer telefon config
-    if($device == 'snomm9') {
-     switch($timez) {
-       case 'au': $timezoneidv9="399"; $timezonedescv9="GMT +8"; break;
-       case 'be': $timezoneidv9="336"; $timezonedescv9="GMT +1"; break;
-       case 'dk': $timezoneidv9="323"; $timezonedescv9="GMT +1"; break;
-       case 'de': $timezoneidv9="343"; $timezonedescv9="GMT +1"; break;
-       case 'es': $timezoneidv9="353"; $timezonedescv9="GMT +0"; break;
-       case 'fr': $timezoneidv9="342"; $timezonedescv9="GMT +1"; break;
-       case 'ir': $timezoneidv9="330"; $timezonedescv9="GMT +1"; break;
-       case 'it': $timezoneidv9="345"; $timezonedescv9="GMT +1"; break;
-       case 'lx': $timezoneidv9="346"; $timezonedescv9="GMT +1"; break;
-       case 'nl': $timezoneidv9="346"; $timezonedescv9="GMT +1"; break;
-       case 'pt': $timezoneidv9="331"; $timezonedescv9="GMT +0"; break;
-       case 'Europe/Zurich': $timezoneidv9="355"; $timezonedescv9="GMT +1"; break;
-       case 'uk': $timezoneidv9="333"; $timezonedescv9="GMT +0"; break;
-       case 'us': $timezoneidv9="302"; $timezonedescv9="GMT -6"; break;
-       case 'at': $timezoneidv9="335"; $timezonedescv9="GMT +1"; break;
-       default: $timezoneidv9="343"; $timezonedescv9="GMT +1";
+    // code ersetzten und per ip zeitzone definieren fuer telefon config
+    if($phone_data['template']->endpoint_family == 'm9x') {
+     switch($timezone) {
+       case 'au': $timezoneidv9="3"; $timezonedescv9="GMT +8"; break;
+       case 'be': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'dk': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'Europe/Berlin':
+            $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'es': $timezoneidv9="3"; $timezonedescv9="GMT +0"; break;
+       case 'fr': $timezoneidv9="2"; $timezonedescv9="GMT +1"; break;
+       case 'ir': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'Europe/Rom':
+            $timezoneidv9="345"; $timezonedescv9="GMT +1"; break;
+       case 'lx': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'nl': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'pt': $timezoneidv9="3"; $timezonedescv9="GMT +0"; break;
+       case 'Europe/Bern':
+       case 'Europe/Zurich':
+                $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'uk': $timezoneidv9="3"; $timezonedescv9="GMT +0"; break;
+       case 'Europe/London':
+       case 'America/Boston':
+                $timezoneidv9="3"; $timezonedescv9="GMT -6"; break;
+       case 'at': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       default: $timezoneidv9="3"; $timezonedescv9="GMT +1";
      }
-    $NTP_SERVER = "188.40.67.131";
     }
 
-    switch($phone_data['shlang']) {
-       case 'au': $countryid="0x13"; break;
-       case 'be': $countryid="0x0E"; break;
-       case 'dk': $countryid="9"; break;
-       case 'de': $countryid="0"; break;
-       case 'es': $countryid="8"; break;
-       case 'fr': $countryid="2"; break;
-       case 'ir': $countryid="6"; break;
-       case 'it': $countryid="3"; break;
-       case 'lx': $countryid="1"; break;
-       case 'nl': $countryid="4"; break;
-       case 'pt': $countryid="0x0d"; break;
-       case 'ch': $countryid="0x0c"; break;
-       case 'uk': $countryid="0x10"; break;
-       case 'us': $countryid="0x12"; break;
-       case 'at': $countryid="0x0F"; break;
-       default: $countryid="0x12";
+    if($phone_data['template']->endpoint_family == 'm3x') {
+        switch($timezone) {
+           case 'au': $countryid="0x13"; break;
+           case 'be': $countryid="0x0E"; break;
+           case 'dk': $countryid="9"; break;
+           case 'Europe/Zurich':
+                     $countryid="0"; break;
+           case 'es': $countryid="8"; break;
+           case 'fr': $countryid="2"; break;
+           case 'ir': $countryid="6"; break;
+           case 'it': $countryid="3"; break;
+           case 'lx': $countryid="1"; break;
+           case 'nl': $countryid="4"; break;
+           case 'pt': $countryid="0x0d"; break;
+           case 'ch': $countryid="0x0c"; break;
+           case 'uk': $countryid="0x10"; break;
+           case 'us': $countryid="0x12"; break;
+           case 'at': $countryid="0x0F"; break;
+           default: $countryid="0x12";
+        }
+    $NTP_SERVER = "188.40.67.131";
     }
 
     // Prepare replace strings
@@ -93,7 +110,9 @@ global $HTTP;
         '{{STATUS}}',
         '{{PROVPASS}}',
         '{{LANG_PREFIX}}',
+        '{{ZONE_IDX}}',
         '{{TIMEZONE_PREFIX}}',
+        '{{TIMEZONE_ID}}',
         '{{MAC}}',
         '{{NAME}}',
         '{{NTP_SERVER}}',
@@ -127,7 +146,8 @@ global $HTTP;
         );
     // create account part
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
-    if($phone_data['template']->endpoint_model != 'm3')
+    $account_start = 0;//$phone_data['template']->pvt_configs->account_counter;
+    if($phone_data['template']->endpoint_family != 'm3x')
     $output .= '<?xml version="1.0" encoding="UTF-8"?>'."\n<settings>\n".$adda;
 //    if(is_array($phone_data['number'])) {
         $multiaccount = true;
@@ -143,10 +163,10 @@ global $HTTP;
                 $account,
                 $value['sip']['username'],                                                 /*   */
                 $value['sip']['password'],                                                 /*   */
-                $phone_data['users'][$account-1][$phone_data['prov'][$account-1]['owner']]['value']['caller_id']['internal']['name'],
-                $phone_data['users'][$account-1][$phone_data['prov'][$account-1]['owner']]['value']['caller_id']['internal']['number']." ".$phone_data['users'][$account-1][$phone_data['prov'][$account-1]['owner']]['value']['caller_id']['internal']['name'],
-                $phone_data['account'][$account-1]['realm'],                               /*   */
-                $phone_data['account'][$account-1]['realm'],                               /*   */
+                $phone_data['users'][$account_start][$phone_data['prov'][$account_start]['owner']]['value']['caller_id']['internal']['name'],
+                $phone_data['users'][$account_start][$phone_data['prov'][$account_start]['owner']]['value']['caller_id']['internal']['number']." ".$phone_data['users'][$account_start][$phone_data['prov'][$account_start]['owner']]['value']['caller_id']['internal']['name'],
+                $phone_data['account'][$account_start]['realm'],                               /*   */
+                $phone_data['account'][$account_start]['realm'],                               /*   */
                 $WEB_SERVER,                                                               /*   */
                 $lang_idx,                                                                 /*   */
                 $VM_EXT,                                                                   /*   */
@@ -160,8 +180,10 @@ global $HTTP;
                 _("Blind Tansfer"),                                                        /*   */
                 '**',                                                                      /*   */
                 'on',                                                                      /*   */
-                $phone_data['account'][$account-1]['provision']['provisionpass'],          /*   */
+                $phone_data['account'][$account_start]['provision']['provisionpass'],          /*   */
                 $lang_code,                                                                /*   */
+                $timezoneidv9,                                                             /*   */
+                $lang_idx,                                                                 /*   */
                 $timezoneidv9,                                                             /*   */
                 $value['macaddress'],                                                      /*   */
                 $value['callername'],                                                      /*   */
@@ -187,7 +209,7 @@ global $HTTP;
                 '117 118 144',                                                             /* emergency numbers */
                 $phone_data['whitelabel']['provision']['server_url_certificate'],          /* certification path */
                 $WEB_SERVER."",                                                            /* provisions server path */
-                $value['sip']['refresh'],                                                  /* refresh timer */
+                '0',                                                                         /* refresh timer for settings (only at startup!! because of wrong settings) */
                 $account,                                                                  /* Handset account number */
                 '5060',                                                                    /* Port of Enduser phone */
                 $countryid,                                                                /* Snom M3 Country code */
@@ -197,6 +219,7 @@ global $HTTP;
             $output .= preg_replace($search, $replace, $read);
           }
         $account++;
+        $account_start++;
         }
     // base settings
     $read = $generator($phone_data['template']->cfg_base, 'settings');

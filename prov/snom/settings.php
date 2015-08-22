@@ -12,14 +12,13 @@ $path = explode("?",$_SERVER['REQUEST_URI']);$f_path = explode("/",$path[0]);
 unset($f_path[0]);unset($f_path[1]);// unset / and /prov
 // disable debug if user_agent %=% snom
 if(preg_match("/snom/i",$_SERVER["HTTP_USER_AGENT"])) @define('DEBUG_FUNCTION' , '');
-
 require_once('../../config.php');
 if($_REQUEST["phonetyp"] && $_REQUEST["pass"] && $_REQUEST["mac"])
 {
       $remote_ip=$_SERVER['REMOTE_ADDR'];
       $extension=$_REQUEST["extension"];
       $password=$_REQUEST["pass"];
-      if($_REQUEST["mac"]) $mac=$_REQUEST["mac"];
+      if($_REQUEST["mac"]) $mac=str_replace(":","",$_REQUEST["mac"]);
       global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." rem_ip=$remote_ip, ext=$extension, pass=$password, mac=$mac");
 }
 else

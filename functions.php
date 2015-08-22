@@ -924,13 +924,12 @@ function backup($db_a, $dir, $match=false)
     $dbs = get_entry($db_a , '/_all_docs');
     $dbs = json_decode(json_encode($dbs['res']->rows), true);
     @mkdir($dir, 0777, true);
+
     foreach($dbs AS $k => $db){
         /* backup only if match */
         if($match == true && $match != $db['id']) continue;
         $data = get_entry($db_a , "/".urlencode($db['id']));
-        unset($data['res']->_rev);
-        @mkdir($dir.urlencode($db['id']), 0777, true);
-        file_put_contents($dir.urlencode($db['id']).'/'.urlencode($db['id']).'.json',json_encode($data['res']));
+        file_put_contents($dir.urlencode($db['id']),json_encode($data['res']));
     }
     return("backup db->file finished\n");
 }
@@ -941,36 +940,40 @@ function restore($db_a, $dir, $type=false)
     global $sag;
 
     if ($handle = opendir($dir)) {
-        try {$sag->createDatabase($db_a);} catch(Exception $e) {echo $e->getMessage()."DB:".$db_a."\n";}
+        if($type == false) { try {$sag->createDatabase($db_a);} catch(Exception $e) {echo $e->getMessage()."DB:".$db_a."\n";}}
         $sag->setDatabase($db_a);
         while (false !== ($entry = readdir($handle))) {
             if(".." == $entry||"." == $entry) continue;
-            $obj1 = get_entry($db_a , "/".$entry);
-            $temp_rev = $obj1['res']->_rev;
-            $obj2 = json_decode(file_get_contents($dir.$entry.'/'.$entry.'.json'));
-            if(is_object($obj1)) $obj = update_together($obj1['res'], $obj2, 'object');
-            else $obj = $obj2;
-            $obj = object2array($obj); unset($obj['err']); unset($obj['_rev']);
+            $obj = json_decode(file_get_contents($dir.$entry));
+            if($type == 'update') {
+                $now = get_entry($db_a , "/".$entry);
+                $obj->_rev = $now['res']->_rev;
+                $obj->views++;
+            }
+            else unset($obj->_rev);
             try {
                 if(preg_match("/^_/",urldecode($entry))) echo $sag->put(urldecode($entry), $obj)->body->ok;
                 else echo $sag->put($entry, $obj)->body->ok;
             }
             catch(Exception $e) {
-                if($type == 'update') {
-                    $obj['_rev'] = $temp_rev;
-                    $obj['views'] = $obj['views']+1;
-                }
-                try {
-                    if(preg_match("/^_/",urldecode($entry))) echo $sag->put(urldecode($entry), $obj)->body->ok;
-                    else echo $sag->put($entry, $obj)->body->ok;
-                }
-                catch(Exception $e) {
-                    echo $e->getMessage()."DB:".$db_a." file:".urlencode($entry)."\n";
-                }
+                echo $e->getMessage()."DB:".$db_a." file:".urlencode($entry)."\n";
             }
         }
     }
     return("restore file->db finished\n");
+}
+
+function merge_togetaher($object1, $object2, $typ)
+{
+    switch($typ) {
+        case 'json':
+            $res = json_encode(array_merge_recursive(json_decode( $object1, true ) , json_decode( $object2, true )));
+        break;
+        case 'object':
+            $res = array_merge_recursive($object1 , $object2);
+        break;
+    }
+    return($res);
 }
 
 function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
@@ -1002,58 +1005,6 @@ function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
     $sag->put("phonetree", $new['res'])->body->ok;
 
     return('uploaded');
-}
-
-/* first object is base, object after is overlayed */
-function update_together($object1, $object2, $typ)
-{
-    switch($typ) {
-        case 'json':
-            $res = json_encode(array_replace_recursive(json_decode( $object1, true ) , json_decode( $object2, true )));
-        break;
-        case 'object':
-            $res = array_replace_recursive(object2array($object1) , object2array($object2) );
-        break;
-    }
-    return($res);
-}
-
-/* first object is base, object after is overlayed add */
-function merge_together($object1, $object2, $typ)
-{
-    switch($typ) {
-        case 'json':
-            $res = json_encode(array_merge_recursive(json_decode( $object1, true ) , json_decode( $object2, true )));
-        break;
-        case 'object':
-            $res = array_merge_recursive($object1 , $object2);
-        break;
-    }
-    return($res);
-}
-
-function array2object($array) {
-
-    if (is_array($array)) {
-        $obj = new StdClass();
-        foreach ($array as $key => $val){
-            $obj->$key = $val;
-        }
-    }
-    else { $obj = $array; }
-    return $obj;
-}
-
-function object2array($object) {
-    if (is_object($object)) {
-        foreach ($object as $key => $value) {
-            $array[$key] = $value;
-        }
-    }
-    else {
-        $array = $object;
-    }
-    return $array;
 }
 
 ?>
