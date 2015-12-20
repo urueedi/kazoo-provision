@@ -5,6 +5,7 @@ function generate_snom_provision($phone_data) {
 
 global $HTTP;
 
+//print_r($phone_data);
     $generator = $phone_data['template']->pvt_generator;
     $VM_EXT = "*98";
     $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/snom/";
@@ -21,6 +22,8 @@ global $HTTP;
     switch($timezon) {
        case 'Europe/London':
        case 'America/Boston':
+       case 'America/Los_Angeles':
+       case 'America/New_York':
                     $lang_idx="English"; $lang_code="en"; break;
        case 'Europe/Zurich':
        case 'Europe/Berlin':
@@ -38,28 +41,28 @@ global $HTTP;
     // code ersetzten und per ip zeitzone definieren fuer telefon config
     if($phone_data['template']->endpoint_family == 'm9x') {
      switch($timezone) {
-       case 'au': $timezoneidv9="3"; $timezonedescv9="GMT +8"; break;
-       case 'be': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
-       case 'dk': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+       case 'au': $timezoneidv9="355"; $tonesv9="13"; break;
+       case 'be': $timezoneidv9="355"; $tonesv9="3"; break;
+       case 'dk': $timezoneidv9="355"; $tonesv9="3"; break;
        case 'Europe/Berlin':
-            $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
-       case 'es': $timezoneidv9="3"; $timezonedescv9="GMT +0"; break;
-       case 'fr': $timezoneidv9="2"; $timezonedescv9="GMT +1"; break;
-       case 'ir': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
+            $timezoneidv9="355"; $tonesv9="3"; break;
+       case 'es': $timezoneidv9="355"; $tonesv9="3"; break;
+       case 'fr': $timezoneidv9="2"; $tonesv9="12"; break;
+       case 'ir': $timezoneidv9="355"; $tonesv9="3"; break;
        case 'Europe/Rom':
-            $timezoneidv9="345"; $timezonedescv9="GMT +1"; break;
-       case 'lx': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
-       case 'nl': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
-       case 'pt': $timezoneidv9="3"; $timezonedescv9="GMT +0"; break;
+            $timezoneidv9="342"; $tonesv9="11"; break;
+       case 'lx': $timezoneidv9="355"; $tonesv9="3"; break;
+       case 'nl': $timezoneidv9="355"; $tonesv9="5"; break;
+       case 'pt': $timezoneidv9="355"; $tonesv9="3"; break;
        case 'Europe/Bern':
        case 'Europe/Zurich':
-                $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
-       case 'uk': $timezoneidv9="3"; $timezonedescv9="GMT +0"; break;
+                $timezoneidv9="355"; $tonesv9="3"; break;
+       case 'uk': $timezoneidv9="355"; $tonesv9="2"; break;
        case 'Europe/London':
        case 'America/Boston':
-                $timezoneidv9="3"; $timezonedescv9="GMT -6"; break;
-       case 'at': $timezoneidv9="3"; $timezonedescv9="GMT +1"; break;
-       default: $timezoneidv9="3"; $timezonedescv9="GMT +1";
+                $timezoneidv9="355"; $tonesv9="1"; break;
+       case 'at': $timezoneidv9="355"; $tonesv9="4"; break;
+       default: $timezoneidv9="355"; $tonesv9="3";
      }
     }
 
@@ -146,7 +149,8 @@ global $HTTP;
         );
     // create account part
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
-    $account_start = 0;//$phone_data['template']->pvt_configs->account_counter;
+    $account_start = $phone_data['template']->pvt_configs->account_counter;
+    $account_counter = 0;
     if($phone_data['template']->endpoint_family != 'm3x')
     $output .= '<?xml version="1.0" encoding="UTF-8"?>'."\n<settings>\n".$adda;
 //    if(is_array($phone_data['number'])) {
@@ -158,15 +162,17 @@ global $HTTP;
 //          if($value->media->encryption->enforce_security->methods[0]) { $PROXY_SERVER = $phone_data['voipserver'].":".($phone_data['port']+1).";transport=tls"; $value->media->encryption->enforce_security->methods[0] = "on"; }
 //print_r($phone_data['users']);
 //exit;
+//print_r($phone_data['users'][$account_counter][$value['owner']]['key']);
+//print_r($value);
           if($read) {
                 $replace = array(
-                $account,
+                $account_start,
                 $value['sip']['username'],                                                 /*   */
                 $value['sip']['password'],                                                 /*   */
-                $phone_data['users'][$account_start][$phone_data['prov'][$account_start]['owner']]['value']['caller_id']['internal']['name'],
-                $phone_data['users'][$account_start][$phone_data['prov'][$account_start]['owner']]['value']['caller_id']['internal']['number']." ".$phone_data['users'][$account_start][$phone_data['prov'][$account_start]['owner']]['value']['caller_id']['internal']['name'],
-                $phone_data['account'][$account_start]['realm'],                               /*   */
-                $phone_data['account'][$account_start]['realm'],                               /*   */
+                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['caller_id']['internal']['name'],
+                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['caller_id']['internal']['number']." ".$phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['caller_id']['internal']['name'],
+                $phone_data['account'][$account_counter]['realm'],                               /*   */
+                $phone_data['account'][$account_counter]['realm'],                               /*   */
                 $WEB_SERVER,                                                               /*   */
                 $lang_idx,                                                                 /*   */
                 $VM_EXT,                                                                   /*   */
@@ -180,17 +186,17 @@ global $HTTP;
                 _("Blind Tansfer"),                                                        /*   */
                 '**',                                                                      /*   */
                 'on',                                                                      /*   */
-                $phone_data['account'][$account_start]['provision']['provisionpass'],          /*   */
+                $phone_data['account'][$account_counter]['provision']['provisionpass'],          /*   */
                 $lang_code,                                                                /*   */
-                $timezoneidv9,                                                             /*   */
+                $tonesv9,                                                                  /*   */
                 $lang_idx,                                                                 /*   */
                 $timezoneidv9,                                                             /*   */
                 $value['macaddress'],                                                      /*   */
                 $value['callername'],                                                      /*   */
                 $NTP_SERVER,                                                               /*   */
-                $value['sip']['internal'],                                                 /*   */
+                $phone_data['users'][$account_counter][$value['owner']]['key'],            /*   */
                 'accessprovpass',                                                          /*   */
-                '48600',                                                                   /* refresh config from server in seconds  */
+                '0',                                                                   /* refresh config from server in seconds  */
                 $Phone_Reregister_Prov,                                                    /*   */
                 $XML_SERVER."lang/gui_lang_DE",                                            /*   */
                 $XML_SERVER."lang/gui_lang_EN",                                            /*   */
@@ -218,7 +224,7 @@ global $HTTP;
                 );
             $output .= preg_replace($search, $replace, $read);
           }
-        $account++;
+        $account_counter++;
         $account_start++;
         }
     // base settings

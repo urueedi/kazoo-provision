@@ -11,7 +11,8 @@ Provision integration in monster-ui-voip
 Install procedure
 -----------------
 1. INSTALL kazoo-platform (from this repository because of changes: use 3.20)
-2. INSTALL monster-ui (from this repository because of adds in ui) AND php for webserver
+   If not install kazoo-urueedi you do change application/crossbar/priv/devices.json and recompile crossbar!!
+2. INSTALL monster-ui (from this repository because of adds in ui) AND fping, php-cli, php, php-xml for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is, or on sep. domain
 5. INSTALL with on console ./setup.php the database and add brand_provisioner to couchdb
 6. Set in this folder config.php your cochdb nodes in $hosts="localhost domain2.com ..."

@@ -3,6 +3,7 @@
 
 require_once('config.php');
 
+echo "$hosts";
 $host = get_dbhost($hosts);
 $sag = new Sag($host);
 

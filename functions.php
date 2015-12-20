@@ -597,19 +597,20 @@ function debug_log($log, $status=false, $file, $offlog=false)
 function get_phone_data($macaddress, $qpass=false, $nonepass=false)
 {
 
-    global $host, $sag;
+    global $host, $sag, $tmp;
 
-   if(filemtime('/tmp/provcache-!!') > time()-600) {
-        $provdata = unserialize(file_get_contents('/tmp/provcache-!!'));
-        if (! is_array($provdata)) {
-            {global $debug; $debug[] = array(level=>false,status=>'problem',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." Loaderror: /tmp/provcache-!!");}
-            return(false);
-        }
-    } else {
+//   if(filemtime($tmp.'provcache-!!') > time()-600) {
+//        $provdata = unserialize(file_get_contents($tmp.'provcache-!!'));
+//        if (! is_array($provdata)) {
+//            {global $debug; $debug[] = array(level=>false,status=>'problem',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." Loaderror: ".$tmp."provcache-!!");}
+//            return(false);
+//        }
+//    } else {
         $ret = get_all_dbs($host);
         foreach($ret['res'] AS $key => $value) {
             if(stristr($value, 'account/')) {
                 $res = get_entry($value , '/_design/devices/_view/listing_by_macaddress');
+    //print_r($res);
                 if($res['err']) {show_debug("Get macaddress_view Error:".$res['err']); continue;}
                 else {
 //                    if(! $ph_dat['devices']) $ph_dat['devices'] = json_decode(json_encode($res['res']->rows), true);
@@ -621,27 +622,33 @@ function get_phone_data($macaddress, $qpass=false, $nonepass=false)
                 }
             }
         }
-        file_put_contents('/tmp/provcache-!!',serialize($provdata));
-    }
+//        file_put_contents($tmp.'provcache-!!',serialize($provdata));
+//    }
+    //print_r($provdata);
 
     foreach($provdata AS $v) {
         if(stristr(str_replace(":","",$macaddress),str_replace(":","",$v->mac))) $prov[] = $v;
         /* array all devices if owner too  */ if($v->owner) $devices[$v->owner] = $v;
     }
     foreach($prov AS $k => $val) {
+        //echo $prov[$k]->account." , ".$prov[$k]->pvt_account_id."\n";
         $ph_account = get_entry($prov[$k]->account , $prov[$k]->pvt_account_id);
         $ph_dat['account'][$k] = json_decode(json_encode($ph_account['res']), true);
+        //print_r($ph_account);
         $ph_users[$k] = get_entry($prov[$k]->account, '/_design/users/_view/crossbar_listing');
         /* OBJECT2ARRAY */  $ph_user[$k] = json_decode(json_encode($ph_users[$k]['res']->rows), true);
+        //print_r($ph_user[$k]);
     }
     $ph_dat['devices'] = json_decode(json_encode($devices), true);
+    //print_r($ph_dat['devices']);
+    //print_r($prov);
     // return fase if qpass enabled and wrong ['provision_enabled']
-//{global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." DEBUG: ".$ph_dat['account'][0]['provision']['provision_enabled']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." != $qpass) && $nonepass");}
+    //{global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." DEBUG: ".$ph_dat['account'][0]['provision']['provision_enabled']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." != $qpass) && $nonepass");}
     if(($ph_dat['account'][0]['provision']['provision_enabled'] == false || $ph_dat['account'][0]['provision']['urlpass'] == false || $ph_dat['account'][0]['provision']['urlpass'] != $qpass) && $nonepass == false) {/* fraud? */ sleep(20); return(false);}
 
     $ph_dat['prov'] = json_decode(json_encode($prov), true);
     // take template of the first account ## get account and userdata (f_path = /ui/snom/3xx/300)
-    $ph_dat['template'] = get_groundsettings(array('2' => 'ui', '3'=>$prov[0]->provision->endpoint_brand, '4'=>$prov[0]->provision->endpoint_family, '5'=>$prov[0]->provision->endpoint_model), 'object');
+    $ph_dat['template'] = get_groundsettings(array('0' => 'ui', '1'=>$prov[0]->provision->endpoint_brand, '2'=>$prov[0]->provision->endpoint_family, '3'=>$prov[0]->provision->endpoint_model), 'object');
     /* OBJECT2ARRAY */  foreach($ph_user AS $account => $users) { foreach($users AS $k => $v) { $ph_dat['users'][$account][$v['id']] = $v;} }
     {global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." Get Phone & Userdata from bigCouch");}
 
@@ -847,12 +854,12 @@ function check_gateways() {
 
 function check_couchdb($testhost) {
 
-    $host = false;
+    $host = false; global $dbport;
     if($testhost) {
         $fping = exec("fping $testhost -t 50");
         if($fping == $testhost.' is alive') {
-            $ret = json_decode(check_http('http://'.$testhost.':5984', 2),TRUE);
-            show_debug("Check couchdb:".$testhost.":5984/",'d', __FILE__ ,__FUNCTION__, __LINE__);
+            $ret = json_decode(check_http('http://'.$testhost.':'.$dbport, 2),TRUE);
+            show_debug("Check couchdb:".$testhost.":".$dbport."/",'d', __FILE__ ,__FUNCTION__, __LINE__);
             if($ret['couchdb'] == 'Welcome' && $ret['version'] == '1.1.1') return($testhost);
             else show_debug("FAILED couchdb:".$testhost,'', __FILE__ ,__FUNCTION__, __LINE__);
         } else show_debug("FAILED fping:".$pingt." -t 50 ip=".$testhost,'', __FILE__ ,__FUNCTION__, __LINE__);
@@ -895,11 +902,22 @@ return($host);
 
 function get_groundsettings($f_path, $retype=false)
 {
+    $pathse = explode("/",$f_path);
+    $a = array_keys($pathse, "prov");
+    $ind = 0;
+    foreach($f_path AS $p) {
+        if($p != 'prov' && $last != true) continue;
+        if($p == 'prov' && $last != true) {$last = true; continue;}
+        $last = true;
+        $paths[$ind] = $p;
+        $ind++;
+    }
 
-    switch($f_path[2])
+    if(! is_array($paths)) $paths = $f_path;
+    switch($paths[0])
     {
         case 'ui':
-            $res = get_entry('brand_provisioner' , urlencode(implode($f_path,"/")));
+            $res = get_entry('brand_provisioner' , urlencode(implode($paths,"/")));
             $c_keys = $res['res']->usr_keys->setable_phone_keys + $res['res']->usr_keys->setable_module_keys;
             switch($retype) {
                 case '':

@@ -77,6 +77,8 @@ function generate_mitel_provision($phone_data) {
           $customersid = $value['cuid'];
           $read = $generator($phone_data['template']->cfg_account, 'settings');
           if($read) {
+//print_r($value);
+//[$value['owner']]['key']
             $replace = array(
                     $account,
                     $value['sip']['username'],                                                 /*   */
@@ -96,14 +98,13 @@ function generate_mitel_provision($phone_data) {
                     _("At Transfer"),
                     '*8',
                     _("Blind Tansfer"),
-                    '**',
                     'on',
-                    '',
-                    '',
-                    '5060',
-                    $phone_data['prov'][0]['macaddress'],
                     $phone_data['users'][$phone_data['prov'][0]['owner']]['value']['caller_id']['internal']['number'],
+                    $phone_data['prov'][0]['macaddress'],
+                    $phone_data['users'][$account_counter][$value['owner']]['key'],
+                    '5060',
                     $NTP_SERVER,
+                    $phone_data['users'][0][$value['owner']]['key'],
                     $Phone_Reregister_Prov,
                     $XML_SERVER,
                     $XML_SERVER,
@@ -115,21 +116,21 @@ function generate_mitel_provision($phone_data) {
                     '',
                     $PROV_SERVER,
                     );
-              $output .= preg_replace($search, $replace, $read);
+              $output .= preg_replace($search, $replace, $read)."\n";
           }
         $account++;
         }
       $read = $generator($phone_data['template']->cfg_behavior, 'settings');
       if($read) {
-          $output .= preg_replace($search, $replace, $read);
+          $output .= preg_replace($search, $replace, $read)."\n";
     }
       $read = $generator($phone_data['template']->cfg_tone, 'settings');
       if($read) {
-          $output .= preg_replace($search, $replace, $read, 'settings');
+          $output .= preg_replace($search, $replace, $read, 'settings')."\n";
     }
       $read = $generator($phone_data['template']->cfg_keys, 'settings');
       if($read) {
-          $output .= "\n".preg_replace($search, $replace, $read);
+          $output .= "\n".preg_replace($search, $replace, $read)."\n";
     }
 
     // create model spcification pkeys
