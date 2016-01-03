@@ -10,8 +10,9 @@ Provision integration in monster-ui-voip
 
 Install procedure
 -----------------
-1. INSTALL kazoo-platform (from this repository because of changes: use 3.20)
-   If not install kazoo-urueedi you do change application/crossbar/priv/devices.json and recompile crossbar!!
+1. INSTALL kazoo-platform (from this repository because of changes: use 3.22)
+   If not install kazoo-urueedi, do change file application/crossbar/priv/devices.json
+   from this directory and recompile and restart crossbar!
 2. INSTALL monster-ui (from this repository because of adds in ui) AND fping, php-cli, php, php-xml for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is, or on sep. domain
 5. INSTALL with on console ./setup.php the database and add brand_provisioner to couchdb
@@ -23,7 +24,7 @@ Install procedure
     - URL-Password => [your_pass] is used in GET-string of phone snom now only
     - Domainrestriction => [customer_home_domain] e.g. customer.domain.com (dyndns) only this domain will be able to consume provision if putin
     - Phone Admin Password => [your_pass] access password to local phone
-    - Zoiper Token => [zoipertoken] This is used for autoprovision with smartphone with zoiper
+    - Zoiper Token => [zoipertoken] This is used for autoprovision with smartphone with zoiper(use: oem.zoiper.com)
     - Automatic Devicesetting => enable to allow this autoprovision features on this account for all his phones
     - User devicesetting => enable to allow devicesettings in the userportal
 10. If you need plug&play support for ip-phones you need openwrt from this github site. To add for VoIP-Phones use e.g.
