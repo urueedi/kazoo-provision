@@ -1,5 +1,4 @@
 <?php
-
 //
 // Copyright (C) 2014-2065 FreePBX-Swiss Urs Rueedi
 //
@@ -23,18 +22,18 @@ if($headers['Access-Control-Request-Headers']) {
     header('Vary: Accept');
 }
 
-$path = explode("?",$_SERVER['REQUEST_URI']);$f_path = explode("/",$path[0]);
-unset($f_path[0]);unset($f_path[1]);// unset / and /prov
+$path = explode("?",$_SERVER['REQUEST_URI']);
+$paths = explode("/",$path[0]);
 
 // disable debug if user_agent %=% snom
 if(preg_match("/snom/i",$_SERVER["HTTP_USER_AGENT"])) @define('DEBUG_FUNCTION' , '');
 require_once('config.php');
 
 $host = get_dbhost($hosts);
-$sag = new Sag($host);
+$sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
 
 //show_debug();
-get_groundsettings($f_path);
+get_groundsettings($paths);
 
 ?>

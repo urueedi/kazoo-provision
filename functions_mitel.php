@@ -5,14 +5,17 @@ error_reporting(1);
 function generate_mitel_provision($phone_data) {
 
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
+    $account_start = $phone_data['template']->pvt_configs->account_counter;
     $generator = $phone_data['template']->pvt_generator;
+    //print_r( $phone_data['template']);
+    $account_counter = 0;
     $VM_EXT = "*98";
     $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/mitel/";
     $WEB_SERVER = $HTTP.$_SERVER['HTTP_HOST'];
     $PROV_SERVER = $_SERVER['HTTP_HOST'];
     $NTP_SERVER = $_SERVER['HTTP_HOST'];
-    $PROXY_SERVER = $phone_data['account'][$account-1]['realm'];
-    $REGISTRAR_SERVER = $phone_data['account'][$account-1]['realm'];
+    $PROXY_SERVER = $phone_data['account'][$account]['realm'];
+    $REGISTRAR_SERVER = $phone_data['account'][$account]['realm'];
     if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 360;
     switch($phone_data['shlang']) {
        case 'en':
@@ -70,6 +73,7 @@ function generate_mitel_provision($phone_data) {
         );
     // create account part
         $multiaccount = true;
+
         foreach ($phone_data['prov'] as $k => $value) {
           if(! is_numeric($k)) continue;
           $expm = $value['expm'];
@@ -84,9 +88,9 @@ function generate_mitel_provision($phone_data) {
                     $value['sip']['username'],                                                 /*   */
                     $value['sip']['password'],                                                 /*   */
                     $value['sip']['username'],                                                 /*   */
-                    $phone_data['users'][$account-1][$phone_data['prov'][$account-1]['owner']]['value']['caller_id']['internal']['number']." ".$phone_data['users'][$account-1][$phone_data['prov'][$account-1]['owner']]['value']['caller_id']['internal']['name'],
-                    $phone_data['account'][$account-1]['realm'],                               /*   */
-                    $phone_data['account'][$account-1]['realm'],                               /*   */
+                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id']." ".$phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
+                    $phone_data['account'][$account]['realm'],                               /*   */
+                    $phone_data['account'][$account]['realm'],                               /*   */
                     $WEB_SERVER,
                     $lang_idx,
                     ($value['cutype'] == 'hostedpbx')?'0'.$VM_EXT:$VM_EXT,
@@ -99,7 +103,7 @@ function generate_mitel_provision($phone_data) {
                     '*8',
                     _("Blind Tansfer"),
                     'on',
-                    $phone_data['users'][$phone_data['prov'][0]['owner']]['value']['caller_id']['internal']['number'],
+                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id'],
                     $phone_data['prov'][0]['macaddress'],
                     $phone_data['users'][$account_counter][$value['owner']]['key'],
                     '5060',
@@ -108,8 +112,8 @@ function generate_mitel_provision($phone_data) {
                     $Phone_Reregister_Prov,
                     $XML_SERVER,
                     $XML_SERVER,
-                    $phone_data['account'][$account-1]['provision']['provisionuser'],
-                    $phone_data['account'][$account-1]['provision']['provisionpass'],
+                    $phone_data['account'][$account]['provision']['provisionuser'],
+                    $phone_data['account'][$account]['provision']['provisionpass'],
                     '',
                     '',
                     '',
@@ -119,6 +123,8 @@ function generate_mitel_provision($phone_data) {
               $output .= preg_replace($search, $replace, $read)."\n";
           }
         $account++;
+        $account_counter++;
+        $account_start++;
         }
       $read = $generator($phone_data['template']->cfg_behavior, 'settings');
       if($read) {

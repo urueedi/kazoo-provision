@@ -27,7 +27,7 @@ if(DEBUG_FUNCTION == 'd' || DEBUG_FUNCTION == 'aastra' && ($_REQUEST['model'] &&
     $firmware = $header[2];
     define(DEBUG_VIEW, false);
 }
-$mac = strtoupper($mac);
+$mac = strtoupper(trim($mac));
 
 global $debug; $debug['aastra/dheader'][] = "(aastra 2) model=$model, mac=$mac firmware=$firmware, remote_ip=$remote_ip, file=$file";
 switch($model) {

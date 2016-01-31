@@ -1,7 +1,7 @@
 <?php
 
 
-$host=false; $hosts = 'localhost 1.1.1.1'; $dbport="5984"; $HTTP="http://"; /* define one or more couchdb hosts (if one node is down is takes next... */
+$host=false; $HTTP="http://"; $hosts = 'localhost'; $dbport="5984"; /* define one or more couchdb hosts (if one node is down is takes next... */
 $testsleep=15; // loop between next try all hosts
 require_once('phplib/Sag.php');
 include_once("functions.php");
@@ -9,7 +9,7 @@ include_once("functions_snom.php");
 include_once("functions_mitel.php");
 // debug info settings
 
-define('DEBUG_REMOTE', 'your.domain'); // '' for all, name or ip address of debug view. multiple addresses with space
+define('DEBUG_REMOTE', ''); // '' for all, name or ip address of debug view. multiple addresses with space
 
 if(get_urlallowed(DEBUG_REMOTE) == true) define('DEBUG_FUNCTION', 'd'); // 'd' or 'v' or 'm' or none
 
@@ -22,6 +22,7 @@ if(get_urlallowed(DEBUG_REMOTE) == true) define('DEBUG_FUNCTION', 'd'); // 'd' o
 if(DEBUG_FUNCTION != 'DEBUG_FUNCTION' && DEBUG_FUNCTION != 'debug') {
     if(!function_exists(DEBUG_FUNCTION) && DEBUG_FUNCTION != '') {
         define('DEBUG_VIEW','yes');
+//echo "++++++".DEBUG_FUNCTION;
         ini_set('display_errors', true);
         global $debug; $debug[__FILE__][] = "<font color='red'>DEBUG function (".DEBUG_FUNCTION.") doesn't exist</font>";
     }

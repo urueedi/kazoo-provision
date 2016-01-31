@@ -1,7 +1,7 @@
 <?php
 error_reporting(1);
 
-function show_debug()
+function show_debug($log=false,$debug=false,$file=false,$number=false)
 {
     global $mypbx, $debug, $phone_data, $data_credit;
 
@@ -458,6 +458,7 @@ function get_urlallowed($url)
             }
         }
     }
+//echo "-$allowed-";
 return($allowed);
 }
 
@@ -590,6 +591,8 @@ function debug_log($log, $status=false, $file, $offlog=false)
     if($offlog) return(false);
     if(!$status) $status = "none";
     $data = array('custid'=>$data_credit['customersid'],'phoneid'=>$data_credit['phoneid'],'timestamp'=>time(),'status'=>$status,'log'=>$log,'app'=>'provapi','file'=>$file);
+//    error_reporting(-1);
+//    error_log('level=>d,status=>problem,log=>'.$data_credit['customersid'].',phoneid=>'.$data_credit['phoneid'].',timestamp=>'.time().',level=>'. $level .',status=>'.$status.',log=>'.$log.',app=>provapi',0);
 //    loggen('nodes',$data, true); // set offlog
 //    global $debug; $debug[] = array(level=>'d',status=>'problem',file=>__FILE__.":".__LINE__,log=>'custid=>'.$data_credit['customersid'].',phoneid=>'.$data_credit['phoneid'].',timestamp=>'.time().',level=>'. $level .',status=>'.$status.',log=>'.$log.',app=>provapi');
 }
@@ -608,9 +611,8 @@ function get_phone_data($macaddress, $qpass=false, $nonepass=false)
 //    } else {
         $ret = get_all_dbs($host);
         foreach($ret['res'] AS $key => $value) {
-            if(stristr($value, 'account/')) {
+            if(stristr($value, 'account/') && substr($value,-7,1) != '-') { /* filter accountXXX-122015 */
                 $res = get_entry($value , '/_design/devices/_view/listing_by_macaddress');
-    //print_r($res);
                 if($res['err']) {show_debug("Get macaddress_view Error:".$res['err']); continue;}
                 else {
 //                    if(! $ph_dat['devices']) $ph_dat['devices'] = json_decode(json_encode($res['res']->rows), true);
@@ -624,31 +626,37 @@ function get_phone_data($macaddress, $qpass=false, $nonepass=false)
         }
 //        file_put_contents($tmp.'provcache-!!',serialize($provdata));
 //    }
-    //print_r($provdata);
-
+//print_r($provdata);
     foreach($provdata AS $v) {
         if(stristr(str_replace(":","",$macaddress),str_replace(":","",$v->mac))) $prov[] = $v;
         /* array all devices if owner too  */ if($v->owner) $devices[$v->owner] = $v;
     }
+//print_r($devices);
+//print_r($prov);
     foreach($prov AS $k => $val) {
         //echo $prov[$k]->account." , ".$prov[$k]->pvt_account_id."\n";
         $ph_account = get_entry($prov[$k]->account , $prov[$k]->pvt_account_id);
         $ph_dat['account'][$k] = json_decode(json_encode($ph_account['res']), true);
-        //print_r($ph_account);
+//print_r($ph_dat);
         $ph_users[$k] = get_entry($prov[$k]->account, '/_design/users/_view/crossbar_listing');
+//print_r($ph_users);
+        // if users.json is changed in kazoo then use this ------------------------------------------------------------------ change if need users.json details!
+//        $ph_users[$k] = get_entry($prov[$k]->account, '/_design/users/_view/prov_listing');
         /* OBJECT2ARRAY */  $ph_user[$k] = json_decode(json_encode($ph_users[$k]['res']->rows), true);
-        //print_r($ph_user[$k]);
+//        print_r($ph_user[$k]);
     }
+//exit;
     $ph_dat['devices'] = json_decode(json_encode($devices), true);
     //print_r($ph_dat['devices']);
     //print_r($prov);
     // return fase if qpass enabled and wrong ['provision_enabled']
-    //{global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." DEBUG: ".$ph_dat['account'][0]['provision']['provision_enabled']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." != $qpass) && $nonepass");}
-    if(($ph_dat['account'][0]['provision']['provision_enabled'] == false || $ph_dat['account'][0]['provision']['urlpass'] == false || $ph_dat['account'][0]['provision']['urlpass'] != $qpass) && $nonepass == false) {/* fraud? */ sleep(20); return(false);}
+    {global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." DEBUG: ".$ph_dat['account'][0]['provision']['provision_enabled']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." == false || ".$ph_dat['account'][0]['provision']['urlpass']." != $qpass) && $nonepass");}
+    if(($ph_dat['account'][0]['provision']['provision_enabled'] == false || $ph_dat['account'][0]['provision']['urlpass'] == false || $ph_dat['account'][0]['provision']['urlpass'] != $qpass) && $nonepass == false) {/* fraud? */ sleep(15); return(false);}
 
     $ph_dat['prov'] = json_decode(json_encode($prov), true);
     // take template of the first account ## get account and userdata (f_path = /ui/snom/3xx/300)
     $ph_dat['template'] = get_groundsettings(array('0' => 'ui', '1'=>$prov[0]->provision->endpoint_brand, '2'=>$prov[0]->provision->endpoint_family, '3'=>$prov[0]->provision->endpoint_model), 'object');
+//print_r($ph_dat[template]);
     /* OBJECT2ARRAY */  foreach($ph_user AS $account => $users) { foreach($users AS $k => $v) { $ph_dat['users'][$account][$v['id']] = $v;} }
     {global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." Get Phone & Userdata from bigCouch");}
 
@@ -899,25 +907,27 @@ return($host);
 /* f_path = array(2=>ui, 3=>snom, 4=>3xx, 5=>300)
     retype = object or ''
 */
-
-function get_groundsettings($f_path, $retype=false)
+function get_groundsettings($paths, $retype=false)
 {
-    $pathse = explode("/",$f_path);
-    $a = array_keys($pathse, "prov");
-    $ind = 0;
-    foreach($f_path AS $p) {
-        if($p != 'prov' && $last != true) continue;
-        if($p == 'prov' && $last != true) {$last = true; continue;}
-        $last = true;
-        $paths[$ind] = $p;
-        $ind++;
+    foreach($paths AS $pa) {
+        if($pa != 'phones' && $ia == '') continue;
+        if($pa == 'phones') {$ia = 0;}
+        $poths[$ia] = $pa;
+        $ia++;
     }
-
-    if(! is_array($paths)) $paths = $f_path;
-    switch($paths[0])
-    {
-        case 'ui':
-            $res = get_entry('brand_provisioner' , urlencode(implode($paths,"/")));
+    if($poths[0] == 'phones') {
+            $res = get_entry('brand_provisioner' , '/_design/provisioner/_view/listings_tree');
+            echo json_encode(($res['res']->rows['0']->value));
+            $noui = true;
+    }
+    foreach($paths AS $p) {
+        if($p != 'ui' && $i == '') continue;
+        if($p == 'ui') {$i = 0;}
+        $pths[$i] = $p;
+        $i++;
+    }
+    if($pths[0] == 'ui' && $noui == false) {
+            $res = get_entry('brand_provisioner' , urlencode(implode($pths,"/")));
             $c_keys = $res['res']->usr_keys->setable_phone_keys + $res['res']->usr_keys->setable_module_keys;
             switch($retype) {
                 case '':
@@ -927,12 +937,26 @@ function get_groundsettings($f_path, $retype=false)
                     return($res['res']);
                 break;
             }
-        break;
-        case 'phones':
-            $res = get_entry('brand_provisioner' , '/_design/provisioner/_view/listings_tree');
-            echo json_encode(($res['res']->rows['0']->value));
-        break;
     }
+}
+
+/* do db->file (db=system_config, dir=./DB_BACKUP/) */
+function tree_backup($db_a, $dir, $match=false)
+{
+    // get_all_docs
+    $dbs = get_entry($db_a , '/_all_docs');
+    $dbs = json_decode(json_encode($dbs['res']->rows), true);
+    @mkdir($dir, 0777, true);
+
+    foreach($dbs AS $k => $db){
+        /* backup only if match */
+        if($match == true && $match != $db['id']) continue;
+        $data = get_entry($db_a , "/".urlencode($db['id']));
+        unset($data['res']->_rev);
+        @mkdir($dir.urlencode($db['id']), 0777, true);
+        file_put_contents($dir.urlencode($db['id']).'/'.urlencode($db['id']).'.json',json_encode($data['res']));
+    }
+    return("backup db->file finished\n");
 }
 
 /* do db->file (db=system_config, dir=./DB_BACKUP/) */
@@ -952,26 +976,26 @@ function backup($db_a, $dir, $match=false)
     return("backup db->file finished\n");
 }
 
-/* do file->db (db=system_config, dir=./DB_BACKUP/) type=update or restore[none]*/
-function restore($db_a, $dir, $type=false)
+function restore($db_a, $dir)
 {
-    global $sag;
-
+    global $sag, $host, $HTTP, $dbport;
     if ($handle = opendir($dir)) {
-        if($type == false) { try {$sag->createDatabase($db_a);} catch(Exception $e) {echo $e->getMessage()."DB:".$db_a."\n";}}
+        try {$sag->createDatabase($db_a);} catch(Exception $e) {echo $e->getMessage()."DB:".$db_a."\n";}
         $sag->setDatabase($db_a);
         while (false !== ($entry = readdir($handle))) {
             if(".." == $entry||"." == $entry) continue;
             $obj = json_decode(file_get_contents($dir.$entry));
-            if($type == 'update') {
-                $now = get_entry($db_a , "/".$entry);
-                $obj->_rev = $now['res']->_rev;
+            $now = json_decode(file_get_contents($HTTP.$host.":".$dbport."/".$db_a."/".$entry));
+            if($now->_id == $obj->_id) {
+                $obj->_rev = $now->_rev;
                 $obj->views++;
+                echo "update-".$obj->endpoint_brand."|".$obj->endpoint_model.": ";
+            } else {
+                unset($obj->_rev); echo "create->".$obj->endpoint_brand."|".$obj->endpoint_model.": ";
             }
-            else unset($obj->_rev);
             try {
-                if(preg_match("/^_/",urldecode($entry))) echo $sag->put(urldecode($entry), $obj)->body->ok;
-                else echo $sag->put($entry, $obj)->body->ok;
+                if(preg_match("/^_/",urldecode($entry))) echo $sag->put(urldecode($entry), $obj)->body->ok."\n";
+                else echo $sag->put($entry, $obj)->body->ok."\n";
             }
             catch(Exception $e) {
                 echo $e->getMessage()."DB:".$db_a." file:".urlencode($entry)."\n";
@@ -1024,5 +1048,6 @@ function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
 
     return('uploaded');
 }
+
 
 ?>

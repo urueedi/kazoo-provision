@@ -8,34 +8,52 @@ global $HTTP;
 //print_r($phone_data);
     $generator = $phone_data['template']->pvt_generator;
     $VM_EXT = "*98";
-    $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/snom/";
+    $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/provisioner/prov/snom/";
     $WEB_SERVER = $HTTP.$_SERVER['HTTP_HOST'];
     $PROV_SERVER = $_SERVER['HTTP_HOST'];
-    $NTP_SERVER = $_SERVER['HTTP_HOST'];
+    $NTP_SERVER = 'ntp.snom.com';
     $PROXY_SERVER = $phone_data['account'][$account]['realm'].':5060';
     $REGISTRAR_SERVER = $phone_data['account'][$account]['realm'].':5060';
-    if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 60;
+    if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 360;
 
     unset($adda); unset($addb);
+    ($phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['language']) ? $language = $phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['language'] : $language = $phone_data['account'][$account]['language'];
     ($phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['timezone']) ? $timezone = $phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['timezone'] : $timezone = $phone_data['account'][$account]['timezone'];
 
-    switch($timezon) {
-       case 'Europe/London':
-       case 'America/Boston':
-       case 'America/Los_Angeles':
-       case 'America/New_York':
-                    $lang_idx="English"; $lang_code="en"; break;
-       case 'Europe/Zurich':
-       case 'Europe/Berlin':
-       case 'Europe/Bern':
-       case 'Europe/Zurich':
-                    $lang_idx="Deutsch"; $lang_code="de"; break;
-       case 'Europe/Paris':
-       case 'Europe/Geneva':
-                    $lang_idx="France"; $lang_code="fr";  break;
-       case 'Europe/Rom':
-             $lang_idx="Italian"; $lang_code="it"; break;
-       default; $lang_idx="Deutsch"; $lang_code="de";
+    switch($timezone) {
+           case 'Europe/London':
+                        $lang_idx="English"; $lang_code="en"; $tone = "GBR"; break;
+           case 'America/Boston':
+           case 'America/Los_Angeles':
+           case 'America/New_York':
+                        $lang_idx="English"; $lang_code="en"; $tone = "USA"; break;
+           case 'Europe/Copenhagen':
+                        $lang_idx="Dansk"; $lang_code="dk"; $tone = "DNK"; break;
+           case 'Europe/Berlin':
+                        $lang_idx="Deutsch"; $lang_code="de"; $tone = "GER"; break;
+           case 'Europe/Bern':
+           case 'Europe/Zurich':
+                        $lang_idx="Deutsch"; $lang_code="de"; $tone = "SWI"; break;
+           case 'Europe/Paris':
+                        $lang_idx="France"; $lang_code="fr"; $tone = "FRA";  break;
+           case 'Europe/Geneva':
+                        $lang_idx="France"; $lang_code="fr"; $tone = "SWI";  break;
+           case 'Europe/Rom':
+                        $lang_idx="Italian"; $lang_code="it"; $tone = "ITA"; break;
+           default; $lang_idx="English"; $lang_code="en"; $tone = "USA";
+    }
+    switch($language) {
+           case 'en-UK':
+           case 'en-US':
+                        $lang_idx="English"; $lang_code="en"; break;
+           case 'dk-DK':
+                        $lang_idx="Dansk"; $lang_code="dk"; break;
+           case 'de-DE':
+                        $lang_idx="Deutsch"; $lang_code="de"; break;
+           case 'fr-FR':
+                        $lang_idx="France"; $lang_code="fr";  break;
+           case 'it-IT':
+                 $lang_idx="Italian"; $lang_code="it"; break;
     }
 
     // code ersetzten und per ip zeitzone definieren fuer telefon config
@@ -43,6 +61,7 @@ global $HTTP;
      switch($timezone) {
        case 'au': $timezoneidv9="355"; $tonesv9="13"; break;
        case 'be': $timezoneidv9="355"; $tonesv9="3"; break;
+       case 'Europe/Copenhagen':
        case 'dk': $timezoneidv9="355"; $tonesv9="3"; break;
        case 'Europe/Berlin':
             $timezoneidv9="355"; $tonesv9="3"; break;
@@ -67,12 +86,11 @@ global $HTTP;
     }
 
     if($phone_data['template']->endpoint_family == 'm3x') {
-        switch($timezone) {
+        switch($lang_code) {
            case 'au': $countryid="0x13"; break;
            case 'be': $countryid="0x0E"; break;
            case 'dk': $countryid="9"; break;
-           case 'Europe/Zurich':
-                     $countryid="0"; break;
+           case 'de': $countryid="0"; break;
            case 'es': $countryid="8"; break;
            case 'fr': $countryid="2"; break;
            case 'ir': $countryid="6"; break;
@@ -113,7 +131,7 @@ global $HTTP;
         '{{STATUS}}',
         '{{PROVPASS}}',
         '{{LANG_PREFIX}}',
-        '{{ZONE_IDX}}',
+        '{{TONES_IDX}}',
         '{{TIMEZONE_PREFIX}}',
         '{{TIMEZONE_ID}}',
         '{{MAC}}',
@@ -127,10 +145,12 @@ global $HTTP;
         '{{PROV_SERVER_URL_WEBLANG_EN_XML}}',
         '{{PROV_SERVER_URL_WEBLANG_FR_XML}}',
         '{{PROV_SERVER_URL_WEBLANG_IT_XML}}',
+        '{{PROV_SERVER_URL_WEBLANG_DA_XML}}',
         '{{PROV_SERVER_URL_GUILANG_DE_XML}}',
         '{{PROV_SERVER_URL_GUILANG_EN_XML}}',
         '{{PROV_SERVER_URL_GUILANG_FR_XML}}',
         '{{PROV_SERVER_URL_GUILANG_IT_XML}}',
+        '{{PROV_SERVER_URL_GUILANG_DA_XML}}',
         '{{PROV_PHONE_USER}}',
         '{{PROV_PHONE_PASS}}',
         '{{SRTP}}',
@@ -146,31 +166,31 @@ global $HTTP;
         '{{COUNTRYID_M3}}',
         '{{PROV_SERVER}}',
         '{{SUBSCRIPT_REREGISTER}}',
+        '{{DIALTONE_SETTING}}',
         );
     // create account part
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
     $account_start = $phone_data['template']->pvt_configs->account_counter;
+//print_r( $phone_data['template']);
     $account_counter = 0;
     if($phone_data['template']->endpoint_family != 'm3x')
     $output .= '<?xml version="1.0" encoding="UTF-8"?>'."\n<settings>\n".$adda;
 //    if(is_array($phone_data['number'])) {
         $multiaccount = true;
+//print_r($phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]);
         foreach ($phone_data['prov'] as $k => $value) {
           if(! is_numeric($k)) continue;
           $read = $generator($phone_data['template']->cfg_account, 'settings');
           $srtp = "off";
 //          if($value->media->encryption->enforce_security->methods[0]) { $PROXY_SERVER = $phone_data['voipserver'].":".($phone_data['port']+1).";transport=tls"; $value->media->encryption->enforce_security->methods[0] = "on"; }
-//print_r($phone_data['users']);
-//exit;
-//print_r($phone_data['users'][$account_counter][$value['owner']]['key']);
 //print_r($value);
           if($read) {
                 $replace = array(
                 $account_start,
                 $value['sip']['username'],                                                 /*   */
                 $value['sip']['password'],                                                 /*   */
-                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['caller_id']['internal']['name'],
-                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['caller_id']['internal']['number']." ".$phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['caller_id']['internal']['name'],
+                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
+                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
                 $phone_data['account'][$account_counter]['realm'],                               /*   */
                 $phone_data['account'][$account_counter]['realm'],                               /*   */
                 $WEB_SERVER,                                                               /*   */
@@ -194,33 +214,36 @@ global $HTTP;
                 $value['macaddress'],                                                      /*   */
                 $value['callername'],                                                      /*   */
                 $NTP_SERVER,                                                               /*   */
-                $phone_data['users'][$account_counter][$value['owner']]['key'],            /*   */
+                $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id'],    /* internal number  */
                 'accessprovpass',                                                          /*   */
-                '0',                                                                   /* refresh config from server in seconds  */
+                '0',                                                                       /* refresh config from server in seconds  */
                 $Phone_Reregister_Prov,                                                    /*   */
-                $XML_SERVER."lang/gui_lang_DE",                                            /*   */
-                $XML_SERVER."lang/gui_lang_EN",                                            /*   */
-                $XML_SERVER."lang/gui_lang_FR",                                            /*   */
-                $XML_SERVER."lang/gui_lang_IT",                                            /*   */
-                $XML_SERVER."lang/web_lang_DE",                                            /*   */
-                $XML_SERVER."lang/web_lang_EN",                                            /*   */
-                $XML_SERVER."lang/web_lang_FR",                                            /*   */
-                $XML_SERVER."lang/web_lang_IT",                                            /*   */
+                $XML_SERVER."lang/gui_lang_DE.xml",                                            /*   */
+                $XML_SERVER."lang/gui_lang_EN.xml",                                            /*   */
+                $XML_SERVER."lang/gui_lang_FR.xml",                                            /*   */
+                $XML_SERVER."lang/gui_lang_IT.xml",                                            /*   */
+                $XML_SERVER."lang/gui_lang_DA.xml",                                            /*   */
+                $XML_SERVER."lang/web_lang_DE.xml",                                            /*   */
+                $XML_SERVER."lang/web_lang_EN.xml",                                            /*   */
+                $XML_SERVER."lang/web_lang_FR.xml",                                            /*   */
+                $XML_SERVER."lang/web_lang_IT.xml",                                            /*   */
+                $XML_SERVER."lang/web_lang_DA.xml",                                            /*   */
                 $phone_data['account'][$account]['provision']['provisionuser'],            /*   */
                 $phone_data['account'][$account]['provision']['provisionpass'],            /*   */
                 $srtp,                                                                     /* srtp (on/off) */
                 $phone_data['whitelabel']['provision']['advertisement_url'],               /* advertisement http path */
                 $XML_SERVER."ps.php",                                                      /* Presence button action path  */
                 $XML_SERVER."dnd.php",                                                     /* DND button action path  */
-                '117 118 144',                                                             /* emergency numbers */
+                '112 911',                                                             /* emergency numbers */
                 $phone_data['whitelabel']['provision']['server_url_certificate'],          /* certification path */
-                $WEB_SERVER."",                                                            /* provisions server path */
+                $WEB_SERVER."/provisioner/prov/snom/settings.php?mac={mac}&pass=".$phone_data['account'][$account_counter]['provision']['urlpass'],                                                            /* provisions server path */
                 '0',                                                                         /* refresh timer for settings (only at startup!! because of wrong settings) */
                 $account,                                                                  /* Handset account number */
                 '5060',                                                                    /* Port of Enduser phone */
                 $countryid,                                                                /* Snom M3 Country code */
                 $PROV_SERVER,                                                              /* prov server: eg. prov.allip.ovh */
                 '600',                                                                     /* key reregister after 600s */
+                $tone,                                                                     /* dialtone settings SWI GRB .. */
                 );
             $output .= preg_replace($search, $replace, $read);
           }
@@ -300,11 +323,13 @@ function json2xml($obj_datas, $type=false, $account=false)
 */
 function write_xml_keys($kind, $expm, $key, $obj_datas, $account)
 {
+//print_r($obj_datas['users'][0][$kind['value']]['value']);
+//print_r($obj_datas['users'][$account][$kind['value']]['value']);
 
     switch($kind['type']) {
         case 'presence':
-            $ret = '<fkey idx="'.$key.'" context="active" label="'.$obj_datas['users'][$account][$kind['value']]['value']['caller_id']['internal']['name'].
-            '" perm="RW">dest &lt;sip:'.$obj_datas['users'][$account][$kind['value']]['value']['presence_id'].'@'.$obj_datas['account'][$account]['realm'].';user=phone&gt;|*8</fkey>'."\n";
+            $ret = '<fkey idx="'.$key.'" context="active" label="'.$obj_datas['users'][0][$kind['value']]['value']['last_name'].
+            '" perm="RW">dest &lt;sip:'.$obj_datas['users'][0][$kind['value']]['value']['presence_id'].'@'.$obj_datas['account'][$account]['realm'].';user=phone&gt;|*8</fkey>'."\n";
         break;
         case 'speed_dial':
             $ret = '<fkey idx="'.$key.'" context="active" label="'._("Speeddial").'" perm="RW">dest '.$kind['value'].'</fkey>'."\n";
@@ -325,25 +350,25 @@ function check_snomphone_type($agent) {
 global $debug, $mac;
 
     $phone_type = "snom";
-    if (stristr($agent,"snom300")){
+    if (strpos($agent,"snom300")){
       $phone_type = "snom300";
-    } else if (stristr($agent,"snom320")){
+    } else if (strpos($agent,"snom320")){
       $phone_type = "snom320";
-    } else if (stristr($agent,"snom360")){
+    } else if (strpos($agent,"snom360")){
       $phone_type = "snom360";
-    } else if (stristr($agent,"snom370")){
+    } else if (strpos($agent,"snom370")){
       $phone_type = "snom370";
-    } else if (stristr($agent,"snom720")){
+    } else if (strpos($agent,"snom720")){
       $phone_type = "snom720";
-    } else if (stristr($agent,"snom760")){
+    } else if (strpos($agent,"snom760")){
       $phone_type = "snom760";
-    } else if (stristr($agent,"snom820")){
+    } else if (strpos($agent,"snom820")){
       $phone_type = "snom820";
-    } else if (stristr($agent,"snom870")){
+    } else if (strpos($agent,"snom870")){
       $phone_type = "snom870";
-    } else if (stristr($agent,"snom-m3")){
+    } else if (strpos($agent,"snom-m3")){
       $phone_type = "snomm3";
-    } else if (stristr($agent," m9 ")){
+    } else if (strpos($agent," m9 ")){
       $phone_type = "snomm9";
     }
     global $debug; $debug[] = array(level=>'v',status=>'info',file=>__FILE__.":".__LINE__,log=>"$agent, $mac, $phone_type");
@@ -354,11 +379,13 @@ function check_snom_firmware($agent, $phone_type) {
 
 global $debug, $mac;
 
+
+    error_log(__FILE__.":".__LINE__." $agent, $mac, $phone_type");
     global $debug; $debug[] = array(level=>'v',status=>'info',file=>__FILE__.":".__LINE__,log=>" $agent, $mac, $phone_type");
     switch ($phone_type) {
         case "snom300":
-        if (stristr($agent,"8.7.5.13") == false) {
-          $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+        if (strpos($agent,"8.7.5.13") == false) {
+          $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
           echo("<html lang=\"en\">\n");
           echo("<pre>\n");
           echo("update_policy\$: auto_update\n");
@@ -375,8 +402,8 @@ global $debug, $mac;
         case "snom360":
         case "snom370":
 
-        if (stristr($agent,"8.7.3.25") == false) {
-          $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+        if (strpos($agent,"8.7.3.25") == false) {
+          $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
           echo("<html lang=\"en\">\n");
           echo("<pre>\n");
           echo("update_policy\$: auto_update\n");
@@ -391,8 +418,8 @@ global $debug, $mac;
 
     case "snom720":
 
-    if (stristr($agent,"8.7.5.13") == false) {
-              $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+    if (strpos($agent,"8.7.5.13") == false) {
+              $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
       echo("<html lang=\"en\">\n");
               echo("<pre>\n");
       echo("update_policy\$: auto_update\n");
@@ -407,8 +434,8 @@ global $debug, $mac;
 
     case "snom760":
 
-    if (stristr($agent,"8.7.5.13") == false) {
-              $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+    if (strpos($agent,"8.7.5.13") == false) {
+              $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
       echo("<html lang=\"en\">\n");
               echo("<pre>\n");
       echo("update_policy\$: auto_update\n");
@@ -423,8 +450,8 @@ global $debug, $mac;
 
     case "snom820":
 
-    if (stristr($agent,"8.7.3.25") == false) {
-              $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+    if (strpos($agent,"8.7.3.25") == false) {
+              $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
       echo("<html lang=\"en\">\n");
               echo("<pre>\n");
       echo("update_policy\$: auto_update\n");
@@ -439,8 +466,8 @@ global $debug, $mac;
 
     case "snom870":
 
-    if (stristr($agent,"8.7.3.25") == false) {
-              $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+    if (strpos($agent,"8.7.3.25") == false) {
+              $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
       echo("<html lang=\"en\">\n");
               echo("<pre>\n");
       echo("update_policy\$: auto_update\n");
@@ -455,8 +482,8 @@ global $debug, $mac;
 
     case "snomMP":
 
-    if (stristr($agent,"8.7.3.25") == false) {
-              $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/firmware.php?mac=".$mac;
+    if (strpos($agent,"8.7.3.25") == false) {
+              $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/firmware.php?mac=".$mac;
       echo("<html lang=\"en\">\n");
               echo("<pre>\n");
       echo("update_policy\$: auto_update\n");
@@ -472,8 +499,8 @@ global $debug, $mac;
     // checkaddphone for needed firmwareupdate
     case "snomm9":
 
-    if (stristr($agent,"9.6.2-a") == false) {
-              $firmware_status="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/m9-9.6.2-a.bin";
+    if (strpos($agent,"9.6.2-a") == false) {
+              $firmware_status="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/m9-9.6.2-a.bin";
       echo('<?xml version="1.0" encoding="utf-8"?>'."\n");
       echo("<firmware-settings>\n");
       echo("<firmware>".$firmware_status."</firmware>\n");
@@ -483,7 +510,7 @@ global $debug, $mac;
     }
     break;
     }
-    return $phone_type;
+//    return $phone_type;
 }
 
 function snom_decode_HTTP_header()
@@ -493,11 +520,11 @@ function snom_decode_HTTP_header()
   else
     $user_agent=$_SERVER["HTTP_USER_AGENT"];
 
-  if(stristr($user_agent,"snom-m3")) {
+  if(strpos($user_agent,"snom-m3")) {
     $value=preg_split("/ /",$user_agent);
     $u_agent=preg_split("/-/",$value[0]);
     $value[0] = $u_agent[0].$u_agent[1];
-  } elseif(stristr($user_agent,"snom")) {
+  } elseif(strpos($user_agent,"snom")) {
     $value=preg_split("/ /",$user_agent);
     $u_agent=preg_split("/-/",$value[2]);
     $value[0] = $u_agent[0];
@@ -515,9 +542,9 @@ return($value);
 function generate_firmware_settings($type, $appl, $rtfs, $lnx, $v7, $dir) {
 
   if (!empty($dir)) {
-    $firmware_url="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/".$dir."/".$type."-";
+    $firmware_url="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/".$dir."/".$type."-";
   } else {
-    $firmware_url="http://".$_SERVER['HTTP_HOST']."/prov/snom/firmware/".$type."-";
+    $firmware_url="http://".$_SERVER['HTTP_HOST']."/provisioner/prov/snom/firmware/".$type."-";
   }
 
   if (!empty($v7)) {

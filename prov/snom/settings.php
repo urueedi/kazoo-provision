@@ -43,7 +43,7 @@ else
       global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '."rem_ip=$remote_ip, ext=$extension, pass=$password, mac=$mac");
 }
 
-$mac = strtoupper($mac);
+$mac = strtoupper(trim($mac));
 $value = snom_decode_HTTP_header();
 
 if($_REQUEST['user_agent'] != false) $agent = $_REQUEST['user_agent'];
@@ -84,17 +84,16 @@ switch(strtolower($phone_type)) {
     if(preg_match("/^00041/i",$mac) && filemtime("/tmp/phone-".strtoupper($mac)) < (time()-6) ) {
         if(stristr("snomm9r",$phone_type)) {$phone_type = 'snomm9';}
             touch("/tmp/phone-".strtoupper($mac));
-
             $host = get_dbhost($hosts);
-            $sag = new Sag($host);
+            $sag = new Sag($host, $dbport);
             $myip4 = get_ip(4);
-
             $phone_data = get_phone_data($mac, $qpass);
             $phone_data['device'] = strtolower($phone_type);
             // Upgrade Firmware if customers.firmwareupgrade is on
-            if(DEBUG_FUNCTION != 'all' && DEBUG_FUNCTION != 'snom' && $phone_data['firmwareupdate'] == '1') check_snom_firmware($agent, $phone_type);
-            else {global $debug; $debug[] = array(level=>'d',status=>'problem',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '."firmwareupdate is not supported from phone firmwareupdate=".$phone_data['firmwareupdate']);}
-
+//print_r($phone_data['account']);exit;
+//echo "$agent, $phone_type";
+            if($phone_data['account'][0]['provision']['firmware_enabled'] == '1') check_snom_firmware($agent, $phone_type);
+            else {global $debug; $debug[] = array(level=>'d',status=>'problem',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '."firmwareupdate is not supported from account:".$phone_data['account'][0]['provision']['firmware_enabled']);}
             if(DEBUG_FUNCTION == 'all' || DEBUG_FUNCTION == 'snom' || $phone_data['prov'][0]['mac'] == true) {
                 get_provisioning($phone_data);
                 global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." MAC=$mac, ".$phone_data[$i]['device'].", mac_count(".($i).")");

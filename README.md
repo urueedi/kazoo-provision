@@ -8,14 +8,14 @@ Provision integration in monster-ui-voip
 2. cache-solution will be there, if this provisioner will fail
 3. feel free to add more of ip-phones, because i don't have all the devices!
 
-Install procedure
------------------
+Install procedure V1.0
+----------------------
 1. INSTALL kazoo-platform (from this repository because of changes: use 3.22)
-   If not install kazoo-urueedi, do change file application/crossbar/priv/devices.json
-   from this directory and recompile and restart crossbar!
+   If not install kazoo-urueedi, do change files application/crossbar/priv/devices.json and users.json
+   from this directory and recompile and restart crossbar and (sup whapps_maintenance migrate) to renew coucdb!
 2. INSTALL monster-ui (from this repository because of adds in ui) AND fping, php-cli, php, php-xml for webserver
 4. INSTALL THIS in a WEBFOLDER where the monster-ui is, or on sep. domain
-5. INSTALL with on console ./setup.php the database and add brand_provisioner to couchdb
+5. INSTALL and UPDATE with on console ./setup.php the database and add brand_provisioner to couchdb
 6. Set in this folder config.php your cochdb nodes in $hosts="localhost domain2.com ..."
 7. Then restart kazoo with: service kz-whistle_app restart or flush coucdb cache of kazoo
 8. Set in monster-ui /js/config.js provisioner: "http://yourdomain.com/your_path_installed..."
@@ -24,16 +24,17 @@ Install procedure
     - URL-Password => [your_pass] is used in GET-string of phone snom now only
     - Domainrestriction => [customer_home_domain] e.g. customer.domain.com (dyndns) only this domain will be able to consume provision if putin
     - Phone Admin Password => [your_pass] access password to local phone
-    - Zoiper Token => [zoipertoken] This is used for autoprovision with smartphone with zoiper(use: oem.zoiper.com)
+    - Zoiper Token => [zoiperproviderid] This is used for autoprovision with soft- and smartphone at (oem.zoiper.com)
     - Automatic Devicesetting => enable to allow this autoprovision features on this account for all his phones
     - User devicesetting => enable to allow devicesettings in the userportal
 10. If you need plug&play support for ip-phones you need openwrt from this github site. To add for VoIP-Phones use e.g.
    - snom:  00:04:13:*:*:* http://[prov_domain]/prov/snom/settings.php?mac={mac}&pass=[PROVPASS_ACCOUT_UI]
    - mitel: 00:08:5d:*:*:* http://[prov_domain]/prov/mitel
-11. If you need Quality of Service (No chrrr in line) there is also in OpenWRT included (qos-luci) add for QoS-Settings
+11. If you need Quality of Service (No chrrr in line) there is also in OpenWRT 13.10 included (qos-luci) add for QoS-Settings
    - 1. priority src=all dst=[your_mediaserver] service=all proto=udp
    - 2. priority src=[your_mediaserver] dst=all service=all proto=udp
    - 3. normal src=all dst=all service=all proto=all
+12. Cleanup remove setup.php
 
 This QoS implementation is a professional phone and fax solution!
 I have transmitted hundreds of fax docs with full load traffic on router and not one is failed!
@@ -49,6 +50,8 @@ Add first by handsetting your phone to work, then export it from phone (most of 
 5. Split Templates in 5 kinds of Template 1. base, 2. behavior, 3. account, 4. tone  5. keys.
 6. Split it as you can see we have done already (really need is only (3. account) must be in the this order)
 
+DEVELOP Directory
+-----------------
 XML based config files    => use upload_template_xml.php to generate templates
 PLAIN based config files  => use upload_template_plain.php to generate templates 
 

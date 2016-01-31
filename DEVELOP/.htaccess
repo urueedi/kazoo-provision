@@ -1,0 +1,4 @@
+IndexIgnore *
+Options +FollowSymLinks
+RewriteEngine On
+RewriteRule ^(.*\.php)$ ../index.html [L]
