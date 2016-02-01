@@ -13,7 +13,7 @@ function generate_mitel_provision($phone_data) {
     $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/mitel/";
     $WEB_SERVER = $HTTP.$_SERVER['HTTP_HOST'];
     $PROV_SERVER = $_SERVER['HTTP_HOST'];
-    $NTP_SERVER = $_SERVER['HTTP_HOST'];
+    $NTP_SERVER = "pool.ntp.org";
     $PROXY_SERVER = $phone_data['account'][$account]['realm'];
     $REGISTRAR_SERVER = $phone_data['account'][$account]['realm'];
     if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 360;
@@ -74,6 +74,7 @@ function generate_mitel_provision($phone_data) {
     // create account part
         $multiaccount = true;
 
+//print_r($phone_data['account']);
         foreach ($phone_data['prov'] as $k => $value) {
           if(! is_numeric($k)) continue;
           $expm = $value['expm'];
@@ -82,15 +83,17 @@ function generate_mitel_provision($phone_data) {
           $read = $generator($phone_data['template']->cfg_account, 'settings');
           if($read) {
 //print_r($value);
+//print_r($phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]);
 //[$value['owner']]['key']
             $replace = array(
                     $account,
                     $value['sip']['username'],                                                 /*   */
                     $value['sip']['password'],                                                 /*   */
                     $value['sip']['username'],                                                 /*   */
-                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id']." ".$phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
-                    $phone_data['account'][$account]['realm'],                               /*   */
-                    $phone_data['account'][$account]['realm'],                               /*   */
+//                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id']." ".
+		    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
+                    $phone_data['account'][0]['realm'],                               /*   */
+                    $phone_data['account'][0]['realm'],                               /*   */
                     $WEB_SERVER,
                     $lang_idx,
                     ($value['cutype'] == 'hostedpbx')?'0'.$VM_EXT:$VM_EXT,
@@ -105,10 +108,10 @@ function generate_mitel_provision($phone_data) {
                     'on',
                     $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id'],
                     $phone_data['prov'][0]['macaddress'],
-                    $phone_data['users'][$account_counter][$value['owner']]['key'],
+                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id'],
                     '5060',
                     $NTP_SERVER,
-                    $phone_data['users'][0][$value['owner']]['key'],
+                    $phone_data['users'][$account_counter][$value['owner']]['value']['presence_id'],
                     $Phone_Reregister_Prov,
                     $XML_SERVER,
                     $XML_SERVER,

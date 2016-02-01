@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # set max downloadspeed 
-RATE=2500k
+RATE=12500k
 RELEASE="8.7.5"
 
 if [ "$1" = "quiet" ] ; then
@@ -16,7 +16,7 @@ fi
 
 echo "Download &amp; Unpack Languages Snom...<br>"
 
-packages="DE EN FR IT"
+packages="DE EN FR IT DA"
 from="http://fox.snom.com/config/snomlang-$RELEASE"
 to="./"
 	    

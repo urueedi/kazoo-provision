@@ -3,7 +3,7 @@
 # Copyright (C) 2009 FreePBX-Swiss Urs Rueedi
 
 # set max downloadspeed
-RATE=2500k
+RATE=12500k
 
 if [ "$1" = "quiet" ] ; then
     CMD="wget --limit-rate=$RATE -N -q -c -T 5"
@@ -72,7 +72,7 @@ if [ -d /${to} ] ; then
 	else
 	    endfix=".bin"
 	fi
-        ln /var/www/pbx/htdocs/prov/snom/firmware/$file $to/$tftpname$endfix
+        ln ./$file $to/$tftpname$endfix
         echo -n "$tftpname " 
     fi
     done

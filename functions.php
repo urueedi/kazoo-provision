@@ -138,6 +138,7 @@ function get_provisioning($phone_data)
         case 'snomm9r':
             $str = generate_snom_provision($phone_data); 
             global $debug; $debug[] = array(level=>'m',status=>'info',file=>__FILE__.":".__LINE__,log=>"Phone ".$phone_data['device']." prov:".$phone_data['voipserver']." port:".$phone_data['port']." len:".strlen($str));
+            header('Content-Type: text/xml; charset=UTF-8');
             echo $str;
         break;
         case 'snomm3':
@@ -156,6 +157,7 @@ function get_provisioning($phone_data)
         case 'aastra6739i':
             $str = generate_mitel_provision($phone_data);
             global $debug; $debug[] = array(level=>'m',status=>'info',file=>__FILE__.":".__LINE__,log=>"Phone ".$phone_data['device']." prov:".$phone_data['voipserver']." port:".$phone_data['port']." len:".strlen($str));
+            header('Content-Type: text/html; charset=UTF-8');
             echo $str;
         break;
     }
@@ -917,6 +919,7 @@ function get_groundsettings($paths, $retype=false)
     }
     if($poths[0] == 'phones') {
             $res = get_entry('brand_provisioner' , '/_design/provisioner/_view/listings_tree');
+            header('Content-type: application/json');
             echo json_encode(($res['res']->rows['0']->value));
             $noui = true;
     }
@@ -931,6 +934,7 @@ function get_groundsettings($paths, $retype=false)
             $c_keys = $res['res']->usr_keys->setable_phone_keys + $res['res']->usr_keys->setable_module_keys;
             switch($retype) {
                 case '':
+                    header('Content-type: application/json');
                     echo '{"success": true,"data": {"template": {"feature_keys": {"iterate": "'. $c_keys .'"}, "lines": { "iterate": 0, "text": "Lines" } } } }';
                 break;
                 case 'object':

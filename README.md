@@ -4,8 +4,14 @@ Provision integration in monster-ui-voip
 ![screenshot1](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot1.png)
 ![screenshot2](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot2.png)
 
+Installation and support for additionals
+----------------------------------------
+Open Phone Net AG infos@openent.ch Switzerland
+
+Provisioner implement structure
+-------------------------------
 1. network settings will be local from router and never be part of this provision-solution.
-2. cache-solution will be there, if this provisioner will fail
+2. there no cache-solution, if this provisioner will fail
 3. feel free to add more of ip-phones, because i don't have all the devices!
 
 Install procedure V1.0
