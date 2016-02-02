@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+        RewriteEngine On
+
+	# Aastra macfile
+        RewriteRule ^([0-9A-Fa-f]*)\.(cfg)$       settings.php?file=mac&mac=$1&fmt=$2&pass=$3 [QSA,L]
+        RewriteRule ^local.(cfg)$                settings.php?file=local.cfg&mac=$1&fmt=$2&pass=$3 [QSA,L]
+
+        # just make sure that /var/www/.asterisk_history is not accessible
+        RewriteRule ^\.asterisk - [F,L]
+</IfModule>
+addDefaultCharset utf-8
+

@@ -4,10 +4,8 @@
 require_once('../config.php');
 
 $host = get_dbhost($hosts);
-$sag = new Sag($host);
+$sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
-
-
 
 
 /* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
@@ -15,8 +13,8 @@ $prov['endpoint_brand'] = 'snom';
 $prov['endpoint_family'] = '3xx';
 $prov['endpoint_model'] = '300';
 /* this is programable keys on phone */
-$prov['usr_keys']['setable_phone_keys'] = '0';
-$prov['usr_keys']['setable_phone_key_counter'] = '0';
+$prov['usr_keys']['setable_phone_keys'] = '6';
+$prov['usr_keys']['setable_phone_key_counter'] = '1';
 $prov['usr_keys']['setable_phone_key_value'] = 'fkey';
 /* this is extensions module keys */
 $prov['usr_keys']['setable_module_keys'] = '0';
@@ -31,10 +29,10 @@ $in = /* putin account settings from phone  !!!!!!!*/ '
 <user_server_type idx="{ACCOUNT}" perm="RW">asterisk</user_server_type>
 <user_mailbox idx="{ACCOUNT}" perm="RW">{VMSD}</user_mailbox>
 <user_symmetrical_rtp idx="{ACCOUNT}" perm="R">off</user_symmetrical_rtp>
-<user_idle_text idx="{ACCOUNT}" perm="RW">{INTERNAL} {SIPCALLERID}</user_idle_text>
+<user_idle_text idx="{ACCOUNT}" perm="RW">{INTERNAL}{SIPCALLERID}</user_idle_text>
 <user_outbound idx="{ACCOUNT}" perm="RW">{PROXY_SERVER}</user_outbound>
 <record_missed_calls idx="{ACCOUNT}" perm="RW">on</record_missed_calls>
-<user_realname idx="{ACCOUNT}" perm="RW">{INTERNAL} {SIPCALLERID}</user_realname>
+<user_realname idx="{ACCOUNT}" perm="RW">{INTERNAL}{SIPCALLERID}</user_realname>
 <user_name idx="{ACCOUNT}" perm="RW">{SIPAUTHNAME}</user_name>
 <user_pname idx="{ACCOUNT}" perm="RW">{SIPAUTHNAME}</user_pname>
 <user_host idx="{ACCOUNT}" perm="RW">{REGISTRAR_SERVER}</user_host>
@@ -93,11 +91,10 @@ $in = /* putin behavior settings from phone  !!!!!!!*/ '
 $prov['cfg_behavior'] = XML2Array::createArray($in);
 
 /* if you have more the 1 subselection add this seperatly */
-/*$in = '<certificates>
+$in = '<certificates>
 <certificate url="http://{WEB_SERVER}/prov/snom/opennet-ca-root.der" />
 </certificates>
 ';
-*/
 $prov['cfg_behavior'] = array_merge($prov['cfg_behavior'], XML2Array::createArray($in));
 
 
@@ -127,7 +124,7 @@ $in = /* putin base settings from phone  !!!!!!!*/ '
 <dtmf_speaker_phone perm="RW">off</dtmf_speaker_phone>
 <filter_registrar perm="RW">off</filter_registrar>
 <show_line_info perm="RW">off</show_line_info>
-<keyboard_lock_emergency perm="">112</keyboard_lock_emergency>
+<keyboard_lock_emergency perm="">110 112 117 118 144 1414</keyboard_lock_emergency>
 <advertisement perm="RW">on</advertisement>
 <advertisement_url perm="RW">{ADVERTISEMENT_URL}</advertisement_url>
 <action_dnd_on_url perm="">{WEB_SERVER}</action_dnd_on_url>
@@ -143,7 +140,6 @@ $in ='
 <language url="http://{WEB_SERVER}/prov/snom/lang/gui_lang_EN.xml" name="English"/>
 <language url="http://{WEB_SERVER}/prov/snom/lang/gui_lang_FR.xml" name="Francais"/>
 <language url="http://{WEB_SERVER}/prov/snom/lang/gui_lang_IT.xml" name="Italiano"/>
-<language url="http://{WEB_SERVER}/prov/snom/lang/gui_lang_DA.xml" name="Dansk"/>
 </gui-languages>
 ';
 $prov['cfg_base'] = array_merge($prov['cfg_base'], XML2Array::createArray($in));
@@ -154,7 +150,6 @@ $in = '
 <language url="http://{WEB_SERVER}/prov/snom/lang/web_lang_EN.xml" name="English"/>
 <language url="http://{WEB_SERVER}/prov/snom/lang/web_lang_FR.xml" name="Francais"/>
 <language url="http://{WEB_SERVER}/prov/snom/lang/web_lang_IT.xml" name="Italiano"/>
-<language url="http://{WEB_SERVER}/prov/snom/lang/web_lang_DA.xml" name="Dansk"/>
 </web-languages>
 ';
 $prov['cfg_base'] = array_merge($prov['cfg_base'], XML2Array::createArray($in));
@@ -165,7 +160,7 @@ $prov['cfg_base'] = array_merge($prov['cfg_base'], XML2Array::createArray($in));
 $in = /* putin tone settings from phone  !!!!!!!*/ '
 
 <phone-settings e="2">
-<tone_scheme perm="RW">{DIALTONE_SETTING}</tone_scheme>
+<tone_scheme perm="RW">SWI</tone_scheme>
 <handsfree_mode perm="RW">normal</handsfree_mode>
 <call_waiting perm="RW">on</call_waiting>
 <intercom_enabled perm="RW">on</intercom_enabled>

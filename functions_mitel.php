@@ -80,7 +80,7 @@ function generate_mitel_provision($phone_data) {
           $expm = $value['expm'];
           $device = $value['device'];
           $customersid = $value['cuid'];
-          $read = $generator($phone_data['template']->cfg_account, 'settings');
+          $read = $generator($phone_data['template']->cfg_account, 'settings', false, ": ");
           if($read) {
 //print_r($value);
 //print_r($phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]);
@@ -113,7 +113,7 @@ function generate_mitel_provision($phone_data) {
                     $NTP_SERVER,
                     $phone_data['users'][$account_counter][$value['owner']]['value']['presence_id'],
                     $Phone_Reregister_Prov,
-                    $XML_SERVER,
+                    $Phone_Reregister_Prov,
                     $XML_SERVER,
                     $phone_data['account'][$account]['provision']['provisionuser'],
                     $phone_data['account'][$account]['provision']['provisionpass'],
@@ -129,21 +129,21 @@ function generate_mitel_provision($phone_data) {
         $account_counter++;
         $account_start++;
         }
-      $read = $generator($phone_data['template']->cfg_behavior, 'settings');
+      $read = $generator($phone_data['template']->cfg_behavior, 'settings', false, ": ");
       if($read) {
           $output .= preg_replace($search, $replace, $read)."\n";
     }
-      $read = $generator($phone_data['template']->cfg_tone, 'settings');
+      $read = $generator($phone_data['template']->cfg_tone, 'settings', false, ": ");
       if($read) {
           $output .= preg_replace($search, $replace, $read, 'settings')."\n";
     }
-      $read = $generator($phone_data['template']->cfg_keys, 'settings');
+      $read = $generator($phone_data['template']->cfg_keys, 'settings', false, ": ");
       if($read) {
           $output .= "\n".preg_replace($search, $replace, $read)."\n";
     }
 
     // create model spcification pkeys
-    $read = $generator($phone_data, 'usrkeys');
+    $read = $generator($phone_data, 'usrkeys', false, ': ', 'write_mitel_keys');
     if($read) $output .= "\n".$read;
 
 return $output;
@@ -151,7 +151,7 @@ return $output;
 
 /* write_plain_keys kind = typ (presence, speed_dial, ... ) and value , expm=1, key=1, obj_data=array of prov
 */
-function write_plain_keys($kind, $expm, $key, $obj_datas, $account)
+function write_mitel_keys($kind, $expm, $key, $obj_datas, $account)
 {
 
     switch($kind['type']) {
@@ -171,34 +171,6 @@ function write_plain_keys($kind, $expm, $key, $obj_datas, $account)
     }
 
 return($ret);
-}
-
-/* generate plain string for settings
-*  obj_datas = object or array of hole or part of provisions data
-*/
-function json2plain($obj_datas, $type=false, $account=false)
-{
-
-    switch($type) {
-        case 'usrkeys':
-            // write keysettings to expansions module
-            $expm = explode("-",$obj_datas['prov'][0]['provision']['endpoint_model']);
-            if ($expm[1] == true) { $module = '0';
-                foreach ($obj_datas['prov'][0]['provision']['feature_keys'] AS $key => $kind) {
-                    /* we support 1 or 2 expansions modules */ if ($expm[1] == 2 && $key > 36) { $keydiff = -36; $module=1; }
-                    $plain .= write_plain_keys($kind, $module, ($key - $keydiff), $obj_datas, $account);
-                }
-            }
-        break;
-        case 'settings':
-            foreach($obj_datas as $key => $value) {
-                $outputString .= $key.": ".$value->value."\n";
-            }
-            $plain = trim($outputString);
-        break;
-    }
-
-return($plain);
 }
 
 ?>

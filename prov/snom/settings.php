@@ -95,6 +95,7 @@ switch(strtolower($phone_type)) {
             if($phone_data['account'][0]['provision']['firmware_enabled'] == '1') check_snom_firmware($agent, $phone_type);
             else {global $debug; $debug[] = array(level=>'d',status=>'problem',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '."firmwareupdate is not supported from account:".$phone_data['account'][0]['provision']['firmware_enabled']);}
             if(DEBUG_FUNCTION == 'all' || DEBUG_FUNCTION == 'snom' || $phone_data['prov'][0]['mac'] == true) {
+                header('Content-type: application/json');
                 get_provisioning($phone_data);
                 global $debug; $debug[] = array(level=>'d',status=>'info',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '." MAC=$mac, ".$phone_data[$i]['device'].", mac_count(".($i).")");
             } else {global $debug; $debug[] = array(level=>'d',status=>'problem',file=>__FILE__.":".__LINE__,log=>'('. __FUNCTION__ .') '. "provision is not supported from phone provisioned=".$phone_data['provisioned']);}

@@ -4,7 +4,7 @@
 require_once('../config.php');
 
 $host = get_dbhost($hosts);
-$sag = new Sag($host);
+$sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
 
 
@@ -36,6 +36,18 @@ $in = /* putin behavior settings from phone  !!!!!!!*/ '
   <send_date_time>true</send_date_time>
   <subscription_allowed>true</subscription_allowed>
 </dect>
+<network>
+  <bootproto>dhcp</bootproto>
+  <dns1 /> 
+  <dns2 /> 
+  <domain /> 
+  <gateway /> 
+  <ipaddr>192.168.0.1</ipaddr> 
+  <mtu>0</mtu> 
+  <netmask>255.255.255.0</netmask> 
+  <ntp>0.us.pool.ntp.org</ntp>
+  <timezone>CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00</timezone>
+</network>
 <provisioning>
   <check>
     <check_sync>update</check_sync>

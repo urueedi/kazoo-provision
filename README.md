@@ -36,6 +36,7 @@ Install procedure V1.0
 10. If you need plug&play support for ip-phones you need openwrt from this github site. To add for VoIP-Phones use e.g.
    - snom:  00:04:13:*:*:* http://[prov_domain]/prov/snom/settings.php?mac={mac}&pass=[PROVPASS_ACCOUT_UI]
    - mitel: 00:08:5d:*:*:* http://[prov_domain]/prov/mitel
+   - yealink: 00:15:65:*:*:* http://[prov_domain]/prov/yealink
 11. If you need Quality of Service (No chrrr in line) there is also in OpenWRT 13.10 included (qos-luci) add for QoS-Settings
    - 1. priority src=all dst=[your_mediaserver] service=all proto=udp
    - 2. priority src=[your_mediaserver] dst=all service=all proto=udp
