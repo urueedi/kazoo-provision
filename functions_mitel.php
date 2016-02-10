@@ -13,7 +13,7 @@ function generate_mitel_provision($phone_data) {
     $XML_SERVER = $HTTP.$_SERVER['HTTP_HOST']."/prov/mitel/";
     $WEB_SERVER = $HTTP.$_SERVER['HTTP_HOST'];
     $PROV_SERVER = $_SERVER['HTTP_HOST'];
-    $NTP_SERVER = $_SERVER['HTTP_HOST'];
+    $NTP_SERVER = "pool.ntp.org";
     $PROXY_SERVER = $phone_data['account'][$account]['realm'];
     $REGISTRAR_SERVER = $phone_data['account'][$account]['realm'];
     if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 360;
@@ -74,23 +74,26 @@ function generate_mitel_provision($phone_data) {
     // create account part
         $multiaccount = true;
 
+//print_r($phone_data['account']);
         foreach ($phone_data['prov'] as $k => $value) {
           if(! is_numeric($k)) continue;
           $expm = $value['expm'];
           $device = $value['device'];
           $customersid = $value['cuid'];
-          $read = $generator($phone_data['template']->cfg_account, 'settings');
+          $read = $generator($phone_data['template']->cfg_account, 'settings', false, ": ");
           if($read) {
 //print_r($value);
+//print_r($phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]);
 //[$value['owner']]['key']
             $replace = array(
                     $account,
                     $value['sip']['username'],                                                 /*   */
                     $value['sip']['password'],                                                 /*   */
                     $value['sip']['username'],                                                 /*   */
-                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id']." ".$phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
-                    $phone_data['account'][$account]['realm'],                               /*   */
-                    $phone_data['account'][$account]['realm'],                               /*   */
+//                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id']." ".
+		    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['key'],
+                    $phone_data['account'][0]['realm'],                               /*   */
+                    $phone_data['account'][0]['realm'],                               /*   */
                     $WEB_SERVER,
                     $lang_idx,
                     ($value['cutype'] == 'hostedpbx')?'0'.$VM_EXT:$VM_EXT,
@@ -105,12 +108,12 @@ function generate_mitel_provision($phone_data) {
                     'on',
                     $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id'],
                     $phone_data['prov'][0]['macaddress'],
-                    $phone_data['users'][$account_counter][$value['owner']]['key'],
+                    $phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]['value']['presence_id'],
                     '5060',
                     $NTP_SERVER,
-                    $phone_data['users'][0][$value['owner']]['key'],
+                    $phone_data['users'][$account_counter][$value['owner']]['value']['presence_id'],
                     $Phone_Reregister_Prov,
-                    $XML_SERVER,
+                    $Phone_Reregister_Prov,
                     $XML_SERVER,
                     $phone_data['account'][$account]['provision']['provisionuser'],
                     $phone_data['account'][$account]['provision']['provisionpass'],
@@ -126,21 +129,21 @@ function generate_mitel_provision($phone_data) {
         $account_counter++;
         $account_start++;
         }
-      $read = $generator($phone_data['template']->cfg_behavior, 'settings');
+      $read = $generator($phone_data['template']->cfg_behavior, 'settings', false, ": ");
       if($read) {
           $output .= preg_replace($search, $replace, $read)."\n";
     }
-      $read = $generator($phone_data['template']->cfg_tone, 'settings');
+      $read = $generator($phone_data['template']->cfg_tone, 'settings', false, ": ");
       if($read) {
           $output .= preg_replace($search, $replace, $read, 'settings')."\n";
     }
-      $read = $generator($phone_data['template']->cfg_keys, 'settings');
+      $read = $generator($phone_data['template']->cfg_keys, 'settings', false, ": ");
       if($read) {
           $output .= "\n".preg_replace($search, $replace, $read)."\n";
     }
 
     // create model spcification pkeys
-    $read = $generator($phone_data, 'usrkeys');
+    $read = $generator($phone_data, 'usrkeys', false, ': ', 'write_mitel_keys');
     if($read) $output .= "\n".$read;
 
 return $output;
@@ -148,7 +151,7 @@ return $output;
 
 /* write_plain_keys kind = typ (presence, speed_dial, ... ) and value , expm=1, key=1, obj_data=array of prov
 */
-function write_plain_keys($kind, $expm, $key, $obj_datas, $account)
+function write_mitel_keys($kind, $expm, $key, $obj_datas, $account)
 {
 
     switch($kind['type']) {
@@ -168,34 +171,6 @@ function write_plain_keys($kind, $expm, $key, $obj_datas, $account)
     }
 
 return($ret);
-}
-
-/* generate plain string for settings
-*  obj_datas = object or array of hole or part of provisions data
-*/
-function json2plain($obj_datas, $type=false, $account=false)
-{
-
-    switch($type) {
-        case 'usrkeys':
-            // write keysettings to expansions module
-            $expm = explode("-",$obj_datas['prov'][0]['provision']['endpoint_model']);
-            if ($expm[1] == true) { $module = '0';
-                foreach ($obj_datas['prov'][0]['provision']['feature_keys'] AS $key => $kind) {
-                    /* we support 1 or 2 expansions modules */ if ($expm[1] == 2 && $key > 36) { $keydiff = -36; $module=1; }
-                    $plain .= write_plain_keys($kind, $module, ($key - $keydiff), $obj_datas, $account);
-                }
-            }
-        break;
-        case 'settings':
-            foreach($obj_datas as $key => $value) {
-                $outputString .= $key.": ".$value->value."\n";
-            }
-            $plain = trim($outputString);
-        break;
-    }
-
-return($plain);
 }
 
 ?>

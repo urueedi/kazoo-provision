@@ -1,0 +1,26 @@
+initial
+-------
+support for snom, mitel, zoiper
+
+1.0
+---
+add support update config
+
+1.1
+---
+add support for yealink
+add support for mic & handset volume
+
+
+
+
+
+
+
+todo
+----
+add support domain restriction
+add support for additional keysettings
+
+bugs
+----

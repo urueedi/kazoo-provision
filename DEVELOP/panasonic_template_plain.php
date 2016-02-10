@@ -4,7 +4,7 @@
 require_once('config.php');
 
 $host = get_dbhost($hosts);
-$sag = new Sag($host);
+$sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
 
 /* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */

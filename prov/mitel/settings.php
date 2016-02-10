@@ -14,10 +14,10 @@ global $debug; $debug['aastra/dheader'][] = "(aastra 1) ".$header[0]."-".$header
 $remote_ip=$_SERVER['REMOTE_ADDR'];
 $file = $_SERVER['REQUEST_URI'];
 
-if(DEBUG_FUNCTION == 'd' || DEBUG_FUNCTION == 'aastra' && ($_REQUEST['model'] && $_REQUEST['mac'] && $_REQUEST['firmware']))
+if(DEBUG_FUNCTION == 'd' || DEBUG_FUNCTION == 'aastra' && ($_REQUEST['model'] && $_REQUEST['mac'] && $_REQUEST['qpass'] && $_REQUEST['firmware']))
 {
     $model = $_REQUEST['model'];
-    $mac = $_REQUEST['mac'];
+    $mac = trim($_REQUEST['mac']);
     $firmware = $_REQUEST['firmware'];
     $qpass = $_REQUEST['qpass'];
 } else {
@@ -27,8 +27,7 @@ if(DEBUG_FUNCTION == 'd' || DEBUG_FUNCTION == 'aastra' && ($_REQUEST['model'] &&
     $firmware = $header[2];
     define(DEBUG_VIEW, false);
 }
-$mac = strtoupper(trim($mac));
-
+$mac = strtoupper(str_replace(":","",$mac));
 global $debug; $debug['aastra/dheader'][] = "(aastra 2) model=$model, mac=$mac firmware=$firmware, remote_ip=$remote_ip, file=$file";
 switch($model) {
   case "Aastra6730i":
@@ -44,16 +43,15 @@ switch($model) {
     if (stristr($file,"aastra.cfg")) {
         if(function_exists("get_aastra_cfg"))
         $host = get_dbhost($hosts);
-        $sag = new Sag($host);
+        $sag = new Sag($host, $dbport);
         get_aastra_cfg($mac);
     } else {
     if(preg_match("/^00085D/i",$mac)) {
         global $debug; $debug['aastra/mswitch'][] = "(aastra) OK model=$model file=$file";
         $host = get_dbhost($hosts);
-        $sag = new Sag($host);
+        $sag = new Sag($host, $dbport);
             if(preg_match("/^00085D/",$mac) && filemtime("/tmp/phone-".$mac) <= (time()-6)){
                     touch("/tmp/phone-".strtoupper($mac));
-
                     $phone_data = get_phone_data($mac, $qpass, $nonepass);
                     if($phone_data == false) exit;
                     $phone_data['device'] = strtolower($model);

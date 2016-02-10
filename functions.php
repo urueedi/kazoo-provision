@@ -128,8 +128,14 @@ function get_provisioning($phone_data)
     switch($phone_data['device']) {
         case 'snom300':
         case 'snom320':
+        case 'snom320-1':
+        case 'snom320-2':
         case 'snom360':
+        case 'snom360-1':
+        case 'snom360-2':
         case 'snom370':
+        case 'snom370-1':
+        case 'snom370-2':
         case 'snom720':
         case 'snom760':
         case 'snom820':
@@ -138,6 +144,7 @@ function get_provisioning($phone_data)
         case 'snomm9r':
             $str = generate_snom_provision($phone_data); 
             global $debug; $debug[] = array(level=>'m',status=>'info',file=>__FILE__.":".__LINE__,log=>"Phone ".$phone_data['device']." prov:".$phone_data['voipserver']." port:".$phone_data['port']." len:".strlen($str));
+            header('Content-Type: text/xml; charset=UTF-8');
             echo $str;
         break;
         case 'snomm3':
@@ -156,6 +163,28 @@ function get_provisioning($phone_data)
         case 'aastra6739i':
             $str = generate_mitel_provision($phone_data);
             global $debug; $debug[] = array(level=>'m',status=>'info',file=>__FILE__.":".__LINE__,log=>"Phone ".$phone_data['device']." prov:".$phone_data['voipserver']." port:".$phone_data['port']." len:".strlen($str));
+            header('Content-Type: text/html; charset=UTF-8');
+            echo $str;
+        break;
+        case 'yealinksip-t19p':
+        case 'yealinksip-t21p':
+        case 'yealinksip-t22p':
+        case 'yealinksip-t23p':
+        case 'yealinksip-t26p':
+        case 'yealinksip-t28p':
+        case 'yealinksip-t32g':
+        case 'yealinksip-t38g':
+        case 'yealinksip-t41g':
+        case 'yealinksip-t42g':
+        case 'yealinksip-t46g':
+        case 'yealinksip-t46g-1':
+        case 'yealinksip-t46g-2':
+        case 'yealinksip-t48g':
+        case 'yealinksip-t48g-1':
+        case 'yealinksip-t48g-2':
+            $str = generate_yealink_provision($phone_data);
+            global $debug; $debug[] = array(level=>'m',status=>'info',file=>__FILE__.":".__LINE__,log=>"Phone ".$phone_data['device']." prov:".$phone_data['voipserver']." port:".$phone_data['port']." len:".strlen($str));
+            header('Content-Type: text/html; charset=UTF-8');
             echo $str;
         break;
     }
@@ -917,6 +946,7 @@ function get_groundsettings($paths, $retype=false)
     }
     if($poths[0] == 'phones') {
             $res = get_entry('brand_provisioner' , '/_design/provisioner/_view/listings_tree');
+            header('Content-type: application/json');
             echo json_encode(($res['res']->rows['0']->value));
             $noui = true;
     }
@@ -931,6 +961,7 @@ function get_groundsettings($paths, $retype=false)
             $c_keys = $res['res']->usr_keys->setable_phone_keys + $res['res']->usr_keys->setable_module_keys;
             switch($retype) {
                 case '':
+                    header('Content-type: application/json');
                     echo '{"success": true,"data": {"template": {"feature_keys": {"iterate": "'. $c_keys .'"}, "lines": { "iterate": 0, "text": "Lines" } } } }';
                 break;
                 case 'object':
@@ -1020,17 +1051,25 @@ function merge_togetaher($object1, $object2, $typ)
 
 function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
 {
-    global $sag;
-    $prov['_id'] = 'ui/'.$prov['endpoint_brand']."/".$prov['endpoint_family']."/".$prov['endpoint_model'];
+    global $sag, $HTTP, $host, $dbport;
+    $prov['_id'] = urlencode('ui/'.$prov['endpoint_brand']."/".$prov['endpoint_family']."/".$prov['endpoint_model']);
     $obj = $prov;
     $sag->setDatabase($db_a);
-    unset($obj->_rev);
+    $now = json_decode(file_get_contents($HTTP.$host.":".$dbport."/".$db_a."/".$prov['_id']));
+    if($now->_id == urldecode($prov['_id'])) {
+        $obj['_id'] = urlencode($now->_id);
+        $obj['_rev'] = $now->_rev;
+        $obj['views']++;
+        echo "update-".$obj['endpoint_brand']."|".$obj['endpoint_model'].": ";
+    } else {
+        unset($obj['_rev']); echo "create->".$obj['endpoint_brand']."|".$obj['endpoint_model'].": ";
+    }
     try {
-        if(preg_match("/^_/",$prov['_id'])) echo $sag->put($prov['_id'], $obj)->body->ok;
-        else echo $sag->put(urlencode($prov['_id']), $obj)->body->ok;
+        if(preg_match("/^_.*/",urldecode($obj['_id']))) echo $sag->put(urldecode($obj['_id']), $obj)->body->ok."->".$obj['_id']."\n";
+        else echo $sag->put($obj['_id'], $obj)->body->ok."\n";
     }
     catch(Exception $e) {
-        echo $e->getMessage()."DB:".$db_a." file:".$prov['_id']."\n";
+        echo $e->getMessage()."DB:".$db_a." file:".urlencode($obj['_id'])."\n";
     }
     // add to phonetree
     $tree = get_entry($db_a , "/phonetree");
@@ -1039,8 +1078,11 @@ function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
     $new['res']['data'][$prov['endpoint_brand']]['name'] = $prov['endpoint_brand'];
     $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['id'] = $prov['endpoint_brand']."_".$prov['endpoint_family'];
     $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['name'] = $prov['endpoint_family'];
-    $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['models'][$prov['endpoint_model']]['id'] = $prov['endpoint_brand']."_".$prov['endpoint_model'];
     $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['models'][$prov['endpoint_model']]['name'] = $prov['endpoint_model'];
+    if('yealink' == $prov['endpoint_brand'])
+        $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['models'][$prov['endpoint_model']]['id'] = $prov['endpoint_brand']."_".$prov['endpoint_family']."_".$prov['endpoint_model'];
+    else
+        $new['res']['data'][$prov['endpoint_brand']]['families'][$prov['endpoint_family']]['models'][$prov['endpoint_model']]['id'] = $prov['endpoint_brand']."_".$prov['endpoint_model'];
     $new = json_decode(json_encode($new), FALSE);
     $new = (array) $new;
     $new['res']->views++;
@@ -1049,5 +1091,41 @@ function upload_phone_data($prov, $db_a='brand_provisioner', $type=false)
     return('uploaded');
 }
 
+
+/* generate plain string for settings
+*  obj_datas = object or array of hole or part of provisions data
+*/
+function json2plain($obj_datas, $type=false, $account=false, $delimiter=false, $brand_keys_generator=false)
+{
+    if(!$delimiter) $delimiter = ": ";
+    switch($type) {
+        case 'usrkeys':
+            // write keysettings to expansions module
+            if(!$brand_keys_generator) $brand_keys_generator = 'write_mitel_keys';
+            $expm = explode("-",$obj_datas['prov'][0]['provision']['endpoint_model']);
+            if ($expm[1] == true) { $module = '0';
+                // setting keys on phone and on expansion-modules
+                foreach ($obj_datas['prov'][0]['provision']['feature_keys'] AS $key => $kind) {
+                    /* we support 1 or 2 expansions modules */ if ($expm[1] == 2 && $key > 36) { $keydiff = -36; $module=1; }
+                    $plain .= $brand_keys_generator($kind, $module, ($key - $keydiff), $obj_datas, $account);
+                }
+            } else {
+                // settting keys on phone
+                foreach ($obj_datas['prov'][0]['provision']['feature_keys'] AS $key => $kind) {
+                    /* we support 1 or 2 expansions modules */ if ($expm[1] == 2 && $key > 36) { $keydiff = -36; $module=1; }
+                    $plain .= $brand_keys_generator($kind, $module, ($key - $keydiff), $obj_datas, $account);
+                }
+            }
+        break;
+        case 'settings':
+            foreach($obj_datas as $key => $value) {
+                $outputString .= $key.$delimiter.$value->value."\n";
+            }
+            $plain = trim($outputString);
+        break;
+    }
+
+return($plain);
+}
 
 ?>
