@@ -4,33 +4,37 @@ Provision integration in monster-ui-voip
 ![screenshot1](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot1.png)
 ![screenshot2](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot2.png)
 
-Installation and support for additionals
-----------------------------------------
+Additional Support
+------------------
 Open Phone Net AG infos@openent.ch Switzerland
 
 Provisioner implement structure
 -------------------------------
-1. network settings will be local from router and never be part of this provision-solution.
-2. there no cache-solution, if this provisioner will fail
-3. feel free to add more of ip-phones, because i don't have all the devices!
+1. Network settings will be local from router and never be part of this provision-solution.
+2. There no cache-solution, if this provisioner will fail
+3. Feel free to add more of ip-phones, because i don't have all of devices!
 
-Install procedure V1.0
-----------------------
+Supported phones (Feb 2016)
+---------------------------
+snom, mitel, aastra, zoiper, yealink
+
+Install info
+------------
 1. INSTALL kazoo-platform (from this repository because of changes: use 3.22)
-   If not install kazoo-urueedi, do change files application/crossbar/priv/devices.json and users.json
-   from this directory and recompile and restart crossbar and (sup whapps_maintenance migrate) to renew coucdb!
-2. INSTALL monster-ui (from this repository because of adds in ui) AND fping, php-cli, php, php-xml for webserver
-4. INSTALL THIS in a WEBFOLDER where the monster-ui is, or on sep. domain
-5. INSTALL and UPDATE with on console ./setup.php the database and add brand_provisioner to couchdb
-6. Set in this folder config.php your cochdb nodes in $hosts="localhost domain2.com ..."
+   If not install kazoo-urueedi, change files application/crossbar/priv/devices.json and users.json
+   from this DEVELEOP directory and recompile and restart crossbar and (sup whapps_maintenance migrate) to renew couchdb!
+2. Install monster-ui (from this repository because of adds in ui) and fping, php-cli, php, php-xml
+4. Install THIS in a WEBFOLDER where the monster-ui is, or on sep. domain
+5. INSTALL and UPDATE with on console in dir ./setup.php the database and add brand_provisioner to couchdb
+6. Setting in this folder config.php your couchdb nodes in $hosts="localhost" and $dbport = "5984"
 7. Then restart kazoo with: service kz-whistle_app restart or flush coucdb cache of kazoo
-8. Set in monster-ui /js/config.js provisioner: "http://yourdomain.com/your_path_installed..."
+8. Set in monster-ui /js/config.js the provisioner: "http://yourdomain.com/your_path_installed/"
    - check this by using the add sip-phone-button in (monster-ui)->voip->devices or (kazoo-ui)
 9. Go to your account settings and enable (Automatic Devicesettings) in monster-ui
-    - URL-Password => [your_pass] is used in GET-string of phone snom now only
-    - Domainrestriction => [customer_home_domain] e.g. customer.domain.com (dyndns) only this domain will be able to consume provision if putin
-    - Phone Admin Password => [your_pass] access password to local phone
-    - Zoiper Token => [zoiperproviderid] This is used for autoprovision with soft- and smartphone at (oem.zoiper.com)
+    - URL-Password => [your_pass] is used in GET-string of phones snom and yealink now only
+    - Domainrestriction => [customer_home_domain] e.g. customer.domain.com (dyndns) only this domain will be able to get provisiondata if putin
+    - Phone Admin Password => [your_pass] password to access your proved phones
+    - Zoiper Token => [zoiperproviderid] This is used for autoprovision with soft- and smartphone with account from (oem.zoiper.com)
     - Automatic Devicesetting => enable to allow this autoprovision features on this account for all his phones
     - User devicesetting => enable to allow devicesettings in the userportal
 10. If you need plug&play support for ip-phones you need openwrt from this github site. To add for VoIP-Phones use e.g.
@@ -41,7 +45,6 @@ Install procedure V1.0
    - 1. priority src=all dst=[your_mediaserver] service=all proto=udp
    - 2. priority src=[your_mediaserver] dst=all service=all proto=udp
    - 3. normal src=all dst=all service=all proto=all
-12. Cleanup remove setup.php
 
 This QoS implementation is a professional phone and fax solution!
 I have transmitted hundreds of fax docs with full load traffic on router and not one is failed!
@@ -50,40 +53,23 @@ Add a New Phones to provision Panasonic or ...
 ----------------------------------------------
 Add first by handsetting your phone to work, then export it from phone (most of that kind have this function..?)
 
-1. ADD some nice pictures for your phones in the directory on monster-ui css/assets/brands and css/assents/models in named snom_3xx_300.jpg must be in order! {brand}_{family}_{model}.jpg
+1. Add some nice pictures for your phones in the directory on monster-ui css/assets/brands and css/assents/models in named snom_3xx_300.jpg must be in order! {brand}_{family}_{model}.jpg or if phone with a expansions_module {brand}_{family}_{model}-{ext_module}.jpg.
 2. Now you can go to monster-ui you can see if you select to add a SIP-Phone you see the brands and you can select it
-3. ADD a Template for new phones you have maybe. You have already a ip-phone set and it works correct?
-4. Download you settings from your phones and split and change some Settings like so "{PROV_SERVER}" (Example on ***)
-5. Split Templates in 5 kinds of Template 1. base, 2. behavior, 3. account, 4. tone  5. keys.
-6. Split it as you can see we have done already (really need is only (3. account) must be in the this order)
+3. Setting up you phone with if possible (2 accounts-, key-, tone-, time-settings) that it works correct!
+4. Download you settings from your phone, it have to be in cleartext format.
+5. Split your template in 5 kinds 1. base, 2. behavior, 3. account, 4. tone  5. keys. (really need is only (3. account) must be in the this order) and put in (DEVELOP/{file plain or xml as you phone need}.php)
 
 DEVELOP Directory
 -----------------
 XML based config files    => use upload_template_xml.php to generate templates
 PLAIN based config files  => use upload_template_plain.php to generate templates 
 
-7. set config (brand={snom}, family={3xx}, model={300}) in upload_template...php and run
-8. After run one of script is tree updated and template is uploaded
+6. Settings up all this settings as you can see in file.php TEMPLATE EXAMPLE and run this file to upload template to your couchdb
+7. If you have new brand setting up, you have to add some php file: functions_{brand}.php and dir prov/{brand} also as is there
+8. OK test all things and send it back to this repository, to share it with others also. Thank you back!
 
-If you pull new brand in, i must also update settings.php in eg. panasonic directory
-PLEASE GIVE ALSO YOUR TEMPLATES TO THIS GITHUB SITE (ON ISSUES maybe!) to finished this....
+PLEASE GIVE ALSO YOUR TEMPLATES TO THIS GITHUB SITE..
 
-Brandtree Example
------------------
-```json{
-   "snom": {
-       "id": "snom",
-       "name": "snom",
-       "families": {
-           "3xx": {
-               "id": "snom_3xx",
-               "name": "3xx",
-               "models": {
-                   "300": {
-                       "id": "snom_300",
-                       "name": "300"
-                   },`
-```
 Template Example
 ----------------
 ```json{

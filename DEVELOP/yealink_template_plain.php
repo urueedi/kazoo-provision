@@ -7,21 +7,36 @@ $host = get_dbhost($hosts);
 $sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
 
-/* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
-$del = ' = '; /* set a delimiter to strip key and value */
-$prov['endpoint_brand'] = 'yealink';
-$prov['endpoint_family'] = 't4x';
-$prov['endpoint_model'] = 't46g';
 
-/* this is programable keys on phone */
-$prov['usr_keys']['setable_phone_keys'] = '29';
-$prov['usr_keys']['setable_phone_key_counter'] = '1';
-$prov['usr_keys']['setable_phone_key_value'] = 'linekey';
-/* this is extensions module keys */
-$prov['usr_keys']['setable_module_keys'] = '0';
-$prov['usr_keys']['setable_module_key_counter'] = '1';
-/* there use an special key for extensionsmodule */
-$prov['usr_keys']['setable_module_key_value'] = 'extkey';
+$types['t19p'] = array('fam' => 't1x', 'keys'=>'0', 'ekeys' => '0');
+$types['t21p'] = array('fam' => 't2x', 'keys'=>'0', 'ekeys' => '0');
+$types['t22p'] = array('fam' => 't2x', 'keys'=>'3', 'ekeys' => '0');
+$types['t23p'] = array('fam' => 't2x', 'keys'=>'3', 'ekeys' => '0');
+$types['t26p'] = array('fam' => 't2x', 'keys'=>'13', 'ekeys' => '0');
+$types['t28p'] = array('fam' => 't2x', 'keys'=>'16', 'ekeys' => '0');
+$types['t32p'] = array('fam' => 't3x', 'keys'=>'3', 'ekeys' => '0');
+$types['t38p'] = array('fam' => 't3x', 'keys'=>'16', 'ekeys' => '0');
+$types['t40p'] = array('fam' => 't3x', 'keys'=>'3', 'ekeys' => '0');
+$types['t41p'] = array('fam' => 't4x', 'keys'=>'6', 'ekeys' => '0');
+$types['t46p'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '0');
+$types['t46p-1'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '20');
+$types['t46p-2'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '40');
+$types['t48p'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '0');
+
+foreach($types as $mod => $val) {
+
+    $prov['endpoint_brand'] = 'yealink';
+    $prov['endpoint_family'] = $val['fam'];
+    $prov['endpoint_model'] = $mod;
+    /* this is programable keys on phone */
+    $prov['usr_keys']['setable_phone_keys'] = $val['keys'];
+    $prov['usr_keys']['setable_phone_key_counter'] = '1';
+    $prov['usr_keys']['setable_phone_key_value'] = 'fkey';
+    /* this is extensions module keys */
+    $prov['usr_keys']['setable_module_keys'] = $val['ekeys'];
+    $prov['usr_keys']['setable_module_key_counter'] = '1';
+    /* there use an special key for extensionsmodule */
+    $prov['usr_keys']['setable_module_key_value'] = 'extkey';
 
 
 // this is example manual plain to jaon format (ACCOUNT MUST BE!)
@@ -42,8 +57,9 @@ account.{ACCOUNT}.display_name = {SIPCALLERID}
 account.{ACCOUNT}.user_name = {SIPAUTHNAME}
 account.{ACCOUNT}.auth_name = {SIPAUTHNAME}
 account.{ACCOUNT}.password = {SIPSECRET}
-account.{ACCOUNT}.sip_server_host.legacy = {PROXY_SERVER}:{PROXY_PORT}
+account.{ACCOUNT}.sip_server_host.legacy = {PROXY_SERVER}
 account.{ACCOUNT}.session_timer.expires = {PHONE_REREGISTER}
+account.{ACCOUNT}.outbound_port = {PROXY_PORT}
 account.{ACCOUNT}.sip_server_type = 2
 account.{ACCOUNT}.number_of_linekey = -1
 account.{ACCOUNT}.reg_fail_retry_interval = 60
@@ -54,7 +70,8 @@ account.{ACCOUNT}.shared_line_one_touch_bargein.enable = 1
 account.{ACCOUNT}.dtmf.info_type = 1
 account.{ACCOUNT}.ringtone.ring_type = commom
 account.{ACCOUNT}.acd.available = 1
-account.{ACCOUNT}.sip_server.1.address = {PROXY_SERVER}:{PROXY_PORT}
+account.{ACCOUNT}.sip_server.1.port = {PROXY_PORT}
+account.{ACCOUNT}.sip_server.1.address = {PROXY_SERVER}
 account.{ACCOUNT}.sip_server.1.expires = {PHONE_REREGISTER}
 account.{ACCOUNT}.timeout_fwd.timeout = 10
 account.{ACCOUNT}.always_fwd.off_code = *60
@@ -72,7 +89,7 @@ $prov['cfg_account'] = json_decode(plain2json($in, $del)); /* ":" is for split l
 // this is example manual plain to jaon format (BASE OPTIONAL)
 $in = 
 '
-security.user_password = admin:{PROVPASS}
+security.user_password = {PROVPASS}
 managementserver.connection_request_url = 
 managementserver.product_class = SIP-T48G
 managementserver.model_name = SIP-T48G
@@ -155,11 +172,14 @@ features.intercom.barge = 1
 features.group_listen_in_talking_enable = 0
 voice.group_listening.spk_vol = 7
 voice.jib.max = 600
-voice.tone.country = {TONEZONE}
+voice.handset.send = {TX}
+voice.handset.tone_vol = {RX}
 
 ';
 
 $prov['cfg_tone'] = json_decode(plain2json($in, $del));
+
+// voice.tone.country = {TONEZONE}
 
 // this is example manual plain to jaon format (BASE OPTIONAL)
 $in =   /* putin behavior settings from phone  !!!!!!!!!!*/
@@ -200,5 +220,7 @@ $prov['cfg_key'] = json_decode(plain2json($in, $del));
 
 $prov['pvt_generator'] = 'json2plain';
 echo upload_phone_data($prov);
+unset($prov);
+}
 
 ?>

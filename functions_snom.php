@@ -22,25 +22,28 @@ global $HTTP;
 
     switch($timezone) {
            case 'Europe/London':
-                        $lang_idx="English"; $lang_code="en"; $tone = "GBR"; break;
-           case 'America/Boston':
+                        $lang_idx="English"; $lang_code="en"; $tone = "GBR"; $timezone_idx = "GBR0"; break;
            case 'America/Los_Angeles':
+                        $lang_idx="English"; $lang_code="en"; $tone = "USA"; $timezone_idx = "USA10"; break;
+           case 'America/Boston':
            case 'America/New_York':
-                        $lang_idx="English"; $lang_code="en"; $tone = "USA"; break;
+                        $lang_idx="English"; $lang_code="en"; $tone = "USA"; $timezone_idx = "USA9"; break;
            case 'Europe/Copenhagen':
-                        $lang_idx="Dansk"; $lang_code="dk"; $tone = "DNK"; break;
+                        $lang_idx="Dansk"; $lang_code="dk"; $tone = "DNK"; $timezone_idx = "DNK+1"; break;
            case 'Europe/Berlin':
-                        $lang_idx="Deutsch"; $lang_code="de"; $tone = "GER"; break;
+                        $lang_idx="Deutsch"; $lang_code="de"; $tone = "GER"; $timezone_idx = "GER+1"; break;
            case 'Europe/Bern':
            case 'Europe/Zurich':
-                        $lang_idx="Deutsch"; $lang_code="de"; $tone = "SWI"; break;
+                        $lang_idx="Deutsch"; $lang_code="de"; $tone = "SWI"; $timezone_idx = "CHE+1"; break;
            case 'Europe/Paris':
-                        $lang_idx="France"; $lang_code="fr"; $tone = "FRA";  break;
+                        $lang_idx="France"; $lang_code="fr"; $tone = "FRA"; $timezone_idx = "FRA+1";  break;
            case 'Europe/Geneva':
-                        $lang_idx="France"; $lang_code="fr"; $tone = "SWI";  break;
+                        $lang_idx="France"; $lang_code="fr"; $tone = "SWI"; $timezone_idx = "CHE+1";  break;
            case 'Europe/Rom':
-                        $lang_idx="Italian"; $lang_code="it"; $tone = "ITA"; break;
-           default; $lang_idx="English"; $lang_code="en"; $tone = "USA";
+                        $lang_idx="Italian"; $lang_code="it"; $tone = "ITA"; $timezone_idx = "ITA+1"; break;
+           default; $lang_idx="English"; $lang_code="en"; $tone = "USA"; $timezone_idx = "GBR0";
+           
+
     }
     switch($language) {
            case 'en-UK':
@@ -141,16 +144,6 @@ global $HTTP;
         '{{ACCESSPROVPASS}}',
         '{{SETTINGS_REFRSH_TIMER}}',
         '{{PHONE_REREGISTER}}',
-        '{{PROV_SERVER_URL_WEBLANG_DE_XML}}',
-        '{{PROV_SERVER_URL_WEBLANG_EN_XML}}',
-        '{{PROV_SERVER_URL_WEBLANG_FR_XML}}',
-        '{{PROV_SERVER_URL_WEBLANG_IT_XML}}',
-        '{{PROV_SERVER_URL_WEBLANG_DA_XML}}',
-        '{{PROV_SERVER_URL_GUILANG_DE_XML}}',
-        '{{PROV_SERVER_URL_GUILANG_EN_XML}}',
-        '{{PROV_SERVER_URL_GUILANG_FR_XML}}',
-        '{{PROV_SERVER_URL_GUILANG_IT_XML}}',
-        '{{PROV_SERVER_URL_GUILANG_DA_XML}}',
         '{{PROV_PHONE_USER}}',
         '{{PROV_PHONE_PASS}}',
         '{{SRTP}}',
@@ -167,6 +160,10 @@ global $HTTP;
         '{{PROV_SERVER}}',
         '{{SUBSCRIPT_REREGISTER}}',
         '{{DIALTONE_SETTING}}',
+        '{{ADVERTISEMENT_URL}}',
+        '{{TIMEZONE_IDX}}',
+        '{{TX}}',
+        '{{RX}}',
         );
     // create account part
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
@@ -218,23 +215,13 @@ global $HTTP;
                 'accessprovpass',                                                          /*   */
                 '0',                                                                       /* refresh config from server in seconds  */
                 $Phone_Reregister_Prov,                                                    /*   */
-                $XML_SERVER."lang/gui_lang_DE.xml",                                            /*   */
-                $XML_SERVER."lang/gui_lang_EN.xml",                                            /*   */
-                $XML_SERVER."lang/gui_lang_FR.xml",                                            /*   */
-                $XML_SERVER."lang/gui_lang_IT.xml",                                            /*   */
-                $XML_SERVER."lang/gui_lang_DA.xml",                                            /*   */
-                $XML_SERVER."lang/web_lang_DE.xml",                                            /*   */
-                $XML_SERVER."lang/web_lang_EN.xml",                                            /*   */
-                $XML_SERVER."lang/web_lang_FR.xml",                                            /*   */
-                $XML_SERVER."lang/web_lang_IT.xml",                                            /*   */
-                $XML_SERVER."lang/web_lang_DA.xml",                                            /*   */
                 $phone_data['account'][$account]['provision']['provisionuser'],            /*   */
                 $phone_data['account'][$account]['provision']['provisionpass'],            /*   */
                 $srtp,                                                                     /* srtp (on/off) */
                 $phone_data['whitelabel']['provision']['advertisement_url'],               /* advertisement http path */
                 $XML_SERVER."ps.php",                                                      /* Presence button action path  */
                 $XML_SERVER."dnd.php",                                                     /* DND button action path  */
-                '112 911',                                                             /* emergency numbers */
+                '110 112 911',                                                             /* emergency numbers */
                 $phone_data['whitelabel']['provision']['server_url_certificate'],          /* certification path */
                 $WEB_SERVER."/provisioner/prov/snom/settings.php?mac={mac}&pass=".$phone_data['account'][$account_counter]['provision']['urlpass'],                                                            /* provisions server path */
                 '0',                                                                         /* refresh timer for settings (only at startup!! because of wrong settings) */
@@ -242,8 +229,12 @@ global $HTTP;
                 '5060',                                                                    /* Port of Enduser phone */
                 $countryid,                                                                /* Snom M3 Country code */
                 $PROV_SERVER,                                                              /* prov server: eg. prov.allip.ovh */
-                '600',                                                                     /* key reregister after 600s */
+                $Phone_Reregister_Prov,                                                                     /* key reregister after 600s */
                 $tone,                                                                     /* dialtone settings SWI GRB .. */
+                $WEB_SERVER."/advertisement/snom.php",                                     /* ADVERTISEMENT_URL .. */
+                $timezone_idx,                                                             /* timezone snom */
+                round((9+$value['media']['audio']['tx_volume'])*(8-1)/(15-2)),             /* audio tx snom */
+                round((9+$value['media']['audio']['rx_volume'])*(8-1)/(15-2)),             /* audio rx snom */
                 );
             $output .= preg_replace($search, $replace, $read);
           }

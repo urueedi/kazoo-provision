@@ -189,6 +189,8 @@ function generate_yealink_provision($phone_data) {
         '{{TIMEZONE_NR}}',
         '{{TIMEZONE_NAME}}',
         '{{LANGUAGE_URL}}',
+        '{{TX}}',
+        '{{RX}}',
         );
     // create account part
         $multiaccount = true;
@@ -246,6 +248,8 @@ function generate_yealink_provision($phone_data) {
                     $timezone_nr,
                     $timezone_name,
                     dirname($value['provision']['provstring']).DIRECTORY_SEPARATOR."lang/".$lang_idx.".txt",
+                    round((9+$value['media']['audio']['tx_volume'])*(53-1)/(18-1)),
+                    round((9+$value['media']['audio']['rx_volume'])*(53-1)/(18-1)),
                     );
             $output .= "#!version:1.0.0.1\n";
               $output .= preg_replace($search, $replace, $read)."\n";
@@ -262,13 +266,13 @@ function generate_yealink_provision($phone_data) {
       if($read) {
           $output .= preg_replace($search, $replace, $read)."\n";
       }
+      $read = $generator($phone_data['template']->cfg_key, 'settings', false, " = ");
+      if($read) {
+          $output .= preg_replace($search, $replace, $read)."\n";
+      }
       $read = $generator($phone_data['template']->cfg_tone, 'settings', false, " = ");
       if($read) {
-          $output .= preg_replace($search, $replace, $read, 'settings')."\n";
-      }
-      $read = $generator($phone_data['template']->cfg_keys, 'settings', false, " = ");
-      if($read) {
-          $output .= "\n".preg_replace($search, $replace, $read)."\n";
+          $output .= preg_replace($search, $replace, $read)."\n";
       }
 
       // create model spcification pkeys
