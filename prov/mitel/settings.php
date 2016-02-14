@@ -14,12 +14,12 @@ global $debug; $debug['aastra/dheader'][] = "(aastra 1) ".$header[0]."-".$header
 $remote_ip=$_SERVER['REMOTE_ADDR'];
 $file = $_SERVER['REQUEST_URI'];
 
-if(DEBUG_FUNCTION == 'd' || DEBUG_FUNCTION == 'aastra' && ($_REQUEST['model'] && $_REQUEST['mac'] && $_REQUEST['qpass'] && $_REQUEST['firmware']))
+if(DEBUG_FUNCTION == 'd' || DEBUG_FUNCTION == 'aastra' && ($_REQUEST['phonetyp'] && $_REQUEST['mac'] && $_REQUEST['pass'] && $_REQUEST['user_agent']))
 {
-    $model = $_REQUEST['model'];
-    $mac = trim($_REQUEST['mac']);
-    $firmware = $_REQUEST['firmware'];
-    $qpass = $_REQUEST['qpass'];
+    $model = $_REQUEST['phonetyp'];
+    $mac = str_replace(":","",$_REQUEST['mac']);
+    $firmware = $_REQUEST['user_agent'];
+    $qpass = $_REQUEST['pass'];
 } else {
     $nonepass = true;
     $model = $header[0];
@@ -39,6 +39,12 @@ switch($model) {
   case "Aastra53i":
   case "Aastra55i":
   case "Aastra57i":
+  case "Aastra6721ip":
+  case "Aastra6835i":
+  case "Aastra6837i":
+  case "Aastra6865i":
+  case "Aastra6867i":
+  case "Aastra6869i":
     $model = str_replace("Aastra5","Aastra675",$model);
     if (stristr($file,"aastra.cfg")) {
         if(function_exists("get_aastra_cfg"))
@@ -101,26 +107,18 @@ function Aastra_decode_HTTP_header()
 function get_aastra_cfg($mac)
 {
     $phone_data = get_phone_data($mac, false, true);
-    $durl = parse_url($_SERVER['REQUEST_URI']);
+    $durl = $_SERVER['HTTP_HOST'];
 
     $search = array(
-    '{{HOST_PROVSERVER}}',
-    '{{HOST_TIMESERVER}}',
-    '{{PROV_PASSWORD}}',
-    '{{NEW_LOGIN}}',
-    '{{Phone_Reregister_Prov}}',
+    '{{PROV_SERVER_URL}}',
     );
 
     $replace = array(
-    $durl['host'],
-    $durl['host'],
-    'provpass',
-    _("Logout"),
-    '360',
+    $durl,
     );
 
     // make slower for security
-    sleep(4.5);
+    sleep(0.5);
     $generator = $phone_data['template']->pvt_generator;
     $read = $generator($phone_data['template']->cfg_base,'settings');
     if($read)

@@ -6,7 +6,7 @@ require_once('../config.php');
 $host = get_dbhost($hosts);
 $sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
-
+$del = " = ";
 
 $types['t19p'] = array('fam' => 't1x', 'keys'=>'0', 'ekeys' => '0');
 $types['t21p'] = array('fam' => 't2x', 'keys'=>'0', 'ekeys' => '0');
@@ -14,14 +14,19 @@ $types['t22p'] = array('fam' => 't2x', 'keys'=>'3', 'ekeys' => '0');
 $types['t23p'] = array('fam' => 't2x', 'keys'=>'3', 'ekeys' => '0');
 $types['t26p'] = array('fam' => 't2x', 'keys'=>'13', 'ekeys' => '0');
 $types['t28p'] = array('fam' => 't2x', 'keys'=>'16', 'ekeys' => '0');
-$types['t32p'] = array('fam' => 't3x', 'keys'=>'3', 'ekeys' => '0');
-$types['t38p'] = array('fam' => 't3x', 'keys'=>'16', 'ekeys' => '0');
-$types['t40p'] = array('fam' => 't3x', 'keys'=>'3', 'ekeys' => '0');
+$types['t29g'] = array('fam' => 't2x', 'keys'=>'10', 'ekeys' => '0');
+$types['t32g'] = array('fam' => 't3x', 'keys'=>'3', 'ekeys' => '0');
+$types['t38g'] = array('fam' => 't3x', 'keys'=>'16', 'ekeys' => '0');
+$types['t40p'] = array('fam' => 't4x', 'keys'=>'3', 'ekeys' => '0');
 $types['t41p'] = array('fam' => 't4x', 'keys'=>'6', 'ekeys' => '0');
-$types['t46p'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '0');
-$types['t46p-1'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '20');
-$types['t46p-2'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '40');
-$types['t48p'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '0');
+$types['t42g'] = array('fam' => 't4x', 'keys'=>'6', 'ekeys' => '0');
+$types['t46g'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '0');
+$types['t46g-1'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '20');
+$types['t46g-2'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '40');
+$types['t48g'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '0');
+$types['t48g-1'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '20');
+$types['t48g-2'] = array('fam' => 't4x', 'keys'=>'29', 'ekeys' => '40');
+$types['w52p'] = array('fam' => 'w5x', 'keys'=>'0', 'ekeys' => '0');
 
 foreach($types as $mod => $val) {
 
@@ -219,6 +224,8 @@ programablekey.6.pickup_value = %NULL%
 $prov['cfg_key'] = json_decode(plain2json($in, $del));
 
 $prov['pvt_generator'] = 'json2plain';
+$prov['pvt_counter'] = 1;
+$prov['pvt_type'] = 'provisioner';
 echo upload_phone_data($prov);
 unset($prov);
 }

@@ -64,7 +64,7 @@ $in = /* putin account settings from phone  !!!!!!!*/ '
 <user_pname idx="{ACCOUNT}" perm="RW">{SIPAUTHNAME}</user_pname>
 <user_host idx="{ACCOUNT}" perm="RW">{REGISTRAR_SERVER}</user_host>
 <user_pass idx="{ACCOUNT}" perm="RW">{SIPSECRET}</user_pass>
-<codec_priority_list idx="{ACCOUNT}" perm="RW">g722,pcma,gsm,g726-32,aal2-g726-32,g729,telephone-event</codec_priority_list>
+<codec_priority_list idx="{ACCOUNT}" perm="RW">g722,pcmu,gsm,g726-32,aal2-g726-32,g729,telephone-event</codec_priority_list>
 <user_active idx="{ACCOUNT}" perm="RW">{STATUS}</user_active>
 <user_dtmf_info idx="{ACCOUNT}" perm="RW">sip_info_only</user_dtmf_info>
 <user_descr_contact idx="{ACCOUNT}" perm="RW">off</user_descr_contact>
@@ -112,10 +112,10 @@ $in = /* putin behavior settings from phone  !!!!!!!*/ '
 $prov['cfg_behavior'] = XML2Array::createArray($in);
 
 /* if you have more the 1 subselection add this seperatly */
-$in = '<certificates>
-<certificate url="{WEB_SERVER}/ca-root.der" />
-</certificates>
-';
+//$in = '<certificates>
+//<certificate url="{WEB_SERVER}/ca-root.der" />
+//</certificates>
+//';
 $prov['cfg_behavior'] = array_merge($prov['cfg_behavior'], XML2Array::createArray($in));
 
 
@@ -219,7 +219,8 @@ $in = /* putin keys settings from phone  !!!!!!!*/ '
 ';
 //$prov['cfg_keys'] = XML2Array::createArray($in);
 
-
+$prov['pvt_counter'] = 1;
+$prov['pvt_type'] = 'provisioner';
 $prov['pvt_generator'] = 'json2xml';
 echo upload_phone_data($prov);
 unset($prov);

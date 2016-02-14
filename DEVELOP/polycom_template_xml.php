@@ -6,24 +6,51 @@ require_once('../config.php');
 $host = get_dbhost($hosts);
 $sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
+$del = " = ";
 
+// spip family
+$types['301'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['320'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['321'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['322'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['330'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['331'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['335'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['430'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['450'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['501'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['550'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['560'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['600'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['601'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['650'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['670'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['4000'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['5000'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['6000'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+$types['7000'] = array('fam' => 'spip', 'keys'=>'0', 'ekeys' => '0');
+// vvx family
+$types['300'] = array('fam' => 'vvx', 'keys'=>'0', 'ekeys' => '0');
+$types['310'] = array('fam' => 'vvx', 'keys'=>'0', 'ekeys' => '0');
+$types['400'] = array('fam' => 'vvx', 'keys'=>'0', 'ekeys' => '0');
+$types['410'] = array('fam' => 'vvx', 'keys'=>'0', 'ekeys' => '0');
+$types['500'] = array('fam' => 'vvx', 'keys'=>'0', 'ekeys' => '0');
+$types['600'] = array('fam' => 'vvx', 'keys'=>'0', 'ekeys' => '0');
 
+foreach($types as $mod => $val) {
 
-
-/* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
-$prov['endpoint_brand'] = 'cisco';
-$prov['endpoint_family'] = 'spa3xx';
-$prov['endpoint_model'] = '501g';
-/* this is programable keys on phone */
-$prov['usr_keys']['setable_phone_keys'] = '0';
-$prov['usr_keys']['setable_phone_key_counter'] = '0';
-$prov['usr_keys']['setable_phone_key_value'] = 'fkey';
-/* this is extensions module keys */
-$prov['usr_keys']['setable_module_keys'] = '0';
-$prov['usr_keys']['setable_module_key_counter'] = '0';
-/* there use an special key for extensionsmodule */
-$prov['usr_keys']['setable_module_key_value'] = 'extkey';
-
+    $prov['endpoint_brand'] = 'polycom';
+    $prov['endpoint_family'] = $val['fam'];
+    $prov['endpoint_model'] = $mod;
+    /* this is programable keys on phone */
+    $prov['usr_keys']['setable_phone_keys'] = $val['keys'];
+    $prov['usr_keys']['setable_phone_key_counter'] = '1';
+    $prov['usr_keys']['setable_phone_key_value'] = 'fkey';
+    /* this is extensions module keys */
+    $prov['usr_keys']['setable_module_keys'] = $val['ekeys'];
+    $prov['usr_keys']['setable_module_key_counter'] = '1';
+    /* there use an special key for extensionsmodule */
+    $prov['usr_keys']['setable_module_key_value'] = 'extkey';
 
 
 $in = /* putin account settings from phone  !!!!!!!*/ '';
@@ -38,13 +65,6 @@ $in = /* putin behavior settings from phone  !!!!!!!*/ '
 </dect>
 <network>
   <bootproto>dhcp</bootproto>
-  <dns1 /> 
-  <dns2 /> 
-  <domain /> 
-  <gateway /> 
-  <ipaddr>192.168.0.1</ipaddr> 
-  <mtu>0</mtu> 
-  <netmask>255.255.255.0</netmask> 
   <ntp>0.us.pool.ntp.org</ntp>
   <timezone>CET-1CEST-2,M3.5.0/02:00:00,M10.5.0/03:00:00</timezone>
 </network>
@@ -124,8 +144,16 @@ if($in) $prov['cfg_tone'] = XML2Array::createArray($in);
 $in = /* putin keys settings from phone  !!!!!!!*/ '';
 if($in) $prov['cfg_keys'] = XML2Array::createArray($in);
 
-$prov['pvt_generator'] = 'json2xml';
-echo upload_phone_data($prov);
+$prov['cfg_key'] = json_decode(plain2json($in, $del));
 
+
+
+
+$prov['pvt_generator'] = 'json2xml';
+$prov['pvt_counter'] = 1;
+$prov['pvt_type'] = 'provisioner';
+echo upload_phone_data($prov);
+unset($prov);
+}
 
 ?>

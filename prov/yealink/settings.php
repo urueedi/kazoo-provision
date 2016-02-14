@@ -55,6 +55,7 @@ switch($model) {
     case 'yealinksip-t48g':
     case 'yealinksip-t48g-1':
     case 'yealinksip-t48g-2':
+    case 'yealinksip-w52p':
     if (stristr($file,"yealink.cfg")) {
         if(function_exists("get_yealink_cfg"))
         $host = get_dbhost($hosts);

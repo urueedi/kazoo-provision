@@ -6,24 +6,24 @@ require_once('../config.php');
 $host = get_dbhost($hosts);
 $sag = new Sag($host, $dbport);
 $myip4 = get_ip(4);
+$del = " = ";
 
+$types['303g'] = array('fam' => 'spa3xx', 'keys'=>'0', 'ekeys' => '0');
 
+foreach($types as $mod => $val) {
 
-
-/* 1. !!!!!!!!!!!!!!!!!!!!!  phone_settings */
-$prov['endpoint_brand'] = 'cisco';
-$prov['endpoint_family'] = 'spa3xx';
-$prov['endpoint_model'] = '501g';
-/* this is programable keys on phone */
-$prov['usr_keys']['setable_phone_keys'] = '0';
-$prov['usr_keys']['setable_phone_key_counter'] = '0';
-$prov['usr_keys']['setable_phone_key_value'] = 'fkey';
-/* this is extensions module keys */
-$prov['usr_keys']['setable_module_keys'] = '0';
-$prov['usr_keys']['setable_module_key_counter'] = '0';
-/* there use an special key for extensionsmodule */
-$prov['usr_keys']['setable_module_key_value'] = 'extkey';
-
+    $prov['endpoint_brand'] = 'cisco';
+    $prov['endpoint_family'] = $val['fam'];
+    $prov['endpoint_model'] = $mod;
+    /* this is programable keys on phone */
+    $prov['usr_keys']['setable_phone_keys'] = $val['keys'];
+    $prov['usr_keys']['setable_phone_key_counter'] = '0';
+    $prov['usr_keys']['setable_phone_key_value'] = 'fkey';
+    /* this is extensions module keys */
+    $prov['usr_keys']['setable_module_keys'] = $val['ekeys'];
+    $prov['usr_keys']['setable_module_key_counter'] = '0';
+    /* there use an special key for extensionsmodule */
+    $prov['usr_keys']['setable_module_key_value'] = 'extkey';
 
 
 $in = /* putin account settings from phone  !!!!!!!*/ '
@@ -204,8 +204,12 @@ if($in) $prov['cfg_tone'] = XML2Array::createArray($in);
 $in = /* putin keys settings from phone  !!!!!!!*/ '';
 if($in) $prov['cfg_keys'] = XML2Array::createArray($in);
 
-$prov['pvt_generator'] = 'json2xml';
-echo upload_phone_data($prov);
 
+$prov['pvt_generator'] = 'json2xml';
+$prov['pvt_counter'] = 1;
+$prov['pvt_type'] = 'provisioner';
+echo upload_phone_data($prov);
+unset($prov);
+}
 
 ?>
