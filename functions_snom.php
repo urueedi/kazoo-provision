@@ -167,7 +167,7 @@ global $HTTP;
         );
     // create account part
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
-    $account_start = $phone_data['template']->pvt_configs->account_counter;
+    $account_start = $phone_data['template']->pvt_counter;
 //print_r( $phone_data['template']);
     $account_counter = 0;
     if($phone_data['template']->endpoint_family != 'm3x')
@@ -215,8 +215,8 @@ global $HTTP;
                 'accessprovpass',                                                          /*   */
                 '0',                                                                       /* refresh config from server in seconds  */
                 $Phone_Reregister_Prov,                                                    /*   */
-                $phone_data['account'][$account]['provision']['provisionuser'],            /*   */
-                $phone_data['account'][$account]['provision']['provisionpass'],            /*   */
+                $phone_data['account'][0]['provision']['provisionuser'],            /*   */
+                $phone_data['account'][0]['provision']['provisionpass'],            /*   */
                 $srtp,                                                                     /* srtp (on/off) */
                 $phone_data['whitelabel']['provision']['advertisement_url'],               /* advertisement http path */
                 $XML_SERVER."ps.php",                                                      /* Presence button action path  */

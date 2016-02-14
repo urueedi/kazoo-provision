@@ -1,8 +1,10 @@
 # kazoo-provision
-Provision integration in monster-ui-voip
+Provision integration for monster-ui and old kazoo-ui
 
 ![screenshot1](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot1.png)
 ![screenshot2](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot2.png)
+![screenshot3](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot3.png)
+![screenshot4](https://raw.githubusercontent.com/urueedi/kazoo-provision/master/DEVELOP/screenshot4.png)
 
 Additional Support
 ------------------
@@ -12,7 +14,7 @@ Provisioner implement structure
 -------------------------------
 1. Network settings will be local from router and never be part of this provision-solution.
 2. There no cache-solution, if this provisioner will fail
-3. Feel free to add more of ip-phones, because i don't have all of devices!
+3. Feel free to add more of ip-phones, or ask for support us
 
 Supported phones (Feb 2016)
 ---------------------------
@@ -41,7 +43,7 @@ Install info
    - snom:  00:04:13:*:*:* http://[prov_domain]/prov/snom/settings.php?mac={mac}&pass=[PROVPASS_ACCOUT_UI]
    - mitel: 00:08:5d:*:*:* http://[prov_domain]/prov/mitel
    - yealink: 00:15:65:*:*:* http://[prov_domain]/prov/yealink
-11. If you need Quality of Service (No chrrr in line) there is also in OpenWRT 13.10 included (qos-luci) add for QoS-Settings
+11. If you need Quality of Service (clean line) there is also in OpenWRT 13.10 included (qos-luci) add for QoS-Settings
    - 1. priority src=all dst=[your_mediaserver] service=all proto=udp
    - 2. priority src=[your_mediaserver] dst=all service=all proto=udp
    - 3. normal src=all dst=all service=all proto=all

@@ -5,7 +5,7 @@ error_reporting(1);
 function generate_mitel_provision($phone_data) {
 
     $account = $phone_data['template']->usr_keys->setable_phone_key_counter;
-    $account_start = $phone_data['template']->pvt_configs->account_counter;
+    $account_start = $phone_data['template']->pvt_counter;
     $generator = $phone_data['template']->pvt_generator;
     //print_r( $phone_data['template']);
     $account_counter = 0;
@@ -17,22 +17,55 @@ function generate_mitel_provision($phone_data) {
     $PROXY_SERVER = $phone_data['account'][$account]['realm'];
     $REGISTRAR_SERVER = $phone_data['account'][$account]['realm'];
     if($Phone_Reregister_Prov == false) $Phone_Reregister_Prov = 360;
-    switch($phone_data['shlang']) {
-       case 'en':
-           $lang_idx=2;
-       break;
-       case 'de':
-           $lang_idx=1;
-       break;
-       case 'fr':
-           $lang_idx=3;
-       break;
-       case 'it':
-           $lang_idx=4;
-       break;
-       default:
-           $lang_idx=1;
+    ($phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['language']) ? $language = $phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['language'] : $language = $phone_data['account'][$account]['language'];
+    ($phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['timezone']) ? $timezone = $phone_data['users'][0][$phone_data['prov'][0]['owner']]['value']['timezone'] : $timezone = $phone_data['account'][$account]['timezone'];
+
+    switch($timezone) {
+           case 'Europe/London':
+                        $lang_idx=0; $lang_code="English"; $tone = "UK"; $timezone_idx = "UK"; break;
+           case 'America/Los_Angeles':
+                        $lang_idx=0; $lang_code="English"; $tone = "US"; $timezone_idx = "US"; break;
+           case 'America/Boston':
+           case 'America/New_York':
+                        $lang_idx=0; $lang_code="English"; $tone = "US"; $timezone_idx = "US"; break;
+           case 'America/Mexico':
+                        $lang_idx=0; $lang_code="English"; $tone = "Mexico"; $timezone_idx = "Mexico"; break;
+           case 'Asia/Singapure':
+                        $lang_idx=0; $lang_code="English"; $tone = "Malaysia"; $timezone_idx = "Malaysia"; break;
+           case 'Europe/Copenhagen':
+                        $lang_idx=4; $lang_code="Dansk"; $tone = "UK"; $timezone_idx = "UK"; break;
+           case 'Europe/Berlin':
+                        $lang_idx=1; $lang_code="German"; $tone = "Germany"; $timezone_idx = "Germany"; break;
+           case 'Europe/Bern':
+           case 'Europe/Zurich':
+                        $lang_idx=1; $lang_code="German"; $tone = "Europe"; $timezone_idx = "CH-Zurich"; break;
+           case 'Europe/Paris':
+                        $lang_idx=2; $lang_code="French"; $tone = "France"; $timezone_idx = "France";  break;
+           case 'Europe/Geneva':
+                        $lang_idx=2; $lang_code="French"; $tone = "Europe"; $timezone_idx = "Europe";  break;
+           case 'Europe/Rom':
+                        $lang_idx=3; $lang_code="Italiano"; $tone = "Italy"; $timezone_idx = "Ialy"; break;
+           case 'Europe/Moskau':
+                        $lang_idx=0; $lang_code="Russian"; $tone = "Russia"; $timezone_idx = "Russia"; break;
+           default; $lang_idx=0; $lang_code="English"; $tone = "US"; $timezone_idx = "US";
     }
+
+    switch($language) {
+           case 'en-UK':
+           case 'en-US':
+                        $lang_idx=0; $lang_code="English"; break;
+           case 'dk-DK':
+                        $lang_idx=4; $lang_code="Dansk"; break;
+           case 'de-DE':
+                        $lang_idx=1; $lang_code="German"; break;
+           case 'fr-FR':
+                        $lang_idx=2; $lang_code="French";  break;
+           case 'it-IT':
+                        $lang_idx=3; $lang_code="Italiano"; break;
+           case 'ru-RU':
+                        $lang_idx=0; $lang_code="Russian"; break;
+    }
+
     // Prepare replace strings
     $search=array(
         '{{ACCOUNT}}',
@@ -58,7 +91,7 @@ function generate_mitel_provision($phone_data) {
         '{{BAK_REGISTRAR_SERVER}}',
         '{{CONFERENCE_LABEL}}',
         '{{PROXY_PORT}}',
-        '{{NTP_SERVER}}',
+        '{{HOST_TIMESERVER}}',
         '{{INTERNAL}}',
         '{{SUBSCRIPT_REREGISTER}}',
         '{{PHONE_REREGISTER}}',
@@ -70,6 +103,11 @@ function generate_mitel_provision($phone_data) {
         '{{SETTINGS_REFRESH_TIMER}}',
         '{{SRTP}}',
         '{{PROV_SERVER}}',
+        '{{TONEZONE}}',
+        '{{RX}}',
+        '{{TX}}',
+        '{{INPUT_LANG}}',
+        '{{TIMEZONE}}',
         );
     // create account part
         $multiaccount = true;
@@ -80,7 +118,7 @@ function generate_mitel_provision($phone_data) {
           $expm = $value['expm'];
           $device = $value['device'];
           $customersid = $value['cuid'];
-          $read = $generator($phone_data['template']->cfg_account, 'settings', false, ": ");
+          $read = $generator($phone_data['template']->cfg_account, 'settings', false, ":");
           if($read) {
 //print_r($value);
 //print_r($phone_data['users'][$account_counter][$phone_data['prov'][$account_counter]['owner']]);
@@ -114,14 +152,19 @@ function generate_mitel_provision($phone_data) {
                     $phone_data['users'][$account_counter][$value['owner']]['value']['presence_id'],
                     $Phone_Reregister_Prov,
                     $Phone_Reregister_Prov,
-                    $XML_SERVER,
-                    $phone_data['account'][$account]['provision']['provisionuser'],
-                    $phone_data['account'][$account]['provision']['provisionpass'],
+                    $_SERVER['HTTP_HOST'],
+                    $phone_data['account'][0]['provision']['provisionuser'],            /*   */
+                    $phone_data['account'][0]['provision']['provisionpass'],            /*   */
                     '',
                     '',
                     '',
                     '',
                     $PROV_SERVER,
+                    $tone,
+                    round((9+$value['media']['audio']['tx_volume'])*(8-1)/(15-2)),             /* audio tx mitel */
+                    round((9+$value['media']['audio']['rx_volume'])*(8-1)/(15-2)),             /* audio rx mitel */
+                    $lang_code,
+                    $timezone_idx,
                     );
               $output .= preg_replace($search, $replace, $read)."\n";
           }
@@ -129,24 +172,50 @@ function generate_mitel_provision($phone_data) {
         $account_counter++;
         $account_start++;
         }
-      $read = $generator($phone_data['template']->cfg_behavior, 'settings', false, ": ");
-      if($read) {
+    $read = $generator($phone_data['template']->cfg_behavior, 'settings', false, ":");
+    if($read) {
           $output .= preg_replace($search, $replace, $read)."\n";
     }
-      $read = $generator($phone_data['template']->cfg_tone, 'settings', false, ": ");
-      if($read) {
+    $read = $generator($phone_data['template']->cfg_tone, 'settings', false, ":");
+    if($read) {
           $output .= preg_replace($search, $replace, $read, 'settings')."\n";
     }
-      $read = $generator($phone_data['template']->cfg_keys, 'settings', false, ": ");
-      if($read) {
-          $output .= "\n".preg_replace($search, $replace, $read)."\n";
+    // if model have softkey prov it on phone
+    if($phone_data['template']->usr_keys->setable_phone_keys >= count($phone_data['prov'][0]['provision']['feature_keys'])) {
+        // create model spcification softkeys
+        $read = $generator($phone_data, 'usrkeys', false, ': ', 'write_mitel_softkeys');
+        if($read) $output .= "\n".$read;
+    } else {
+        // create model spcification pkeys
+        $read = $generator($phone_data, 'usrkeys', false, ': ', 'write_mitel_keys');
+        if($read) $output .= "\n".$read;
     }
 
-    // create model spcification pkeys
-    $read = $generator($phone_data, 'usrkeys', false, ': ', 'write_mitel_keys');
-    if($read) $output .= "\n".$read;
-
 return $output;
+}
+
+/* write_plain_keys kind = typ (presence, speed_dial, ... ) and value , expm=1, key=1, obj_data=array of prov */
+function write_mitel_softkeys($kind, $expm, $key, $obj_datas, $account)
+{
+
+    switch($kind['type']) {
+        case 'presence':
+            $ret = "prgkey".$key." type: blf\nprgkey".$key." label: ".$obj_datas['users'][$account][$kind['value']]['value']['caller_id']['internal']['name'].
+                "\nprgkey".$key." value: ".$obj_datas['users'][$account][$kind['value']]['value']['presence_id']."\nprgkey".$key." line: 0\n";
+        break;
+        case 'speed_dial':
+            $ret = "prgkey".$key." type: speed_dial\nprgkey".$key." label: "._("Speeddial")."\nprgkey".$key." value: ".$kind['value'].
+            "\nprgkey".$key." line: 0\n";
+        break;
+        case 'parking':
+            $ret = "prgkey".$key." type: park\nprgkey".$key." label: "._("Parking")."\nprgkey".$key." value: ".$kind['value']."\nprgkey".$key." line: 0\n";
+        break;
+        case 'personal_parking':
+            $ret = "prgkey".$key." type: blf\nprgkey".$key." label: "._("My Parking")."\nprogkey".$key." value: ".$kind['value']."\nprgkey".$key." line: 0\n";
+        break;
+    }
+
+return($ret);
 }
 
 /* write_plain_keys kind = typ (presence, speed_dial, ... ) and value , expm=1, key=1, obj_data=array of prov
