@@ -284,7 +284,7 @@ function json2xml($obj_datas, $type=false, $account=false)
             $module = '0';
             foreach ($obj_datas['prov'][0]['provision']['feature_keys'] AS $key => $kind) {
                     /* we support 1 or 2 expansions modules */ if ($expm[1] == 2 && $key > 36) { $keydiff = -36; $module=1; }
-                    $xml_keys .= write_xml_keys($kind, $module, ($key - $keydiff), $obj_datas, $account);
+                    $xml_keys .= write_xml_keys($kind, $module, ($key - $keydiff)-1, $obj_datas, $account);
             }
             return("<functionKeys>\n".$xml_keys."</functionKeys>\n");
         break;

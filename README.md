@@ -26,7 +26,8 @@ Install info
    If not install kazoo-urueedi, change files application/crossbar/priv/devices.json and users.json
    from this DEVELEOP directory and recompile and restart crossbar and (sup whapps_maintenance migrate) to renew couchdb!
 2. Install monster-ui (from this repository because of adds in ui) and fping, php-cli, php, php-xml
-4. Install THIS in a WEBFOLDER where the monster-ui is, or on sep. domain
+   CentOS: in /etc/httpd/conf/httpd.conf need "AllowOverride All" (from None to All)
+4. Install THIS in a WEBFOLDER where the monster-ui is
 5. INSTALL and UPDATE with on console in dir ./setup.php the database and add brand_provisioner to couchdb
 6. Setting in this folder config.php your couchdb nodes in $hosts="localhost" and $dbport = "5984"
 7. Then restart kazoo with: service kz-whistle_app restart or flush coucdb cache of kazoo
@@ -55,7 +56,7 @@ Add a New Phones to provision Panasonic or ...
 ----------------------------------------------
 Add first by handsetting your phone to work, then export it from phone (most of that kind have this function..?)
 
-1. Add some nice pictures for your phones in the directory on monster-ui css/assets/brands and css/assents/models in named snom_3xx_300.jpg must be in order! {brand}_{family}_{model}.jpg or if phone with a expansions_module {brand}_{family}_{model}-{ext_module}.jpg.
+1. Add some nice pictures for your phones in the directory on monster-ui css/assets/brands and css/assents/models in named snom_3xx_300.jpg must be in order! {brand}_{family}_{model}-{Ext}.jpg or if phone with a expansions_module {brand}_{family}_{model}-{ext_module}.jpg.
 2. Now you can go to monster-ui you can see if you select to add a SIP-Phone you see the brands and you can select it
 3. Setting up you phone with if possible (2 accounts-, key-, tone-, time-settings) that it works correct!
 4. Download you settings from your phone, it have to be in cleartext format.
