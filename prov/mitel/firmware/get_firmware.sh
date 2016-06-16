@@ -20,41 +20,17 @@ else
 fi
 	    
 # Download & Unpack Firmware
-echo "Download and unpack Firmware Aastra 67xx (PLEASE WAIT)...<br>"
-prefix="http://www.aastra.de/cps/rde/aareddownload?file_id={{ID}}&dsproject=www-aastra-de&mtype=zip"
-packages="6167-15148-_P02_XML 6354-15156-_P02_XML 6848-15158-_P02_XML 6950-15160-_P02_XML 7041-15162-_P02_XML 6354-14804-_P02_XML"
+echo "Download and unpack Firmware Aastra (PLEASE WAIT)...<br>"
+src="http://miteldocs.com/cps/rde/aareddownload?file_id=6274-17656-_P06_XML&dsproject=aastra&mtype=zip"
 to="."
 
-for pack in $packages
-do
-	src=`echo $prefix|sed -e s/\{\{ID\}\}/$pack/g`
-	$CMD_C $src -O $to/$pack.zip &>/dev/null
-done
+$CMD_C $src -O $to &>/dev/null
 
 for name in `ls ./`
 do
-if echo $name|grep -q ".zip" ; then
-    unzip -o -d ../ $name &>/dev/null
-fi
+    if echo $name|grep -q ".zip" ; then
+        unzip -o -d ../ $name &>/dev/null
+    fi
 done
 
-echo "Download and unpack Firmware Aastra 67xx (PLEASE WAIT)...<br>"
-
-prefix="http://www.aastra.ch/cps/rde/aareddownload?file_id=15256-17752-_P04_XML&dsproject=www-aastra-ch-de&mtype=zip"
-packages="FC-001363-01-REV07_6737i_3_3_1_8106_SP4 FC-001415-00-REV02_6863i_3_3_1_8106_SP4 PC-001416-00-REV02_6865i_3_3_1_8106_SP4 FC-001417-00-REV02_6867i_3_3_1_8106_SP4"
-to="."
-
-for pack in $packages
-do
-	src=`echo $prefix|sed -e s/\{\{ID\}\}/$pack/g`
-	$CMD_C $src -O $to/$pack.zip &>/dev/null
-done
-
-for name in `ls ./`
-do
-if echo $name|grep -q ".zip" ; then
-    unzip -o -d ../ $name &>/dev/null
-fi
-done
-
-echo "Firmware Aastra 68xx komplett<br>"
+echo "Firmware Aastra komplett<br>"

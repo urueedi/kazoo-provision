@@ -17,8 +17,8 @@ fi
 echo "remove old Firmware, download &amp; Unpack new Firmware from Snom (PLEASE WAIT)...<br>"
 
 # if new download firmware of all snoms and remove old file
-loadprefix="provisioning.snom.com"
-add="download/fw"
+loadprefix="downloads.snom.com"
+add="fw"
 files="m9-9.6.2-a.bin snom300-8.7.3.25-SIP-f.bin snom320-8.7.3.25-SIP-f.bin snom360-8.7.3.25-SIP-f.bin snom370-8.7.3.25-SIP-f.bin snom820-8.2.29-SIP-r.bin snom820-8.7.3.25-SIP-r.bin snom821-8.7.3.25-SIP-r.bin snom870-8.7.3.25-SIP-r.bin snomMP-8.7.3.25-SIP-r.bin snom720-8.7.5.13-SIP-r.bin snom760-8.7.5.13-SIP-r.bin"
 to="."
 

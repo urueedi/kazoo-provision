@@ -13,7 +13,8 @@ header('Access-Control-Allow-Origin: *');
 $headers = getallheaders();
 if($headers['Access-Control-Request-Headers']) {
     header('Content-Type: text/html; charset=UTF-8');
-    header('access-control-allow-headers: content-type,x-auth-token');
+    header('Access-Control-Allow-Headers:accept, content-type, x-auth-token, x-kazoo-cluster-id');
+//    header('access-control-allow-headers: content-type,x-auth-token');
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS, HEAD');
     header('Allow: GET');
 } else {
